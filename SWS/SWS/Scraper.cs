@@ -29,7 +29,7 @@ namespace SWS
             HtmlWeb web = new HtmlWeb();
             var html = page;
 
-            int PointStart = 1;
+            int PointStart = 0;
             int PointEnd = 161;
 
             int number = 0;
