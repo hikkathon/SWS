@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace SWS
 {
-    public partial class Form2 : Form
+    public partial class FormProgress : Form
     {
         #region Property progressBar1
         public  int ProgressBarMin
@@ -50,7 +50,7 @@ namespace SWS
         }
         #endregion
 
-        public Form2()
+        public FormProgress()
         {
             InitializeComponent();
         }
