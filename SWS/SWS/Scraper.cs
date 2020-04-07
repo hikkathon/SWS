@@ -30,6 +30,7 @@ namespace SWS
             int PointStart = 1;
             int PointEnd = 2;
 
+
             int number = 0;
 
             Notify?.Invoke("Start parsing");
