@@ -28,108 +28,141 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.textBoxPageStart = new System.Windows.Forms.TextBox();
-            this.textBoxPageEnd = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.panel1.SuspendLayout();
+            this.label1 = new System.Windows.Forms.Label();
+            this.textBoxPageStart = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBoxPageEnd = new System.Windows.Forms.TextBox();
+            this.buttonSettingCancel = new System.Windows.Forms.Button();
+            this.buttonSettingApply = new System.Windows.Forms.Button();
             this.SuspendLayout();
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Controls.Add(this.button2);
-            this.panel1.Controls.Add(this.button1);
-            this.panel1.Controls.Add(this.label2);
-            this.panel1.Controls.Add(this.label1);
-            this.panel1.Controls.Add(this.textBoxPageEnd);
-            this.panel1.Controls.Add(this.textBoxPageStart);
-            this.panel1.Location = new System.Drawing.Point(1, 1);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(798, 448);
-            this.panel1.TabIndex = 0;
-            // 
-            // textBoxPageStart
-            // 
-            this.textBoxPageStart.Location = new System.Drawing.Point(73, 5);
-            this.textBoxPageStart.Name = "textBoxPageStart";
-            this.textBoxPageStart.Size = new System.Drawing.Size(100, 20);
-            this.textBoxPageStart.TabIndex = 0;
-            // 
-            // textBoxPageEnd
-            // 
-            this.textBoxPageEnd.Location = new System.Drawing.Point(73, 31);
-            this.textBoxPageEnd.Name = "textBoxPageEnd";
-            this.textBoxPageEnd.Size = new System.Drawing.Size(100, 20);
-            this.textBoxPageEnd.TabIndex = 1;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(11, 8);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 13);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "Start page";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(11, 34);
+            this.label2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label2.ForeColor = System.Drawing.Color.White;
+            this.label2.Location = new System.Drawing.Point(28, 192);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(53, 13);
+            this.label2.Size = new System.Drawing.Size(87, 21);
             this.label2.TabIndex = 3;
             this.label2.Text = "End page";
             // 
-            // button1
+            // label1
             // 
-            this.button1.Location = new System.Drawing.Point(619, 414);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 4;
-            this.button1.Text = "Apply";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(28, 157);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(95, 21);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Start page";
             // 
-            // button2
+            // textBoxPageStart
             // 
-            this.button2.Location = new System.Drawing.Point(712, 414);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Cancel";
-            this.button2.UseVisualStyleBackColor = true;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.textBoxPageStart.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.textBoxPageStart.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxPageStart.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxPageStart.ForeColor = System.Drawing.Color.White;
+            this.textBoxPageStart.Location = new System.Drawing.Point(129, 160);
+            this.textBoxPageStart.Multiline = true;
+            this.textBoxPageStart.Name = "textBoxPageStart";
+            this.textBoxPageStart.Size = new System.Drawing.Size(100, 20);
+            this.textBoxPageStart.TabIndex = 0;
+            // 
+            // label3
+            // 
+            this.label3.Anchor = System.Windows.Forms.AnchorStyles.Top;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Century Gothic", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(302, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(116, 32);
+            this.label3.TabIndex = 5;
+            this.label3.Text = "SETTING";
+            // 
+            // textBoxPageEnd
+            // 
+            this.textBoxPageEnd.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.textBoxPageEnd.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxPageEnd.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxPageEnd.ForeColor = System.Drawing.Color.White;
+            this.textBoxPageEnd.Location = new System.Drawing.Point(129, 193);
+            this.textBoxPageEnd.Multiline = true;
+            this.textBoxPageEnd.Name = "textBoxPageEnd";
+            this.textBoxPageEnd.Size = new System.Drawing.Size(100, 20);
+            this.textBoxPageEnd.TabIndex = 0;
+            // 
+            // buttonSettingCancel
+            // 
+            this.buttonSettingCancel.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSettingCancel.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.buttonSettingCancel.FlatAppearance.BorderSize = 0;
+            this.buttonSettingCancel.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.buttonSettingCancel.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(103)))), ((int)(((byte)(102)))));
+            this.buttonSettingCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSettingCancel.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonSettingCancel.ForeColor = System.Drawing.Color.White;
+            this.buttonSettingCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonSettingCancel.Location = new System.Drawing.Point(662, 375);
+            this.buttonSettingCancel.Name = "buttonSettingCancel";
+            this.buttonSettingCancel.Size = new System.Drawing.Size(126, 63);
+            this.buttonSettingCancel.TabIndex = 6;
+            this.buttonSettingCancel.Text = "Cancel";
+            this.buttonSettingCancel.UseVisualStyleBackColor = true;
+            this.buttonSettingCancel.Click += new System.EventHandler(this.buttonSettingCancel_Click);
+            // 
+            // buttonSettingApply
+            // 
+            this.buttonSettingApply.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonSettingApply.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.buttonSettingApply.FlatAppearance.BorderSize = 0;
+            this.buttonSettingApply.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.buttonSettingApply.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(103)))), ((int)(((byte)(102)))));
+            this.buttonSettingApply.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSettingApply.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonSettingApply.ForeColor = System.Drawing.Color.White;
+            this.buttonSettingApply.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonSettingApply.Location = new System.Drawing.Point(530, 375);
+            this.buttonSettingApply.Name = "buttonSettingApply";
+            this.buttonSettingApply.Size = new System.Drawing.Size(126, 63);
+            this.buttonSettingApply.TabIndex = 6;
+            this.buttonSettingApply.Text = "Apply";
+            this.buttonSettingApply.UseVisualStyleBackColor = true;
+            this.buttonSettingApply.Click += new System.EventHandler(this.buttonSettingApply_Click);
             // 
             // FormSettings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.buttonSettingApply);
+            this.Controls.Add(this.buttonSettingCancel);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.textBoxPageEnd);
+            this.Controls.Add(this.textBoxPageStart);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "FormSettings";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Scrap setting";
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBoxPageEnd;
         private System.Windows.Forms.TextBox textBoxPageStart;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBoxPageEnd;
+        private System.Windows.Forms.Button buttonSettingCancel;
+        private System.Windows.Forms.Button buttonSettingApply;
     }
 }

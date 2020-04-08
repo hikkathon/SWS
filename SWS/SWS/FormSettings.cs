@@ -16,20 +16,20 @@ namespace SWS
         {
             InitializeComponent();
 
-            textBoxPageStart.Text = Form1.PageStart.ToString();
-            textBoxPageEnd.Text = Form1.PageEnd.ToString();
+            textBoxPageStart.Text = FormMain.PageStart.ToString();
+            textBoxPageEnd.Text = FormMain.PageEnd.ToString();
         }
 
-        private void button2_Click(object sender, EventArgs e)
+        private void buttonSettingApply_Click(object sender, EventArgs e)
         {
+            FormMain.PageStart = int.Parse(textBoxPageStart.Text);
+            FormMain.PageEnd = int.Parse(textBoxPageEnd.Text);
+
             Close();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonSettingCancel_Click(object sender, EventArgs e)
         {
-            Form1.PageStart = int.Parse(textBoxPageStart.Text);
-            Form1.PageEnd = int.Parse(textBoxPageEnd.Text);
-
             Close();
         }
     }

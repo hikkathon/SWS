@@ -10,9 +10,9 @@ using System.Windows.Forms;
 
 namespace SWS
 {
-    public partial class Form1 : Form
+    public partial class FormHelp : Form
     {
-        public Form1()
+        public FormHelp()
         {
             InitializeComponent();
         }

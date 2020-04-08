@@ -69,17 +69,47 @@
     <Compile Include="Form1.Designer.cs">
       <DependentUpon>Form1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form2.cs">
+    <Compile Include="FormAbout.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form2.Designer.cs">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <Compile Include="FormAbout.Designer.cs">
+      <DependentUpon>FormAbout.cs</DependentUpon>
     </Compile>
-    <Compile Include="Form3.cs">
+    <Compile Include="FormData.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form3.Designer.cs">
-      <DependentUpon>Form3.cs</DependentUpon>
+    <Compile Include="FormData.Designer.cs">
+      <DependentUpon>FormData.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormDonate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormDonate.Designer.cs">
+      <DependentUpon>FormDonate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormHelp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormHelp.Designer.cs">
+      <DependentUpon>FormHelp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormMain.Designer.cs">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormProgress.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormProgress.Designer.cs">
+      <DependentUpon>FormProgress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FormPoster.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FormPoster.Designer.cs">
+      <DependentUpon>FormPoster.cs</DependentUpon>
     </Compile>
     <Compile Include="FormSettings.cs">
       <SubType>Form</SubType>
@@ -93,11 +123,26 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form2.resx">
-      <DependentUpon>Form2.cs</DependentUpon>
+    <EmbeddedResource Include="FormAbout.resx">
+      <DependentUpon>FormAbout.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Form3.resx">
-      <DependentUpon>Form3.cs</DependentUpon>
+    <EmbeddedResource Include="FormData.resx">
+      <DependentUpon>FormData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormDonate.resx">
+      <DependentUpon>FormDonate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormHelp.resx">
+      <DependentUpon>FormHelp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormMain.resx">
+      <DependentUpon>FormMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormProgress.resx">
+      <DependentUpon>FormProgress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FormPoster.resx">
+      <DependentUpon>FormPoster.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FormSettings.resx">
       <DependentUpon>FormSettings.cs</DependentUpon>
