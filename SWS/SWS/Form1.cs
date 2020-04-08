@@ -10,6 +10,9 @@ namespace SWS
 {
     public partial class Form1 : Form
     {
+        public static int PageStart = 1;
+        public static int PageEnd = 2;
+
         private FormProgress fmpr2;
         Scraper scraper;
 
@@ -67,7 +70,7 @@ namespace SWS
 
             foreach (var entries in scraper.Entries)
             {
-                dataGridView1.Rows.Add(entries.Number, entries.Title, entries.Type, entries.View, entries.Vote, entries.Rating, entries.Release, entries.Poster);
+                dataGridView1.Rows.Add(entries.Number, entries.Title, entries.Type, entries.View, entries.Vote, entries.Rating, entries.Release, entries.Poster, entries.DateParse);
             }
 
             fmpr2.Close();
@@ -103,7 +106,7 @@ namespace SWS
             {
                 SaveFileDialog savefile = new SaveFileDialog();
                 savefile.DefaultExt = ".txt";
-                savefile.FileName = $"{DateTime.Now.ToLocalTime()}";
+                savefile.FileName = $"{DateTime.Now.ToLocalTime().ToString().Replace(":", "-").Replace(".", "-")}";
                 savefile.Filter = "Text files (*.txt)|*.txt";
 
                 if (savefile.ShowDialog() == System.Windows.Forms.DialogResult.OK && savefile.FileName.Length > 0)
@@ -151,7 +154,7 @@ namespace SWS
             try
             {
                 ws = wb.ActiveSheet;
-                ws.Name = "{DateTime.Now.ToLocalTime()}";
+                ws.Name = $"{DateTime.Now.ToShortDateString()}";
 
                 int cellRowIndex = 1;
                 int cellColumnIndex = 1;
@@ -178,7 +181,7 @@ namespace SWS
                 savefile.DefaultExt = ".xlsx";
                 savefile.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
                 savefile.FilterIndex = 2;
-                savefile.FileName = $"{DateTime.Now.ToLocalTime()}";
+                savefile.FileName = $"{DateTime.Now.ToLocalTime().ToString().Replace(":", "-").Replace(".", "-")}";
 
                 if (savefile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                 {
@@ -196,6 +199,18 @@ namespace SWS
                 wb = null;
                 excel = null;
             }
+        }
+
+        private void label3_DoubleClick(object sender, EventArgs e)
+        {
+            textBoxURL.Text = "https://yummyanime.club/catalog";
+            pictureBox2.Visible = true;
+        }
+
+        private void scrapSetingToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FormSettings fs = new FormSettings();
+            fs.ShowDialog();
         }
     }
 }

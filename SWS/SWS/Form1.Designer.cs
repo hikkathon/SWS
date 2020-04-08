@@ -36,6 +36,7 @@
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tXTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.csvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.xlsxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.webUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -43,6 +44,14 @@
             this.byToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.title = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.view = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vote = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rating = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.release = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.poster = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.buttonStart = new System.Windows.Forms.Button();
@@ -66,15 +75,9 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.title = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.view = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.vote = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rating = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.release = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.poster = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.xlsxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.dateParse = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.scrapSetingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -93,6 +96,7 @@
             this.panel6.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -145,22 +149,29 @@
             this.csvToolStripMenuItem,
             this.xlsxToolStripMenuItem});
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
-            this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
             this.saveToolStripMenuItem.Text = "Save as";
             // 
             // tXTToolStripMenuItem
             // 
             this.tXTToolStripMenuItem.Name = "tXTToolStripMenuItem";
-            this.tXTToolStripMenuItem.Size = new System.Drawing.Size(94, 22);
+            this.tXTToolStripMenuItem.Size = new System.Drawing.Size(97, 22);
             this.tXTToolStripMenuItem.Text = ".txt";
             this.tXTToolStripMenuItem.Click += new System.EventHandler(this.tXTToolStripMenuItem_Click);
             // 
             // csvToolStripMenuItem
             // 
             this.csvToolStripMenuItem.Name = "csvToolStripMenuItem";
-            this.csvToolStripMenuItem.Size = new System.Drawing.Size(94, 22);
+            this.csvToolStripMenuItem.Size = new System.Drawing.Size(97, 22);
             this.csvToolStripMenuItem.Text = ".csv";
             this.csvToolStripMenuItem.Click += new System.EventHandler(this.csvToolStripMenuItem_Click);
+            // 
+            // xlsxToolStripMenuItem
+            // 
+            this.xlsxToolStripMenuItem.Name = "xlsxToolStripMenuItem";
+            this.xlsxToolStripMenuItem.Size = new System.Drawing.Size(97, 22);
+            this.xlsxToolStripMenuItem.Text = ".xlsx";
+            this.xlsxToolStripMenuItem.Click += new System.EventHandler(this.xlsxToolStripMenuItem_Click);
             // 
             // openToolStripMenuItem
             // 
@@ -170,6 +181,8 @@
             // 
             // settingToolStripMenuItem
             // 
+            this.settingToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.scrapSetingToolStripMenuItem});
             this.settingToolStripMenuItem.Name = "settingToolStripMenuItem";
             this.settingToolStripMenuItem.Size = new System.Drawing.Size(56, 20);
             this.settingToolStripMenuItem.Text = "Setting";
@@ -198,7 +211,7 @@
             this.groupBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBox1.Location = new System.Drawing.Point(0, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(900, 279);
+            this.groupBox1.Size = new System.Drawing.Size(900, 316);
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Parsing data";
@@ -223,14 +236,63 @@
             this.vote,
             this.rating,
             this.release,
-            this.poster});
+            this.poster,
+            this.dateParse});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.Location = new System.Drawing.Point(3, 16);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(894, 260);
+            this.dataGridView1.Size = new System.Drawing.Size(894, 297);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.DoubleClick += new System.EventHandler(this.dataGridView1_DoubleClick);
+            // 
+            // number
+            // 
+            this.number.HeaderText = "#";
+            this.number.Name = "number";
+            this.number.Width = 38;
+            // 
+            // title
+            // 
+            this.title.HeaderText = "Title";
+            this.title.Name = "title";
+            this.title.Width = 51;
+            // 
+            // type
+            // 
+            this.type.HeaderText = "Type";
+            this.type.Name = "type";
+            this.type.Width = 55;
+            // 
+            // view
+            // 
+            this.view.HeaderText = "View";
+            this.view.Name = "view";
+            this.view.Width = 54;
+            // 
+            // vote
+            // 
+            this.vote.HeaderText = "Vote";
+            this.vote.Name = "vote";
+            this.vote.Width = 53;
+            // 
+            // rating
+            // 
+            this.rating.HeaderText = "Rating";
+            this.rating.Name = "rating";
+            this.rating.Width = 62;
+            // 
+            // release
+            // 
+            this.release.HeaderText = "Release";
+            this.release.Name = "release";
+            this.release.Width = 70;
+            // 
+            // poster
+            // 
+            this.poster.HeaderText = "Poster";
+            this.poster.Name = "poster";
+            this.poster.Width = 61;
             // 
             // pictureBox1
             // 
@@ -238,7 +300,7 @@
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(0, 20);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(75, 76);
+            this.pictureBox1.Size = new System.Drawing.Size(75, 39);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
@@ -246,13 +308,14 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.label3.Location = new System.Drawing.Point(75, 25);
+            this.label3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.label3.Location = new System.Drawing.Point(75, 46);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(759, 13);
             this.label3.TabIndex = 3;
             this.label3.Text = "Ссылку можно скопировать из адресной строки браузера после применения нужных филь" +
     "тров на сайте... Пример: https://yummyanime.club/catalog";
+            this.label3.DoubleClick += new System.EventHandler(this.label3_DoubleClick);
             // 
             // buttonStart
             // 
@@ -335,9 +398,9 @@
             // 
             this.panel7.Controls.Add(this.panel10);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel7.Location = new System.Drawing.Point(0, 96);
+            this.panel7.Location = new System.Drawing.Point(0, 59);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(900, 374);
+            this.panel7.Size = new System.Drawing.Size(900, 411);
             this.panel7.TabIndex = 7;
             // 
             // panel10
@@ -347,7 +410,7 @@
             this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel10.Location = new System.Drawing.Point(0, 0);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(900, 374);
+            this.panel10.Size = new System.Drawing.Size(900, 411);
             this.panel10.TabIndex = 7;
             // 
             // panel11
@@ -356,7 +419,7 @@
             this.panel11.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel11.Location = new System.Drawing.Point(0, 0);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(900, 279);
+            this.panel11.Size = new System.Drawing.Size(900, 316);
             this.panel11.TabIndex = 7;
             // 
             // panel8
@@ -365,14 +428,14 @@
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel8.Location = new System.Drawing.Point(0, 0);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(900, 279);
+            this.panel8.Size = new System.Drawing.Size(900, 316);
             this.panel8.TabIndex = 5;
             // 
             // panel9
             // 
             this.panel9.Controls.Add(this.groupBox2);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel9.Location = new System.Drawing.Point(0, 279);
+            this.panel9.Location = new System.Drawing.Point(0, 316);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(900, 95);
             this.panel9.TabIndex = 6;
@@ -425,13 +488,14 @@
             // 
             // panel3
             // 
+            this.panel3.Controls.Add(this.pictureBox2);
             this.panel3.Controls.Add(this.label3);
             this.panel3.Controls.Add(this.panel6);
             this.panel3.Controls.Add(this.panel4);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(900, 96);
+            this.panel3.Size = new System.Drawing.Size(900, 59);
             this.panel3.TabIndex = 6;
             // 
             // panel6
@@ -450,7 +514,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel4.Location = new System.Drawing.Point(0, 0);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(75, 96);
+            this.panel4.Size = new System.Drawing.Size(75, 59);
             this.panel4.TabIndex = 0;
             // 
             // panel5
@@ -462,60 +526,29 @@
             this.panel5.Size = new System.Drawing.Size(75, 20);
             this.panel5.TabIndex = 0;
             // 
-            // number
+            // dateParse
             // 
-            this.number.HeaderText = "#";
-            this.number.Name = "number";
-            this.number.Width = 38;
+            this.dateParse.HeaderText = "Date parse";
+            this.dateParse.Name = "dateParse";
+            this.dateParse.Width = 83;
             // 
-            // title
+            // pictureBox2
             // 
-            this.title.HeaderText = "Title";
-            this.title.Name = "title";
-            this.title.Width = 51;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(285, 47);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(12, 12);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.TabIndex = 4;
+            this.pictureBox2.TabStop = false;
+            this.pictureBox2.Visible = false;
             // 
-            // type
+            // scrapSetingToolStripMenuItem
             // 
-            this.type.HeaderText = "Type";
-            this.type.Name = "type";
-            this.type.Width = 55;
-            // 
-            // view
-            // 
-            this.view.HeaderText = "View";
-            this.view.Name = "view";
-            this.view.Width = 54;
-            // 
-            // vote
-            // 
-            this.vote.HeaderText = "Vote";
-            this.vote.Name = "vote";
-            this.vote.Width = 53;
-            // 
-            // rating
-            // 
-            this.rating.HeaderText = "Rating";
-            this.rating.Name = "rating";
-            this.rating.Width = 62;
-            // 
-            // release
-            // 
-            this.release.HeaderText = "Release";
-            this.release.Name = "release";
-            this.release.Width = 70;
-            // 
-            // poster
-            // 
-            this.poster.HeaderText = "Poster";
-            this.poster.Name = "poster";
-            this.poster.Width = 61;
-            // 
-            // xlsxToolStripMenuItem
-            // 
-            this.xlsxToolStripMenuItem.Name = "xlsxToolStripMenuItem";
-            this.xlsxToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.xlsxToolStripMenuItem.Text = ".xlsx";
-            this.xlsxToolStripMenuItem.Click += new System.EventHandler(this.xlsxToolStripMenuItem_Click);
+            this.scrapSetingToolStripMenuItem.Name = "scrapSetingToolStripMenuItem";
+            this.scrapSetingToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.scrapSetingToolStripMenuItem.Text = "Scrap seting";
+            this.scrapSetingToolStripMenuItem.Click += new System.EventHandler(this.scrapSetingToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -555,6 +588,7 @@
             this.panel4.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
             this.panel5.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -608,6 +642,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn release;
         private System.Windows.Forms.DataGridViewTextBoxColumn poster;
         private System.Windows.Forms.ToolStripMenuItem xlsxToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dateParse;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.ToolStripMenuItem scrapSetingToolStripMenuItem;
     }
 }
 
