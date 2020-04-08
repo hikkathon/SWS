@@ -35,20 +35,14 @@
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tXTToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.csvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.settingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.webUpdateToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.byToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.Number = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Title = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Views = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Votes = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Rating = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Release = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Poster = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label3 = new System.Windows.Forms.Label();
             this.buttonStart = new System.Windows.Forms.Button();
@@ -72,8 +66,15 @@
             this.panel6 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.csvToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.openToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.title = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.view = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vote = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.rating = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.release = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.poster = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.xlsxToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
@@ -141,7 +142,8 @@
             // 
             this.saveToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tXTToolStripMenuItem,
-            this.csvToolStripMenuItem});
+            this.csvToolStripMenuItem,
+            this.xlsxToolStripMenuItem});
             this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.saveToolStripMenuItem.Text = "Save as";
@@ -149,9 +151,22 @@
             // tXTToolStripMenuItem
             // 
             this.tXTToolStripMenuItem.Name = "tXTToolStripMenuItem";
-            this.tXTToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.tXTToolStripMenuItem.Size = new System.Drawing.Size(94, 22);
             this.tXTToolStripMenuItem.Text = ".txt";
             this.tXTToolStripMenuItem.Click += new System.EventHandler(this.tXTToolStripMenuItem_Click);
+            // 
+            // csvToolStripMenuItem
+            // 
+            this.csvToolStripMenuItem.Name = "csvToolStripMenuItem";
+            this.csvToolStripMenuItem.Size = new System.Drawing.Size(94, 22);
+            this.csvToolStripMenuItem.Text = ".csv";
+            this.csvToolStripMenuItem.Click += new System.EventHandler(this.csvToolStripMenuItem_Click);
+            // 
+            // openToolStripMenuItem
+            // 
+            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(112, 22);
+            this.openToolStripMenuItem.Text = "Open";
             // 
             // settingToolStripMenuItem
             // 
@@ -201,14 +216,14 @@
             this.dataGridView1.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.Number,
-            this.Title,
-            this.Type,
-            this.Views,
-            this.Votes,
-            this.Rating,
-            this.Release,
-            this.Poster});
+            this.number,
+            this.title,
+            this.type,
+            this.view,
+            this.vote,
+            this.rating,
+            this.release,
+            this.poster});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.EnableHeadersVisualStyles = false;
             this.dataGridView1.Location = new System.Drawing.Point(3, 16);
@@ -216,54 +231,6 @@
             this.dataGridView1.Size = new System.Drawing.Size(894, 260);
             this.dataGridView1.TabIndex = 1;
             this.dataGridView1.DoubleClick += new System.EventHandler(this.dataGridView1_DoubleClick);
-            // 
-            // Number
-            // 
-            this.Number.HeaderText = "#";
-            this.Number.Name = "Number";
-            this.Number.Width = 38;
-            // 
-            // Title
-            // 
-            this.Title.HeaderText = "Title";
-            this.Title.Name = "Title";
-            this.Title.Width = 51;
-            // 
-            // Type
-            // 
-            this.Type.HeaderText = "Type";
-            this.Type.Name = "Type";
-            this.Type.Width = 55;
-            // 
-            // Views
-            // 
-            this.Views.HeaderText = "Views";
-            this.Views.Name = "Views";
-            this.Views.Width = 59;
-            // 
-            // Votes
-            // 
-            this.Votes.HeaderText = "Votes";
-            this.Votes.Name = "Votes";
-            this.Votes.Width = 58;
-            // 
-            // Rating
-            // 
-            this.Rating.HeaderText = "Rating";
-            this.Rating.Name = "Rating";
-            this.Rating.Width = 62;
-            // 
-            // Release
-            // 
-            this.Release.HeaderText = "Release";
-            this.Release.Name = "Release";
-            this.Release.Width = 70;
-            // 
-            // Poster
-            // 
-            this.Poster.HeaderText = "Poster";
-            this.Poster.Name = "Poster";
-            this.Poster.Width = 61;
             // 
             // pictureBox1
             // 
@@ -495,18 +462,60 @@
             this.panel5.Size = new System.Drawing.Size(75, 20);
             this.panel5.TabIndex = 0;
             // 
-            // csvToolStripMenuItem
+            // number
             // 
-            this.csvToolStripMenuItem.Name = "csvToolStripMenuItem";
-            this.csvToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.csvToolStripMenuItem.Text = ".csv";
-            this.csvToolStripMenuItem.Click += new System.EventHandler(this.csvToolStripMenuItem_Click);
+            this.number.HeaderText = "#";
+            this.number.Name = "number";
+            this.number.Width = 38;
             // 
-            // openToolStripMenuItem
+            // title
             // 
-            this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.openToolStripMenuItem.Text = "Open";
+            this.title.HeaderText = "Title";
+            this.title.Name = "title";
+            this.title.Width = 51;
+            // 
+            // type
+            // 
+            this.type.HeaderText = "Type";
+            this.type.Name = "type";
+            this.type.Width = 55;
+            // 
+            // view
+            // 
+            this.view.HeaderText = "View";
+            this.view.Name = "view";
+            this.view.Width = 54;
+            // 
+            // vote
+            // 
+            this.vote.HeaderText = "Vote";
+            this.vote.Name = "vote";
+            this.vote.Width = 53;
+            // 
+            // rating
+            // 
+            this.rating.HeaderText = "Rating";
+            this.rating.Name = "rating";
+            this.rating.Width = 62;
+            // 
+            // release
+            // 
+            this.release.HeaderText = "Release";
+            this.release.Name = "release";
+            this.release.Width = 70;
+            // 
+            // poster
+            // 
+            this.poster.HeaderText = "Poster";
+            this.poster.Name = "poster";
+            this.poster.Width = 61;
+            // 
+            // xlsxToolStripMenuItem
+            // 
+            this.xlsxToolStripMenuItem.Name = "xlsxToolStripMenuItem";
+            this.xlsxToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.xlsxToolStripMenuItem.Text = ".xlsx";
+            this.xlsxToolStripMenuItem.Click += new System.EventHandler(this.xlsxToolStripMenuItem_Click);
             // 
             // Form1
             // 
@@ -571,14 +580,6 @@
         private System.Windows.Forms.Button buttonClear;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Number;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Title;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Type;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Views;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Votes;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Rating;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Release;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Poster;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
@@ -598,6 +599,15 @@
         private System.Windows.Forms.ToolStripMenuItem tXTToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem csvToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem openToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewTextBoxColumn number;
+        private System.Windows.Forms.DataGridViewTextBoxColumn title;
+        private System.Windows.Forms.DataGridViewTextBoxColumn type;
+        private System.Windows.Forms.DataGridViewTextBoxColumn view;
+        private System.Windows.Forms.DataGridViewTextBoxColumn vote;
+        private System.Windows.Forms.DataGridViewTextBoxColumn rating;
+        private System.Windows.Forms.DataGridViewTextBoxColumn release;
+        private System.Windows.Forms.DataGridViewTextBoxColumn poster;
+        private System.Windows.Forms.ToolStripMenuItem xlsxToolStripMenuItem;
     }
 }
 

@@ -1,18 +1,10 @@
-﻿using CsvHelper;
-using HtmlAgilityPack;
-using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Data;
+﻿using System;
 using System.Drawing;
 using System.IO;
-using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Data;
 
 namespace SWS
 {
@@ -77,6 +69,7 @@ namespace SWS
             {
                 dataGridView1.Rows.Add(entries.Number, entries.Title, entries.Type, entries.View, entries.Vote, entries.Rating, entries.Release, entries.Poster);
             }
+
             fmpr2.Close();
         }
 
@@ -101,6 +94,7 @@ namespace SWS
                 }
             }
             fm3.Show();
+
         }
 
         private void tXTToolStripMenuItem_Click(object sender, EventArgs e)
@@ -109,7 +103,8 @@ namespace SWS
             {
                 SaveFileDialog savefile = new SaveFileDialog();
                 savefile.DefaultExt = ".txt";
-                savefile.Filter = "SWS|*.txt";
+                savefile.FileName = $"{DateTime.Now.ToLocalTime()}";
+                savefile.Filter = "Text files (*.txt)|*.txt";
 
                 if (savefile.ShowDialog() == System.Windows.Forms.DialogResult.OK && savefile.FileName.Length > 0)
                 {
@@ -138,31 +133,68 @@ namespace SWS
         {
             try
             {
-                SaveFileDialog savefile = new SaveFileDialog();
-                savefile.DefaultExt = ".csv";
-                savefile.Filter = "SWS|*.csv";
-
-                if (savefile.ShowDialog() == System.Windows.Forms.DialogResult.OK && savefile.FileName.Length > 0)
-                {
-                    using (StreamWriter sw = new StreamWriter(savefile.FileName, true))
-                    {
-                        for (int i = 0; i < dataGridView1.Rows.Count; i++)
-                        {
-                            for (int j = 1; j < dataGridView1.Columns.Count; j++)
-                            {
-                                sw.Write(dataGridView1.Rows[i].Cells[j].Value.ToString() + "|");
-                            }
-                            sw.Write(";");
-                        }
-                        sw.Close();
-                        DisplayMessage($"Saved {savefile.FileName}");
-                    }
-                }
+                
             }
             catch (Exception)
             {
 
                 DisplayMessage("Error, file was not saved!");
+            }
+        }
+
+        private void xlsxToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
+            Microsoft.Office.Interop.Excel.Workbook wb = excel.Workbooks.Add(Type.Missing);
+            Microsoft.Office.Interop.Excel.Worksheet ws = null;
+
+            try
+            {
+                ws = wb.ActiveSheet;
+                ws.Name = "{DateTime.Now.ToLocalTime()}";
+
+                int cellRowIndex = 1;
+                int cellColumnIndex = 1;
+
+                for (int i = 0; i < dataGridView1.Rows.Count; i++)
+                {
+                    for (int j = 0; j < dataGridView1.Columns.Count; j++)
+                    {
+                        if (cellRowIndex == 1)
+                        {
+                            ws.Cells[cellRowIndex, cellColumnIndex] = dataGridView1.Columns[j].HeaderText;
+                        }
+                        else
+                        {
+                            ws.Cells[cellRowIndex, cellColumnIndex] = dataGridView1.Rows[i - 1].Cells[j].Value.ToString();
+                        }
+                        cellColumnIndex++;
+                    }
+                    cellColumnIndex = 1;
+                    cellRowIndex++;
+                }
+
+                SaveFileDialog savefile = new SaveFileDialog();
+                savefile.DefaultExt = ".xlsx";
+                savefile.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+                savefile.FilterIndex = 2;
+                savefile.FileName = $"{DateTime.Now.ToLocalTime()}";
+
+                if (savefile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    wb.SaveAs(savefile.FileName);
+                    DisplayMessage($"Saved {savefile.FileName}");
+                }
+            }
+            catch (Exception)
+            {
+                DisplayMessage("Error, file was not saved!");
+            }
+            finally
+            {
+                excel.Quit();
+                wb = null;
+                excel = null;
             }
         }
     }

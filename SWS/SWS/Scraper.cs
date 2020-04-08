@@ -55,7 +55,7 @@ namespace SWS
                         var release = post.SelectSingleNode("./a[@class='image-block']/span[@class='year-block']")?.InnerText.Trim() ?? post.SelectSingleNode("./a[@class='image-block']/div[@class='status-label']")?.InnerText.Trim();
                         var poster = post.SelectSingleNode("./a[@class='image-block']/img")?.GetAttributeValue("src", "").Trim();
 
-                        _entries.Add(new EntryModel { Number = number, Title = title, Type = type, View = view, Vote = vote, Rating = rating, Release = release, Poster = page.Replace("/catalog", "") + poster });
+                        _entries.Add(new EntryModel { Number = number, Title = title, Type = type, View = Convert.ToInt32(view), Vote = Convert.ToInt32(vote), Rating = Convert.ToDouble(rating), Release = Convert.ToInt32(release), Poster = page.Replace("/catalog", "") + poster });
                     }
                 }
                 catch (Exception exc)
