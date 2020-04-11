@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Data;
 using System.Runtime.InteropServices;
+using System.Linq;
+using System.Collections.Generic;
 
 namespace SWS
 {
@@ -13,8 +15,11 @@ namespace SWS
     {
         public static int PageStart = 1;
         public static int PageEnd = 2;
+        public static string StartAdress = "https://yummyanime.club/catalog";
 
         private FormProgress fmpr2;
+        private FormData fdata;
+        private FormSettings fs;
         Scraper scraper;
 
         //public string TextBoxURL
@@ -29,23 +34,25 @@ namespace SWS
         //    }
         //}
 
-        //public void DisplayMessage(string message)
-        //{
-        //    dataGridView2.Rows.Add(DateTime.Now, message);
-        //}
+        public void DisplayMessage(string message)
+        {
+            fdata = new FormData();
+            fdata.dataGridViewLog.Rows.Add(DateTime.Now, message);
+        }
 
-        //public async void asyncScrapeData(string page)
-        //{
-        //    fmpr2.Show();
+        public async void asyncScrapeData(string page)
+        {
+            fdata = new FormData();
+            fmpr2.Show();
 
-        //    await Task.Run(() => scraper.ScrapeData(page));
+            await Task.Run(() => scraper.ScrapeData(page));
 
-        //    foreach (var entries in scraper.Entries)
-        //    {
-        //        dataGridView1.Rows.Add(entries.Number, entries.Title, entries.Type, entries.View, entries.Vote, entries.Rating, entries.Release, entries.Poster);
-        //    }
-        //    fmpr2.Close();
-        //}
+            foreach (var entries in scraper.Entries)
+            {
+                fdata.dataGridViewData.Rows.Add(entries.Number, entries.Title, entries.Type, entries.View, entries.Vote, entries.Rating, entries.Release, entries.Poster);
+            }
+            fmpr2.Close();
+        }
 
         public FormMain()
         {
@@ -58,29 +65,14 @@ namespace SWS
         private extern static void SendMessage(System.IntPtr hwnd, int wmsg, int wparam, int lparam);
 
 
-        //private void Form1_Load(object sender, EventArgs e)
-        //{
-        //    label3.Text = "The link can be copied from the address bar of the browser after applying the necessary filters on the site...\nExample: https://yummyanime.club/catalog";
-        //    dataGridView1.RowHeadersVisible = false;
-        //    dataGridView2.RowHeadersVisible = false;
-        //}
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            //label3.Text = "The link can be copied from the address bar of the browser after applying the necessary filters on the site...\nExample: https://yummyanime.club/catalog";
+        }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            //scraper = new Scraper();
-            //fmpr2 = new FormProgress();
-            //fmpr2.Show();
 
-            //scraper.Notify += DisplayMessage;
-            ////asyncScrapeData(textBoxURL.Text);
-            //scraper.ScrapeData(textBoxURL.Text);
-
-            //foreach (var entries in scraper.Entries)
-            //{
-            //    dataGridView1.Rows.Add(entries.Number, entries.Title, entries.Type, entries.View, entries.Vote, entries.Rating, entries.Release, entries.Poster, entries.DateParse);
-            //}
-
-            //fmpr2.Close();
         }
 
         private void button3_Click(object sender, EventArgs e)
@@ -90,63 +82,12 @@ namespace SWS
 
         private void dataGridView1_DoubleClick(object sender, EventArgs e)
         {
-            //FormViewPoster fm3 = new FormViewPoster();
 
-            //string imagePoster = dataGridView1.CurrentRow.Cells[7].Value.ToString();
-            //WebRequest request = WebRequest.Create(imagePoster);
-
-            //try
-            //{
-            //    using (var responce = request.GetResponse())
-            //    {
-            //        using (var str = responce.GetResponseStream())
-            //        {
-            //            fm3.pictureBox1.Image = Bitmap.FromStream(str);
-            //            fm3.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
-            //        }
-            //    }
-            //    fm3.Show();
-            //}
-            //catch (Exception)
-            //{
-            //    DisplayMessage("Failed to load image.");
-            //}
-            //finally
-            //{
-            //    DisplayMessage($"{dataGridView1.CurrentRow.Cells[1].Value.ToString()}Image loaded successfully.");
-            //}
         }
 
         private void tXTToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            try
-            {
-                //SaveFileDialog savefile = new SaveFileDialog();
-                //savefile.DefaultExt = ".txt";
-                //savefile.FileName = $"{DateTime.Now.ToLocalTime().ToString().Replace(":", "-").Replace(".", "-")}";
-                //savefile.Filter = "Text files (*.txt)|*.txt";
 
-                //if (savefile.ShowDialog() == System.Windows.Forms.DialogResult.OK && savefile.FileName.Length > 0)
-                //{
-                //    using (StreamWriter sw = new StreamWriter(savefile.FileName, true))
-                //    {
-                //        for (int i = 0; i < dataGridView1.Rows.Count; i++)
-                //        {
-                //            for (int j = 1; j < dataGridView1.Columns.Count; j++)
-                //            {
-                //                sw.Write(dataGridView1.Rows[i].Cells[j].Value.ToString() + "|");
-                //            }
-                //            sw.Write("|");
-                //        }
-                //        sw.Close();
-                //        DisplayMessage($"Saved {savefile.FileName}");
-                //    }
-                //}
-            }
-            catch (Exception)
-            {
-                //DisplayMessage("Error, file was not saved!");
-            }
         }
 
         private void csvToolStripMenuItem_Click(object sender, EventArgs e)
@@ -158,64 +99,13 @@ namespace SWS
             catch (Exception)
             {
 
-                //DisplayMessage("Error, file was not saved!");
+                DisplayMessage("Error, file was not saved!");
             }
         }
 
         private void xlsxToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
-            Microsoft.Office.Interop.Excel.Workbook wb = excel.Workbooks.Add(Type.Missing);
-            Microsoft.Office.Interop.Excel.Worksheet ws = null;
 
-            try
-            {
-                ws = wb.ActiveSheet;
-                ws.Name = $"{DateTime.Now.ToShortDateString()}";
-
-                int cellRowIndex = 1;
-                int cellColumnIndex = 1;
-
-                //for (int i = 0; i < dataGridView1.Rows.Count; i++)
-                //{
-                //    for (int j = 0; j < dataGridView1.Columns.Count; j++)
-                //    {
-                //        if (cellRowIndex == 1)
-                //        {
-                //            ws.Cells[cellRowIndex, cellColumnIndex] = dataGridView1.Columns[j].HeaderText;
-                //        }
-                //        else
-                //        {
-                //            ws.Cells[cellRowIndex, cellColumnIndex] = dataGridView1.Rows[i - 1].Cells[j].Value.ToString();
-                //        }
-                //        cellColumnIndex++;
-                //    }
-                //    cellColumnIndex = 1;
-                //    cellRowIndex++;
-                //}
-
-                SaveFileDialog savefile = new SaveFileDialog();
-                savefile.DefaultExt = ".xlsx";
-                savefile.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
-                savefile.FilterIndex = 2;
-                savefile.FileName = $"{DateTime.Now.ToLocalTime().ToString().Replace(":", "-").Replace(".", "-")}";
-
-                if (savefile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
-                {
-                    wb.SaveAs(savefile.FileName);
-                    //DisplayMessage($"Saved {savefile.FileName}");
-                }
-            }
-            catch (Exception)
-            {
-                //DisplayMessage("Error, file was not saved!");
-            }
-            finally
-            {
-                excel.Quit();
-                wb = null;
-                excel = null;
-            }
         }
 
         private void label3_DoubleClick(object sender, EventArgs e)
@@ -306,6 +196,11 @@ namespace SWS
         private void buttonDonate_Click(object sender, EventArgs e)
         {
             AbrirFormInPanel(new FormDonate());
+        }
+
+        private void buttonParse_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

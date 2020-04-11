@@ -63,6 +63,7 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel5 = new System.Windows.Forms.Panel();
             this.PanelContented = new System.Windows.Forms.Panel();
+            this.buttonParse = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.TitulBar.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -76,6 +77,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.iconsRestoreWindow)).BeginInit();
             this.panel6.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.PanelContented.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -91,7 +93,6 @@
             this.menuStrip1.Size = new System.Drawing.Size(1524, 24);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
-            this.menuStrip1.Visible = false;
             // 
             // aboutToolStripMenuItem
             // 
@@ -196,7 +197,7 @@
             this.TitulBar.Controls.Add(this.panel6);
             this.TitulBar.Controls.Add(this.panel5);
             this.TitulBar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.TitulBar.Location = new System.Drawing.Point(0, 0);
+            this.TitulBar.Location = new System.Drawing.Point(0, 24);
             this.TitulBar.Name = "TitulBar";
             this.TitulBar.Size = new System.Drawing.Size(1524, 100);
             this.TitulBar.TabIndex = 6;
@@ -451,11 +452,31 @@
             // PanelContented
             // 
             this.PanelContented.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.PanelContented.Controls.Add(this.buttonParse);
             this.PanelContented.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.PanelContented.Location = new System.Drawing.Point(0, 100);
+            this.PanelContented.Location = new System.Drawing.Point(0, 124);
             this.PanelContented.Name = "PanelContented";
-            this.PanelContented.Size = new System.Drawing.Size(1524, 615);
+            this.PanelContented.Size = new System.Drawing.Size(1524, 591);
             this.PanelContented.TabIndex = 7;
+            // 
+            // buttonParse
+            // 
+            this.buttonParse.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonParse.FlatAppearance.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(51)))), ((int)(((byte)(51)))));
+            this.buttonParse.FlatAppearance.BorderSize = 0;
+            this.buttonParse.FlatAppearance.MouseDownBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(34)))), ((int)(((byte)(34)))));
+            this.buttonParse.FlatAppearance.MouseOverBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(103)))), ((int)(((byte)(102)))));
+            this.buttonParse.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonParse.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonParse.ForeColor = System.Drawing.Color.White;
+            this.buttonParse.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.buttonParse.Location = new System.Drawing.Point(1386, 516);
+            this.buttonParse.Name = "buttonParse";
+            this.buttonParse.Size = new System.Drawing.Size(126, 63);
+            this.buttonParse.TabIndex = 5;
+            this.buttonParse.Text = "Parse";
+            this.buttonParse.UseVisualStyleBackColor = true;
+            this.buttonParse.Click += new System.EventHandler(this.buttonParse_Click);
             // 
             // FormMain
             // 
@@ -485,6 +506,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.iconsRestoreWindow)).EndInit();
             this.panel6.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.PanelContented.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -525,6 +547,7 @@
         private System.Windows.Forms.Button buttonAbout;
         private System.Windows.Forms.Button buttonHelp;
         private System.Windows.Forms.Button buttonDonate;
+        private System.Windows.Forms.Button buttonParse;
     }
 }
 

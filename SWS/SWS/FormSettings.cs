@@ -18,12 +18,15 @@ namespace SWS
 
             textBoxPageStart.Text = FormMain.PageStart.ToString();
             textBoxPageEnd.Text = FormMain.PageEnd.ToString();
+            textBoxStartAdress.Text = FormMain.StartAdress.ToString();
+            labelHelper.Text = "The link can be copied from the address bar of the browser after applying the necessary filters on the site...\nExample: https://yummyanime.club/catalog";
         }
 
         private void buttonSettingApply_Click(object sender, EventArgs e)
         {
             FormMain.PageStart = int.Parse(textBoxPageStart.Text);
             FormMain.PageEnd = int.Parse(textBoxPageEnd.Text);
+            FormMain.StartAdress = textBoxStartAdress.Text;
 
             Close();
         }

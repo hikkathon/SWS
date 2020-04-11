@@ -56,9 +56,13 @@ namespace SWS
                         _entries.Add(new EntryModel { Number = number, Title = title, Type = type, View = view, Vote = vote, Rating = rating, Release = release, Poster = page.Replace("/catalog", "") + poster, DateParse = DateTime.Now.ToShortDateString() });
                     }
                 }
-                catch (Exception exc)
+                catch (NullReferenceException exc)
                 {
-                    Notify?.Invoke("SelectSingleNode not found!");
+                    Notify?.Invoke("Err: " + exc.Message);
+                }
+                catch (System.Xml.XPath.XPathException exc)
+                {
+                    Notify?.Invoke("Err: " + exc.Message);
                 }
                 finally
                 {
