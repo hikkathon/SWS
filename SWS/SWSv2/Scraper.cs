@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HtmlAgilityPack;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -38,27 +39,32 @@ namespace SWSv2
                     foreach (var post in posts)
                     {
                         counter++;
-                        var number = post.SelectSingleNode("")?.GetAttributeValue("src", "").Trim();
-                        var title = post.SelectSingleNode("")?.GetAttributeValue("src", "").Trim();
-                        var rating = post.SelectSingleNode("")?.GetAttributeValue("src", "").Trim();
-                        var vote = post.SelectSingleNode("")?.GetAttributeValue("src", "").Trim();
-                        var titleList = post.SelectSingleNode("")?.GetAttributeValue("src", "").Trim();
-                        var view = post.SelectSingleNode("")?.GetAttributeValue("src", "").Trim();
-                        var status = post.SelectSingleNode("")?.GetAttributeValue("src", "").Trim();
-                        var released = post.SelectSingleNode("")?.GetAttributeValue("src", "").Trim();
-                        var season = post.SelectSingleNode("")?.GetAttributeValue("src", "").Trim();
-                        var ageRating = post.SelectSingleNode("")?.GetAttributeValue("src", "").Trim();
-                        var genre = post.SelectSingleNode("")?.GetAttributeValue("src", "").Trim();
-                        var primarySourse = post.SelectSingleNode("")?.GetAttributeValue("src", "").Trim();
-                        var studio = post.SelectSingleNode("")?.GetAttributeValue("src", "").Trim();
-                        var producer = post.SelectSingleNode("")?.GetAttributeValue("src", "").Trim();
-                        var type = post.SelectSingleNode("")?.GetAttributeValue("src", "").Trim();
-                        var series = post.SelectSingleNode("")?.GetAttributeValue("src", "").Trim();
-                        var transfer = post.SelectSingleNode("")?.GetAttributeValue("src", "").Trim();
-                        var voiceActing = post.SelectSingleNode("")?.GetAttributeValue("src", "").Trim();
-                        var description = post.SelectSingleNode("")?.GetAttributeValue("src", "").Trim();
-                        var urlImage = post.SelectSingleNode("")?.GetAttributeValue("src", "").Trim();
-                        var licende = post.SelectSingleNode("")?.GetAttributeValue("src", "").Trim();
+
+                        var hrefitem = post.SelectSingleNode("./a[@class='image-block']")?.GetAttributes("href");
+
+                        var web = new HtmlWeb();
+                        var htmlitem = web.Load("https://yummyanime.club" + hrefitem.ElementAt(0).Value);
+
+                        var title = htmlitem.DocumentNode.SelectSingleNode("/html/body/div[3]/div[3]/div/div/h1")?.InnerText.Trim();
+                        var rating = htmlitem.DocumentNode.SelectSingleNode("/html/body/div[3]/div[3]/div/div/div[2]/span[2]/span[1]")?.InnerText.Trim() ?? "Рейтинг недоступен";
+                        var vote = htmlitem.DocumentNode.SelectSingleNode("/html/body/div[3]/div[3]/div/div/div[2]/span[2]/span[2]")?.InnerText.Trim() ?? "Рейтинг недоступен";
+                        var titleList = htmlitem.DocumentNode.SelectSingleNode("/html/body/div[3]/div[3]/div/div/ul[1]")?.InnerText.Trim();
+                        var view = htmlitem.DocumentNode.SelectSingleNode("/html/body/div[3]/div[3]/div/div/ul[2]/li[1]/text()")?.InnerText.Trim().Replace(" ","");
+                        var status = htmlitem.DocumentNode.SelectSingleNode("/html/body/div[3]/div[3]/div/div/ul[2]/li[2]/span[2]")?.InnerText.Trim();
+                        var released = htmlitem.DocumentNode.SelectSingleNode("/html/body/div[3]/div[3]/div/div/ul[2]/li[3]/text()")?.InnerText.Trim();
+                        var season = htmlitem.DocumentNode.SelectSingleNode("/html/body/div[3]/div[3]/div/div/ul[2]/li[4]/text()")?.InnerText.Trim();
+                        var ageRating = htmlitem.DocumentNode.SelectSingleNode("/html/body/div[3]/div[3]/div/div/ul[2]/li[5]/text()")?.InnerText.Trim();
+                        var genre = htmlitem.DocumentNode.SelectSingleNode("/html/body/div[3]/div[3]/div/div/ul[2]/li[6]/ul")?.InnerText.Trim();
+                        var primarySourse = htmlitem.DocumentNode.SelectSingleNode("/html/body/div[3]/div[3]/div/div/ul[2]/li[7]/text()")?.InnerText.Trim();
+                        var studio = htmlitem.DocumentNode.SelectSingleNode("/html/body/div[3]/div[3]/div/div/ul[2]/li[8]/ul/li/a")?.InnerText.Trim();
+                        var producer = htmlitem.DocumentNode.SelectSingleNode("/html/body/div[3]/div[3]/div/div/ul[2]/li[9]/a")?.InnerText.Trim();
+                        var type = htmlitem.DocumentNode.SelectSingleNode("//*[@id='animeType']/text()")?.InnerText.Trim();
+                        var series = htmlitem.DocumentNode.SelectSingleNode("/html/body/div[3]/div[3]/div/div/ul[2]/li[11]/text()")?.InnerText.Trim();
+                        var transfer = htmlitem.DocumentNode.SelectSingleNode("/html/body/div[3]/div[3]/div/div/ul[2]/li[12]/ul")?.InnerText.Trim();
+                        var voiceActing = htmlitem.DocumentNode.SelectSingleNode("/html/body/div[3]/div[3]/div/div/ul[2]/li[13]/ul")?.InnerText.Trim();
+                        var description = htmlitem.DocumentNode.SelectSingleNode("//*[@id='content - desc - text']/p")?.InnerText.Trim();
+                        var urlImage = htmlitem.DocumentNode.SelectSingleNode("/html/body/div[3]/div[3]/div/div/div[1]/div[1]/img")?.InnerText.Trim();
+                        var licende = htmlitem.DocumentNode.SelectSingleNode("//*[@id='video']/div")?.InnerText.Trim();
 
                         _entries.Add(new EntryModel
                         {
