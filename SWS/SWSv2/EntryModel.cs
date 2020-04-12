@@ -8,10 +8,11 @@ namespace SWSv2
 {
     public class EntryModel
     {
+        public int  Number              { get; set; }
         public string Title             { get; set; } // Название в заголовке 
         public string Rating            { get; set; } // Рейтинг
         public string Vote              { get; set; } // Сколько пользователей проголосовало
-        public List<string> titleList   { get; set; } // Альтернативные название
+        public string titleList         { get; set; } // Альтернативные название
         public string View              { get; set; } // Колличество просмотров
         public string Status            { get; set; } // Статус (Онгоин, вышел и тд.)
         public string Released          { get; set; } // Дата выхода
