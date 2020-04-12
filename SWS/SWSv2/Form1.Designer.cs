@@ -122,7 +122,7 @@
             // 
             // vote
             // 
-            this.vote.HeaderText = "Голоса";
+            this.vote.HeaderText = "Количество голосов";
             this.vote.Name = "vote";
             this.vote.ReadOnly = true;
             // 
