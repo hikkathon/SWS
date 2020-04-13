@@ -14,7 +14,6 @@ namespace SWSv2
     {
         private ObservableCollection<EntryModel> _entries = new ObservableCollection<EntryModel>();
 
-        //Form1 fm1 = new Form1();
         public ObservableCollection<EntryModel> Entries
         {
             get { return _entries; }
@@ -35,8 +34,11 @@ namespace SWSv2
                 int counter = 0;
                 try
                 {
+                    Form1 fm1 = new Form1();
+
                     var posts = htmlDoc.DocumentNode.SelectNodes(".//div[@class='content-page categories-page']/div[@class='anime-column']"); // в переменную post парсим аниме из каталога
 
+                    // Заходим в увждый item и забираем инфу
                     for (int i = 0; i < htmlDoc.DocumentNode.SelectNodes(".//div[@class='content-page categories-page']/div[@class='anime-column']").Count(); i++)
                     {
                         // Циклом проходимся по всем аниме
@@ -49,8 +51,8 @@ namespace SWSv2
                             var web = new HtmlWeb();
                             var item = web.Load("https://yummyanime.club" + hrefitem.ElementAt(0).Value);
 
-                            var _titlelist = item.DocumentNode.SelectNodes(".//ul[@class='alt-names-list']/li"); // находим альтернативные названия
-                            var _info = item.DocumentNode.SelectNodes(".//div/div[@class='content-page anime-page']/ul[@class='content-main-info']/li"); // находим просмотры,статус,сезон,возростной рейтинг,жанр,первоисточник,студия,режиссер,тип,серия,перевод,озвучка
+                            var titlelists = item.DocumentNode.SelectNodes(".//ul[@class='alt-names-list']/li"); // находим альтернативные названия
+                            var infolists = item.DocumentNode.SelectNodes(".//div/div[@class='content-page anime-page']/ul[@class='content-main-info']/li"); // находим просмотры,статус,сезон,возростной рейтинг,жанр,первоисточник,студия,режиссер,тип,серия,перевод,озвучка
 
                             var title = item.DocumentNode.SelectSingleNode("//h1")?.InnerText.Trim(); // находим название 
                             var rating = item.DocumentNode.SelectSingleNode("//span[@class='main-rating']")?.InnerText.Trim() ?? "Рейтинг недоступен"; // находим рейтинг 
@@ -59,67 +61,57 @@ namespace SWSv2
                             var description = item.DocumentNode.SelectSingleNode(".//div[@class='content-desc']/div[@id='content-desc-text']/p")?.InnerText.Trim(); // находим описание
                             var license = item.DocumentNode.SelectSingleNode(".//div[@id='video']/div[@class='status-bg alert-bg']/text()")?.InnerText.Trim() ?? "Не лицензировано"; // находим инфу о локализаторе в рф
 
-                            switch (selection)
+                            foreach (var infolist in infolists)
                             {
-                                case "Просмотров:":
-                                    //TODO:
-                                    break;
-                                case "Статус:":
-                                    //TODO:
-                                    break;
-                                case "Год:":
-                                    //TODO:
-                                    break;
-                                case "Сезон:":
-                                    //TODO:
-                                    break;
-                                case "Возрастной рейтинг:":
-                                    //TODO:
-                                    break;
-                                case "Жанр:":
-                                    //TODO:
-                                    break;
-                                case "Первоисточник:":
-                                    //TODO:
-                                    break;
-                                case "Студия:":
-                                    //TODO:
-                                    break;
-                                case "Режиссер:":
-                                    //TODO:
-                                    break;
-                                case "Тип:":
-                                    //TODO:
-                                    break;
-                                case "Серии:":
-                                    //TODO:
-                                    break;
-                                case "Перевод:":
-                                    //TODO:
-                                    break;
-                                case "Озвучка:":
-                                    //TODO:
-                                    break;
-                                default:
-                                    Console.WriteLine("Вы нажали неизвестную букву");
-                                    break;
-                            }
+                                var temp = infolist.InnerText.Trim().Replace("\r\n", string.Empty);
+                                var selection = temp.Substring(0, temp.IndexOf(":") + 1);
 
-                            var view = _info.ElementAt(0).SelectSingleNode("text()")?.InnerText.Replace(" ", string.Empty);
-
-                            if (_info.ElementAt(1).SelectSingleNode("span[@class='badge']/text()") == null)
-                            {
-                                var status = _info.ElementAt(1).SelectSingleNode("span[@class='badge attention']/text()")?.InnerText.Replace(" ", string.Empty);
+                                switch (selection)
+                                {
+                                    case "Просмотров:":
+                                        // TODO:
+                                        break;
+                                    case "Статус:":
+                                        // TODO:
+                                        break;
+                                    case "Год:":
+                                        // TODO:
+                                        break;
+                                    case "Сезон:":
+                                        // TODO:
+                                        break;
+                                    case "Возрастной рейтинг:":
+                                        // TODO:
+                                        break;
+                                    case "Жанр:":
+                                        // TODO:
+                                        break;
+                                    case "Первоисточник:":
+                                        // TODO:
+                                        break;
+                                    case "Студия:":
+                                        // TODO:
+                                        break;
+                                    case "Режиссер:":
+                                        // TODO:
+                                        break;
+                                    case "Тип:":
+                                        // TODO:
+                                        break;
+                                    case "Серии:":
+                                        // TODO:
+                                        break;
+                                    case "Перевод:":
+                                        // TODO:
+                                        break;
+                                    case "Озвучка:":
+                                        // TODO:
+                                        break;
+                                    default:
+                                        // TODO:
+                                        break;
+                                }
                             }
-                            else
-                            {
-                                var status = _info.ElementAt(1).SelectSingleNode("span[@class='badge']/text()")?.InnerText.Replace(" ", string.Empty);
-                            }
-
-                            var released = _info.ElementAt(2).SelectSingleNode("text()")?.InnerText.Replace(" ", string.Empty);
-                            var season = _info.ElementAt(3).SelectSingleNode("text()")?.InnerText.Replace(" ", string.Empty);
-                            var ageRating = _info.ElementAt(4).SelectSingleNode("text()")?.InnerText.Replace(" ", string.Empty);
-                            var genre = _info.ElementAt(5).SelectSingleNode("text()")?.InnerText.Replace(" ", string.Empty);
 
                             //_entries.Add(new EntryModel
                             //{
@@ -150,7 +142,7 @@ namespace SWSv2
                 }
                 catch (NullReferenceException exc)
                 {
-                    MessageBox.Show($"{exc.Message}", "Exception Caught!",
+                    MessageBox.Show($"{exc.Message}", "Null Reference Exception!",
                                MessageBoxButtons.OK,
                                MessageBoxIcon.Warning,
                                MessageBoxDefaultButton.Button1,
@@ -158,7 +150,7 @@ namespace SWSv2
                 }
                 catch (System.Xml.XPath.XPathException exc)
                 {
-                    MessageBox.Show($"{exc.Message}", "Exception Caught!",
+                    MessageBox.Show($"{exc.Message}", "XPath Exception!",
                                 MessageBoxButtons.OK,
                                 MessageBoxIcon.Warning,
                                 MessageBoxDefaultButton.Button1,
@@ -167,7 +159,7 @@ namespace SWSv2
             }
             catch (HttpRequestException exc)
             {
-                MessageBox.Show($"{exc.Message}", "Exception Caught!",
+                MessageBox.Show($"{exc.Message}", "Http Request Exception!",
                            MessageBoxButtons.OK,
                            MessageBoxIcon.Warning,
                            MessageBoxDefaultButton.Button1,
