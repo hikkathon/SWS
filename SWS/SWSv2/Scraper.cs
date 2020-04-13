@@ -49,52 +49,77 @@ namespace SWSv2
                             var web = new HtmlWeb();
                             var item = web.Load("https://yummyanime.club" + hrefitem.ElementAt(0).Value);
 
-                            var title = item.DocumentNode.SelectSingleNode("//h1")?.InnerText.Trim();
-                            var rating = item.DocumentNode.SelectSingleNode("//span[@class='main-rating']")?.InnerText.Trim() ?? "Рейтинг недоступен";
-                            var vote = item.DocumentNode.SelectSingleNode("//span[@class='main-rating-info']")?.InnerText.Trim() ?? "Рейтинг недоступен";
-                            var titlelist = item.DocumentNode.SelectNodes(".//ul[@class='alt-names-list']/li");
-                            var urlimage = item.DocumentNode.SelectSingleNode("/html/body/div[3]/div[3]/div/div/div[1]/div[1]/img")?.GetAttributeValue("src", "").Trim();
-                            var content_main_info = item.DocumentNode.SelectNodes(".//div/div[@class='content-page anime-page']/ul[@class='content-main-info']/li");
-                            var description = item.DocumentNode.SelectSingleNode(".//div[@class='content-desc']/div[@id='content-desc-text']/p")?.InnerText.Trim();
-                            var license = item.DocumentNode.SelectSingleNode(".//div[@id='video']/div[@class='status-bg alert-bg']/text()")?.InnerText.Trim() ?? "Не лицензировано";
+                            var _titlelist = item.DocumentNode.SelectNodes(".//ul[@class='alt-names-list']/li"); // находим альтернативные названия
+                            var _info = item.DocumentNode.SelectNodes(".//div/div[@class='content-page anime-page']/ul[@class='content-main-info']/li"); // находим просмотры,статус,сезон,возростной рейтинг,жанр,первоисточник,студия,режиссер,тип,серия,перевод,озвучка
 
-                            List<string> temp = new List<string>();
-                            string[] @enum = { "Просмотров:", "Статус:", "Год:", "Сезон:", "Возрастной рейтинг:", "Жанр:", "Первоисточник:","Студия:", "Режиссер:", "Тип:", "Серии:", "Перевод:","Озвучка:" };
-                            foreach (var cmi in content_main_info)
+                            var title = item.DocumentNode.SelectSingleNode("//h1")?.InnerText.Trim(); // находим название 
+                            var rating = item.DocumentNode.SelectSingleNode("//span[@class='main-rating']")?.InnerText.Trim() ?? "Рейтинг недоступен"; // находим рейтинг 
+                            var vote = item.DocumentNode.SelectSingleNode("//span[@class='main-rating-info']")?.InnerText.Trim().Replace("(",string.Empty).Replace(")",string.Empty).Replace("голосов",string.Empty) ?? "Рейтинг недоступен"; // находим количество голосов
+                            var urlimage = item.DocumentNode.SelectSingleNode("/html/body/div[3]/div[3]/div/div/div[1]/div[1]/img")?.GetAttributeValue("src", "").Trim(); // находим ссылку на постер
+                            var description = item.DocumentNode.SelectSingleNode(".//div[@class='content-desc']/div[@id='content-desc-text']/p")?.InnerText.Trim(); // находим описание
+                            var license = item.DocumentNode.SelectSingleNode(".//div[@id='video']/div[@class='status-bg alert-bg']/text()")?.InnerText.Trim() ?? "Не лицензировано"; // находим инфу о локализаторе в рф
+
+                            switch (selection)
                             {
-                                temp.Add(cmi.InnerText.Replace("\r\n", string.Empty).Trim());
+                                case "Просмотров:":
+                                    //TODO:
+                                    break;
+                                case "Статус:":
+                                    //TODO:
+                                    break;
+                                case "Год:":
+                                    //TODO:
+                                    break;
+                                case "Сезон:":
+                                    //TODO:
+                                    break;
+                                case "Возрастной рейтинг:":
+                                    //TODO:
+                                    break;
+                                case "Жанр:":
+                                    //TODO:
+                                    break;
+                                case "Первоисточник:":
+                                    //TODO:
+                                    break;
+                                case "Студия:":
+                                    //TODO:
+                                    break;
+                                case "Режиссер:":
+                                    //TODO:
+                                    break;
+                                case "Тип:":
+                                    //TODO:
+                                    break;
+                                case "Серии:":
+                                    //TODO:
+                                    break;
+                                case "Перевод:":
+                                    //TODO:
+                                    break;
+                                case "Озвучка:":
+                                    //TODO:
+                                    break;
+                                default:
+                                    Console.WriteLine("Вы нажали неизвестную букву");
+                                    break;
                             }
 
-                            #region вытягиваем инфу об анимках
-                            //var title = htmlitem.DocumentNode.SelectSingleNode("//h1")?.InnerText.Trim();
-                            //var rating = htmlitem.DocumentNode.SelectSingleNode("//span[@class='main-rating']")?.InnerText.Trim() ?? "Рейтинг недоступен";
-                            //var vote = htmlitem.DocumentNode.SelectSingleNode("//span[@class='main-rating-info']")?.InnerText.Trim() ?? "Рейтинг недоступен";
+                            var view = _info.ElementAt(0).SelectSingleNode("text()")?.InnerText.Replace(" ", string.Empty);
 
-                            //var titleList = htmlitem.DocumentNode.SelectNodes(".//ul[@class='alt-names-list']/li");
+                            if (_info.ElementAt(1).SelectSingleNode("span[@class='badge']/text()") == null)
+                            {
+                                var status = _info.ElementAt(1).SelectSingleNode("span[@class='badge attention']/text()")?.InnerText.Replace(" ", string.Empty);
+                            }
+                            else
+                            {
+                                var status = _info.ElementAt(1).SelectSingleNode("span[@class='badge']/text()")?.InnerText.Replace(" ", string.Empty);
+                            }
 
-                            //var view = htmlitem.DocumentNode.SelectSingleNode(".//ul[@class='content-main-info']/li[1]/text()")?.InnerText.Trim().Replace(" ", "") ?? "Нет просмотров";
-                            //var status = htmlitem.DocumentNode.SelectSingleNode(".//html/body/div[3]/div[3]/div/div/ul[2]/li[2]/span[2]")?.InnerText.Trim();
-                            //var released = htmlitem.DocumentNode.SelectSingleNode("/html/body/div[3]/div[3]/div/div/ul[2]/li[3]/text()")?.InnerText.Trim();
-                            //var season = htmlitem.DocumentNode.SelectSingleNode("/html/body/div[3]/div[3]/div/div/ul[2]/li[4]/text()")?.InnerText.Trim();
-                            //var ageRating = htmlitem.DocumentNode.SelectSingleNode("/html/body/div[3]/div[3]/div/div/ul[2]/li[5]/text()")?.InnerText.Trim() ?? "Не установлен";
-
-                            //var genre = htmlitem.DocumentNode.SelectNodes(".//ul[@class='categories-list']/li[6]/ul");
-
-                            //var primarySourse = htmlitem.DocumentNode.SelectSingleNode("/html/body/div[3]/div[3]/div/div/ul[2]/li[7]/text()")?.InnerText.Trim();
-                            //var studio = htmlitem.DocumentNode.SelectSingleNode("/html/body/div[3]/div[3]/div/div/ul[2]/li[8]/ul/li/a")?.InnerText.Trim();
-                            //var producer = htmlitem.DocumentNode.SelectSingleNode("/html/body/div[3]/div[3]/div/div/ul[2]/li[9]/a")?.InnerText.Trim();
-                            //var type = htmlitem.DocumentNode.SelectSingleNode("//*[@id='animeType']/text()")?.InnerText.Trim();
-                            //var series = htmlitem.DocumentNode.SelectSingleNode("/html/body/div[3]/div[3]/div/div/ul[2]/li[11]/text()")?.InnerText.Trim();
-
-                            //var transfer = htmlitem.DocumentNode.SelectNodes("/html/body/div[3]/div[3]/div/div/ul[2]/li[12]/ul/li/text()");
-
-                            //var voiceActing = htmlitem.DocumentNode.SelectSingleNode("/html/body/div[3]/div[3]/div/div/ul[2]/li[13]/ul/li/text()");
-
-                            //var description = htmlitem.DocumentNode.SelectSingleNode("//*[@id='content - desc - text']/p/text()")?.InnerText.Trim();
-
-                            //var urlImage = htmlitem.DocumentNode.SelectSingleNode("/html/body/div[3]/div[3]/div/div/div[1]/div[1]/img")?.GetAttributeValue("src", "").Trim();
-                            //var licende = htmlitem.DocumentNode.SelectSingleNode(".//div[@id='video']/div[@class='status-bg alert-bg']/text()")?.InnerText.Trim();
-                            #endregion
+                            var released = _info.ElementAt(2).SelectSingleNode("text()")?.InnerText.Replace(" ", string.Empty);
+                            var season = _info.ElementAt(3).SelectSingleNode("text()")?.InnerText.Replace(" ", string.Empty);
+                            var ageRating = _info.ElementAt(4).SelectSingleNode("text()")?.InnerText.Replace(" ", string.Empty);
+                            var genre = _info.ElementAt(5).SelectSingleNode("text()")?.InnerText.Replace(" ", string.Empty);
 
                             //_entries.Add(new EntryModel
                             //{
