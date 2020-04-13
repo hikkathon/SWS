@@ -19,6 +19,18 @@ namespace SWSv2
 
         }
 
+        public string TextBoxVal
+        {
+            get
+            {
+               return textBox1.Text;
+            }
+            set
+            {
+                textBox1.Text = value;
+            }
+        }
+
         static async Task Start()
         {
             Scraper scraper = new Scraper();

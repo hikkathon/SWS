@@ -14,6 +14,7 @@ namespace SWSv2
     {
         private ObservableCollection<EntryModel> _entries = new ObservableCollection<EntryModel>();
 
+        //Form1 fm1 = new Form1();
         public ObservableCollection<EntryModel> Entries
         {
             get { return _entries; }
@@ -55,7 +56,14 @@ namespace SWSv2
                             var urlimage = item.DocumentNode.SelectSingleNode("/html/body/div[3]/div[3]/div/div/div[1]/div[1]/img")?.GetAttributeValue("src", "").Trim();
                             var content_main_info = item.DocumentNode.SelectNodes(".//div/div[@class='content-page anime-page']/ul[@class='content-main-info']/li");
                             var description = item.DocumentNode.SelectSingleNode(".//div[@class='content-desc']/div[@id='content-desc-text']/p")?.InnerText.Trim();
-                            var license = item.DocumentNode.SelectSingleNode(".//div[@id='video']/div[@class='status-bg alert-bg']/text()")?.InnerText.Trim();
+                            var license = item.DocumentNode.SelectSingleNode(".//div[@id='video']/div[@class='status-bg alert-bg']/text()")?.InnerText.Trim() ?? "Не лицензировано";
+
+                            List<string> temp = new List<string>();
+                            string[] @enum = { "Просмотров:", "Статус:", "Год:", "Сезон:", "Возрастной рейтинг:", "Жанр:", "Первоисточник:","Студия:", "Режиссер:", "Тип:", "Серии:", "Перевод:","Озвучка:" };
+                            foreach (var cmi in content_main_info)
+                            {
+                                temp.Add(cmi.InnerText.Replace("\r\n", string.Empty).Trim());
+                            }
 
                             #region вытягиваем инфу об анимках
                             //var title = htmlitem.DocumentNode.SelectSingleNode("//h1")?.InnerText.Trim();
