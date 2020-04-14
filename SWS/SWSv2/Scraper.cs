@@ -5,6 +5,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -26,10 +27,12 @@ namespace SWSv2
             {
                 int counter = 0;
                 int pointStart = 1;
-                int pointEnd = 3;
+                int pointEnd = 1;
 
-                for (int i = pointStart; i < pointEnd; i++)
+                for (int i = pointStart; i <= pointEnd; i++)
                 {
+                    Thread.Sleep(5000);
+
                     HttpResponseMessage response = await httpClient.GetAsync("https://yummyanime.club/catalog?page=" + i);
                     response.EnsureSuccessStatusCode(); // Высвобождает ресурсы если соеденение не удалось
                     var html = await response.Content.ReadAsStringAsync();
@@ -63,11 +66,17 @@ namespace SWSv2
                             var urlimage = item.DocumentNode.SelectSingleNode("/html/body/div[3]/div[3]/div/div/div[1]/div[1]/img")?.GetAttributeValue("src", "").Trim(); // находим ссылку на постер
                             var description = item.DocumentNode.SelectSingleNode(".//div[@class='content-desc']/div[@id='content-desc-text']/p")?.InnerText.Trim(); // находим описание
                             var license = item.DocumentNode.SelectSingleNode(".//div[@id='video']/div[@class='status-bg alert-bg']/text()")?.InnerText.Trim() ?? "Не лицензировано"; // находим инфу о локализаторе в рф
-                            
+
+                            List<string> temptitle = new List<string>();
                             foreach (var titlelist in titlelists)
                             {
-                                _entries.Add(new EntryModel() {});
+                                if (titlelist != null)
+                                {
+                                    temptitle.Add(titlelist.InnerText);
+                                    temptitle.Remove("...");
+                                }
                             }
+                            _entries.Add(new EntryModel() { titleList = new List<string>(temptitle) });
 
                             foreach (var infolist in infolists)
                             {
@@ -165,7 +174,7 @@ namespace SWSv2
                     }
                 }
                 FormMain fm = new FormMain();
-                fm.GetDataViewGrid(_entries);
+                fm.SetDataViewGrid(_entries);
             }
             catch (HttpRequestException exc)
             {

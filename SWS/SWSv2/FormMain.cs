@@ -20,9 +20,9 @@ namespace SWSv2
 
         }
 
-        public void GetDataViewGrid(object obj)
+        public void SetDataViewGrid(object obj)
         {
-
+            textBox1.Text = string.Join("\n", obj as ObservableCollection<EntryModel>);
         }
 
         static async Task Start()
@@ -40,6 +40,11 @@ namespace SWSv2
         private async void button1_Click(object sender, EventArgs e)
         {
             await Task.Run(() => Start());
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }
