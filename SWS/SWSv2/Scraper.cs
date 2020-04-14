@@ -30,8 +30,6 @@ namespace SWSv2
 
                 for (int i = pointStart; i < pointEnd; i++)
                 {
-                    //response = await httpClient.GetAsync("https://yummyanime.club/catalog?page=" + i);
-
                     HttpResponseMessage response = await httpClient.GetAsync("https://yummyanime.club/catalog?page=" + i);
                     response.EnsureSuccessStatusCode(); // Высвобождает ресурсы если соеденение не удалось
                     var html = await response.Content.ReadAsStringAsync();
@@ -65,6 +63,11 @@ namespace SWSv2
                             var urlimage = item.DocumentNode.SelectSingleNode("/html/body/div[3]/div[3]/div/div/div[1]/div[1]/img")?.GetAttributeValue("src", "").Trim(); // находим ссылку на постер
                             var description = item.DocumentNode.SelectSingleNode(".//div[@class='content-desc']/div[@id='content-desc-text']/p")?.InnerText.Trim(); // находим описание
                             var license = item.DocumentNode.SelectSingleNode(".//div[@id='video']/div[@class='status-bg alert-bg']/text()")?.InnerText.Trim() ?? "Не лицензировано"; // находим инфу о локализаторе в рф
+                            
+                            foreach (var titlelist in titlelists)
+                            {
+                                _entries.Add(new EntryModel() { });
+                            }
 
                             foreach (var infolist in infolists)
                             {
@@ -161,6 +164,8 @@ namespace SWSv2
                                     MessageBoxOptions.DefaultDesktopOnly);
                     }
                 }
+                FormMain fm = new FormMain();
+                fm.GetDataViewGrid(_entries);
             }
             catch (HttpRequestException exc)
             {
