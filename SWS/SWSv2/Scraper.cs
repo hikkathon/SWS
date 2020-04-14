@@ -66,7 +66,7 @@ namespace SWSv2
                             
                             foreach (var titlelist in titlelists)
                             {
-                                _entries.Add(new EntryModel() { });
+                                _entries.Add(new EntryModel() {});
                             }
 
                             foreach (var infolist in infolists)
