@@ -24,22 +24,23 @@ namespace SWSv2
         {
             try
             {
-                HttpResponseMessage response = await httpClient.GetAsync("https://yummyanime.club/catalog");
-                response.EnsureSuccessStatusCode(); // Высвобождает ресурсы если соеденение не удалось
-                var html = await response.Content.ReadAsStringAsync();
-
-                var htmlDoc = new HtmlAgilityPack.HtmlDocument();
-                htmlDoc.LoadHtml(html);
-
                 int counter = 0;
-                try
+                int pointStart = 1;
+                int pointEnd = 3;
+
+                for (int i = pointStart; i < pointEnd; i++)
                 {
-                    Form1 fm1 = new Form1();
+                    //response = await httpClient.GetAsync("https://yummyanime.club/catalog?page=" + i);
+
+                    HttpResponseMessage response = await httpClient.GetAsync("https://yummyanime.club/catalog?page=" + i);
+                    response.EnsureSuccessStatusCode(); // Высвобождает ресурсы если соеденение не удалось
+                    var html = await response.Content.ReadAsStringAsync();
+
+                    var htmlDoc = new HtmlAgilityPack.HtmlDocument();
+                    htmlDoc.LoadHtml(html);
 
                     var posts = htmlDoc.DocumentNode.SelectNodes(".//div[@class='content-page categories-page']/div[@class='anime-column']"); // в переменную post парсим аниме из каталога
-
-                    // Заходим в увждый item и забираем инфу
-                    for (int i = 0; i < htmlDoc.DocumentNode.SelectNodes(".//div[@class='content-page categories-page']/div[@class='anime-column']").Count(); i++)
+                    try
                     {
                         // Циклом проходимся по всем аниме
                         foreach (var post in posts)
@@ -48,15 +49,19 @@ namespace SWSv2
 
                             var hrefitem = post.SelectSingleNode("./a[@class='image-block']")?.GetAttributes("href"); // вытягиваем ссылки на страницу с аниме
 
-                            var web = new HtmlWeb();
-                            var item = web.Load("https://yummyanime.club" + hrefitem.ElementAt(0).Value);
+                            response = await httpClient.GetAsync("https://yummyanime.club" + hrefitem.ElementAt(0).Value); // получаем ссылку на item анимешки
+                            response.EnsureSuccessStatusCode(); // Высвобождает ресурсы если соеденение не удалось
+                            var htmlinfo = await response.Content.ReadAsStringAsync();
+                            var item = new HtmlAgilityPack.HtmlDocument();
+                            item.LoadHtml(htmlinfo);
+
 
                             var titlelists = item.DocumentNode.SelectNodes(".//ul[@class='alt-names-list']/li"); // находим альтернативные названия
                             var infolists = item.DocumentNode.SelectNodes(".//div/div[@class='content-page anime-page']/ul[@class='content-main-info']/li"); // находим просмотры,статус,сезон,возростной рейтинг,жанр,первоисточник,студия,режиссер,тип,серия,перевод,озвучка
 
                             var title = item.DocumentNode.SelectSingleNode("//h1")?.InnerText.Trim(); // находим название 
                             var rating = item.DocumentNode.SelectSingleNode("//span[@class='main-rating']")?.InnerText.Trim() ?? "Рейтинг недоступен"; // находим рейтинг 
-                            var vote = item.DocumentNode.SelectSingleNode("//span[@class='main-rating-info']")?.InnerText.Trim().Replace("(",string.Empty).Replace(")",string.Empty).Replace("голосов",string.Empty) ?? "Рейтинг недоступен"; // находим количество голосов
+                            var vote = item.DocumentNode.SelectSingleNode("//span[@class='main-rating-info']")?.InnerText.Trim().Replace("(", string.Empty).Replace(")", string.Empty).Replace("голосов", string.Empty) ?? "Рейтинг недоступен"; // находим количество голосов
                             var urlimage = item.DocumentNode.SelectSingleNode("/html/body/div[3]/div[3]/div/div/div[1]/div[1]/img")?.GetAttributeValue("src", "").Trim(); // находим ссылку на постер
                             var description = item.DocumentNode.SelectSingleNode(".//div[@class='content-desc']/div[@id='content-desc-text']/p")?.InnerText.Trim(); // находим описание
                             var license = item.DocumentNode.SelectSingleNode(".//div[@id='video']/div[@class='status-bg alert-bg']/text()")?.InnerText.Trim() ?? "Не лицензировано"; // находим инфу о локализаторе в рф
@@ -139,22 +144,22 @@ namespace SWSv2
                             //});
                         }
                     }
-                }
-                catch (NullReferenceException exc)
-                {
-                    MessageBox.Show($"{exc.Message}", "Null Reference Exception!",
-                               MessageBoxButtons.OK,
-                               MessageBoxIcon.Warning,
-                               MessageBoxDefaultButton.Button1,
-                               MessageBoxOptions.DefaultDesktopOnly);
-                }
-                catch (System.Xml.XPath.XPathException exc)
-                {
-                    MessageBox.Show($"{exc.Message}", "XPath Exception!",
-                                MessageBoxButtons.OK,
-                                MessageBoxIcon.Warning,
-                                MessageBoxDefaultButton.Button1,
-                                MessageBoxOptions.DefaultDesktopOnly);
+                    catch (NullReferenceException exc)
+                    {
+                        MessageBox.Show($"{exc.Message}", "Null Reference Exception!",
+                                   MessageBoxButtons.OK,
+                                   MessageBoxIcon.Warning,
+                                   MessageBoxDefaultButton.Button1,
+                                   MessageBoxOptions.DefaultDesktopOnly);
+                    }
+                    catch (System.Xml.XPath.XPathException exc)
+                    {
+                        MessageBox.Show($"{exc.Message}", "XPath Exception!",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Warning,
+                                    MessageBoxDefaultButton.Button1,
+                                    MessageBoxOptions.DefaultDesktopOnly);
+                    }
                 }
             }
             catch (HttpRequestException exc)
