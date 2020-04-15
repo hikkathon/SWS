@@ -20,9 +20,17 @@ namespace SWSv2
 
         }
 
-        public void SetDataViewGrid(object obj)
+        public void SetDataViewGrid(ObservableCollection<EntryModel> entryModel)
         {
-            textBox1.Text += (string)obj;
+            FormMain fm = (FormMain)Application.OpenForms["FormMain"];
+            foreach (var item in entryModel)
+            {
+                foreach (var list in item.titleList)
+                {
+                    fm.textBox1.Text += list.ToString() + Environment.NewLine;
+                }
+                fm.textBox1.Text += Environment.NewLine;
+            }
         }
 
         static async Task Start()

@@ -20,7 +20,7 @@ namespace SWSv2
         public string ageRating { get; set; } // Возрастной рейтинг
         public List<string> genreList { get; set; } // Жанр
         public string primarySource { get; set; } // Первоисточник
-        public string Studio { get; set; } // Студия 
+        public List<string> Studio { get; set; } // Студия 
         public string Producer { get; set; } // Режиссер
         public string Type { get; set; } // Тип (Сериал, полнометражный, ОВА и тд.)
         public string Series { get; set; } // Количество серий

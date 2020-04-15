@@ -76,7 +76,7 @@ namespace SWSv2
                                     temptitle.Remove("...");
                                 }
                             }
-                            //_entries.Add(new EntryModel() { titleList = new List<string>(temptitle) });
+                            _entries.Add(new EntryModel() { titleList = new List<string>(temptitle) });
 
                             foreach (var infolist in infolists)
                             {
@@ -171,6 +171,16 @@ namespace SWSv2
                                     MessageBoxIcon.Warning,
                                     MessageBoxDefaultButton.Button1,
                                     MessageBoxOptions.DefaultDesktopOnly);
+                    }
+                    finally
+                    {
+                        MessageBox.Show($"{_entries.ToList()}", "Success!",
+                                    MessageBoxButtons.OK,
+                                    MessageBoxIcon.Information,
+                                    MessageBoxDefaultButton.Button1,
+                                    MessageBoxOptions.DefaultDesktopOnly);
+                        FormMain fm = new FormMain();
+                        fm.SetDataViewGrid(_entries);
                     }
                 }
             }
