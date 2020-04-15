@@ -76,7 +76,7 @@ namespace SWSv2
                                     temptitle.Remove("...");
                                 }
                             }
-                            _entries.Add(new EntryModel() { titleList = new List<string>(temptitle) });
+                            //_entries.Add(new EntryModel() { titleList = new List<string>(temptitle) });
 
                             foreach (var infolist in infolists)
                             {
