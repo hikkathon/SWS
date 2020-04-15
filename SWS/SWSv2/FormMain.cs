@@ -22,7 +22,7 @@ namespace SWSv2
 
         public void SetDataViewGrid(object obj)
         {
-            textBox1.Text = string.Join("\n", obj as ObservableCollection<EntryModel>);
+            textBox1.Text += (string)obj;
         }
 
         static async Task Start()

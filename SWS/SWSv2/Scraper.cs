@@ -31,7 +31,7 @@ namespace SWSv2
 
                 for (int i = pointStart; i <= pointEnd; i++)
                 {
-                    Thread.Sleep(5000);
+                    //Thread.Sleep(5000);
 
                     HttpResponseMessage response = await httpClient.GetAsync("https://yummyanime.club/catalog?page=" + i);
                     response.EnsureSuccessStatusCode(); // Высвобождает ресурсы если соеденение не удалось
@@ -173,8 +173,6 @@ namespace SWSv2
                                     MessageBoxOptions.DefaultDesktopOnly);
                     }
                 }
-                FormMain fm = new FormMain();
-                fm.SetDataViewGrid(_entries);
             }
             catch (HttpRequestException exc)
             {
