@@ -27,11 +27,12 @@ namespace SWSv2
             {
                 int counter = 0;
                 int pointStart = 1;
-                int pointEnd = 1;
+                int pointEnd = 3;
+                int sleep = 2000;
 
-                for (int i = pointStart; i <= pointEnd; i++)
+                for (int i = pointStart; i < pointEnd; i++)
                 {
-                    //Thread.Sleep(5000);
+                    Thread.Sleep(sleep);
 
                     HttpResponseMessage response = await httpClient.GetAsync("https://yummyanime.club/catalog?page=" + i);
                     response.EnsureSuccessStatusCode(); // Высвобождает ресурсы если соеденение не удалось
@@ -50,6 +51,7 @@ namespace SWSv2
 
                             var hrefitem = post.SelectSingleNode("./a[@class='image-block']")?.GetAttributes("href"); // вытягиваем ссылки на страницу с аниме
 
+                            Thread.Sleep(sleep);
                             response = await httpClient.GetAsync("https://yummyanime.club" + hrefitem.ElementAt(0).Value); // получаем ссылку на item анимешки
                             response.EnsureSuccessStatusCode(); // Высвобождает ресурсы если соеденение не удалось
                             var htmlinfo = await response.Content.ReadAsStringAsync();
@@ -68,6 +70,12 @@ namespace SWSv2
                             var license = item.DocumentNode.SelectSingleNode(".//div[@id='video']/div[@class='status-bg alert-bg']/text()")?.InnerText.Trim() ?? "Не лицензировано"; // находим инфу о локализаторе в рф
 
                             List<string> temptitle = new List<string>();
+                            List<string> tempgenre = new List<string>();
+                            List<string> tempstudio = new List<string>();
+                            List<string> temptransfer = new List<string>();
+
+
+
                             foreach (var titlelist in titlelists)
                             {
                                 if (titlelist != null)
@@ -76,56 +84,68 @@ namespace SWSv2
                                     temptitle.Remove("...");
                                 }
                             }
-                            //_entries.Add(new EntryModel() { titleList = new List<string>(temptitle) });
+                            _entries.Add(new EntryModel() { titleList = new List<string>(temptitle) });
 
                             foreach (var infolist in infolists)
                             {
-                                var temp = infolist.InnerText.Trim().Replace("\r\n", string.Empty);
-                                var selection = temp.Substring(0, temp.IndexOf(":") + 1);
+                                var tempinfolist = infolist.InnerText.Trim().Replace("\r\n", string.Empty);
+                                var selection = tempinfolist.Substring(0, tempinfolist.IndexOf(":") + 1);
 
                                 switch (selection)
                                 {
                                     case "Просмотров:":
-                                        var view = temp.Substring(temp.IndexOf(":") + 1).Replace(" ", string.Empty);
+                                        string view = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Replace(" ", string.Empty);
                                         break;
                                     case "Статус:":
-                                        var status = temp.Substring(temp.IndexOf(":") + 1).Replace(" ",string.Empty);
+                                        string status = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
                                         break;
                                     case "Год:":
-                                        var released = temp.Substring(temp.IndexOf(":") + 1).Replace(" ", string.Empty);
+                                        string released = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
                                         break;
                                     case "Сезон:":
-                                        var season = temp.Substring(temp.IndexOf(":") + 1).Replace(" ", string.Empty);
+                                        string season = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
                                         break;
                                     case "Возрастной рейтинг:":
-                                        var ageRating = temp.Substring(temp.IndexOf(":") + 1).Replace(" ", string.Empty);
+                                        string ageRating = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
                                         break;
                                     case "Жанр:":
-                                        var genre = temp.Substring(temp.IndexOf(":") + 1);
+                                        string[] genre = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                                        for (int j = 0; j < genre.Count(); j++)
+                                        {
+                                            tempgenre.Add(genre[j]);
+                                        }
                                         break;
                                     case "Первоисточник:":
-                                        // TODO:
+                                        string primarySourse = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
                                         break;
                                     case "Студия:":
-                                        // TODO:
+                                        string studio = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
                                         break;
                                     case "Режиссер:":
-                                        // TODO:
+                                        string producer = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
                                         break;
                                     case "Тип:":
-                                        // TODO:
+                                        string type = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
                                         break;
                                     case "Серии:":
-                                        // TODO:
+                                        string series = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
                                         break;
                                     case "Перевод:":
-                                        // TODO:
+                                        string[] transfer = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                                        for (int j = 0; j < transfer.Count(); j++)
+                                        {
+                                            temptransfer.Add(transfer[j]);
+                                        }
                                         break;
                                     case "Озвучка:":
-                                        // TODO:
+                                        string voiceActing = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim().Replace("amp;", string.Empty);
                                         break;
                                     default:
-                                        // TODO:
+                                        MessageBox.Show("Что то пошло не так!", "Exception Caught!",
+                                                   MessageBoxButtons.OK,
+                                                   MessageBoxIcon.Warning,
+                                                   MessageBoxDefaultButton.Button1,
+                                                   MessageBoxOptions.DefaultDesktopOnly);
                                         break;
                                 }
                             }
@@ -155,6 +175,8 @@ namespace SWSv2
                             //    License = license
                             //});
                         }
+                        //FormMain fm = new FormMain();
+                        //fm.SetDataViewGrid(_entries);
                     }
                     catch (NullReferenceException exc)
                     {
@@ -179,8 +201,6 @@ namespace SWSv2
                                     MessageBoxIcon.Information,
                                     MessageBoxDefaultButton.Button1,
                                     MessageBoxOptions.DefaultDesktopOnly);
-                        FormMain fm = new FormMain();
-                        fm.SetDataViewGrid(_entries);
                     }
                 }
             }
@@ -192,6 +212,8 @@ namespace SWSv2
                            MessageBoxDefaultButton.Button1,
                            MessageBoxOptions.DefaultDesktopOnly);
             }
+            FormMain fm = new FormMain();
+            fm.SetDataViewGrid(_entries);
         }
     }
 }
