@@ -76,7 +76,7 @@ namespace SWSv2
                                     temptitle.Remove("...");
                                 }
                             }
-                            _entries.Add(new EntryModel() { titleList = new List<string>(temptitle) });
+                            //_entries.Add(new EntryModel() { titleList = new List<string>(temptitle) });
 
                             foreach (var infolist in infolists)
                             {
@@ -86,22 +86,22 @@ namespace SWSv2
                                 switch (selection)
                                 {
                                     case "Просмотров:":
-                                        // TODO:
+                                        var view = temp.Substring(temp.IndexOf(":") + 1).Replace(" ", string.Empty);
                                         break;
                                     case "Статус:":
-                                        // TODO:
+                                        var status = temp.Substring(temp.IndexOf(":") + 1).Replace(" ",string.Empty);
                                         break;
                                     case "Год:":
-                                        // TODO:
+                                        var released = temp.Substring(temp.IndexOf(":") + 1).Replace(" ", string.Empty);
                                         break;
                                     case "Сезон:":
-                                        // TODO:
+                                        var season = temp.Substring(temp.IndexOf(":") + 1).Replace(" ", string.Empty);
                                         break;
                                     case "Возрастной рейтинг:":
-                                        // TODO:
+                                        var ageRating = temp.Substring(temp.IndexOf(":") + 1).Replace(" ", string.Empty);
                                         break;
                                     case "Жанр:":
-                                        // TODO:
+                                        var genre = temp.Substring(temp.IndexOf(":") + 1);
                                         break;
                                     case "Первоисточник:":
                                         // TODO:
