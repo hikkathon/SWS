@@ -20,6 +20,12 @@ namespace SWSv2
 
         }
 
+        //public void Alert(string title, string message, FormAlert.enmType type)
+        //{
+        //    FormAlert frm = new FormAlert();
+        //    frm.showAlert(title, message, type);
+        //}
+
         public void SetDataViewGrid(ObservableCollection<EntryModel> entryModel)
         {
             FormMain fm = (FormMain)Application.OpenForms["FormMain"];
@@ -52,7 +58,7 @@ namespace SWSv2
 
         private void button2_Click(object sender, EventArgs e)
         {
-
+            //Alert("Просмотров", $"{view}!", FormAlert.enmType.Success);
         }
     }
 }

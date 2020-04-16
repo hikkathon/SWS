@@ -21,13 +21,19 @@ namespace SWSv2
             set { _entries = value; }
         }
 
+        public void Alert(string title, string message, FormAlert.enmType type)
+        {
+            FormAlert frm = new FormAlert();
+            frm.showAlert(title, message, type);
+        }
+
         public async Task GetContent(HttpClient httpClient)
         {
             try
             {
                 int counter = 0;
                 int pointStart = 1;
-                int pointEnd = 3;
+                int pointEnd = 2;
                 int sleep = 2000;
 
                 for (int i = pointStart; i < pointEnd; i++)
@@ -69,12 +75,23 @@ namespace SWSv2
                             var description = item.DocumentNode.SelectSingleNode(".//div[@class='content-desc']/div[@id='content-desc-text']/p")?.InnerText.Trim(); // находим описание
                             var license = item.DocumentNode.SelectSingleNode(".//div[@id='video']/div[@class='status-bg alert-bg']/text()")?.InnerText.Trim() ?? "Не лицензировано"; // находим инфу о локализаторе в рф
 
+                            string view = "нет данных";
+                            string status = "нет данных";
+                            string released = "нет данных";
+                            string season = "нет данных";
+                            string ageRating = "нет данных";
+                            string[] genre = { "нет данных" };
+                            string primarySourse = "нет данных";
+                            string studio = "нет данных";
+                            string producer = "нет данных";
+                            string type = "нет данных";
+                            string series = "нет данных";
+                            string transfer = "нет данных";
+                            string voiceActing = "нет данных";
+
                             List<string> temptitle = new List<string>();
                             List<string> tempgenre = new List<string>();
                             List<string> tempstudio = new List<string>();
-                            List<string> temptransfer = new List<string>();
-
-
 
                             foreach (var titlelist in titlelists)
                             {
@@ -84,7 +101,6 @@ namespace SWSv2
                                     temptitle.Remove("...");
                                 }
                             }
-                            _entries.Add(new EntryModel() { titleList = new List<string>(temptitle) });
 
                             foreach (var infolist in infolists)
                             {
@@ -94,51 +110,48 @@ namespace SWSv2
                                 switch (selection)
                                 {
                                     case "Просмотров:":
-                                        string view = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Replace(" ", string.Empty);
+                                         view = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Replace(" ", string.Empty);
                                         break;
                                     case "Статус:":
-                                        string status = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
+                                         status = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
                                         break;
                                     case "Год:":
-                                        string released = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
+                                         released = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
                                         break;
                                     case "Сезон:":
-                                        string season = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
+                                         season = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
                                         break;
                                     case "Возрастной рейтинг:":
-                                        string ageRating = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
+                                         ageRating = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
                                         break;
                                     case "Жанр:":
-                                        string[] genre = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                                         genre = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
                                         for (int j = 0; j < genre.Count(); j++)
                                         {
                                             tempgenre.Add(genre[j]);
                                         }
                                         break;
                                     case "Первоисточник:":
-                                        string primarySourse = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
+                                         primarySourse = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
                                         break;
                                     case "Студия:":
-                                        string studio = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
+                                         studio = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
                                         break;
                                     case "Режиссер:":
-                                        string producer = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
+                                         producer = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
                                         break;
                                     case "Тип:":
-                                        string type = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
+                                         type = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
                                         break;
                                     case "Серии:":
-                                        string series = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
+                                         series = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
                                         break;
                                     case "Перевод:":
-                                        string[] transfer = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                                        for (int j = 0; j < transfer.Count(); j++)
-                                        {
-                                            temptransfer.Add(transfer[j]);
-                                        }
+                                        transfer = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
+                                        transfer = string.Join(", ", transfer.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
                                         break;
                                     case "Озвучка:":
-                                        string voiceActing = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim().Replace("amp;", string.Empty);
+                                         voiceActing = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim().Replace("amp;", string.Empty);
                                         break;
                                     default:
                                         MessageBox.Show("Что то пошло не так!", "Exception Caught!",
@@ -149,34 +162,33 @@ namespace SWSv2
                                         break;
                                 }
                             }
+                            //_entries.Add(new EntryModel() { titleList = new List<string>(temptitle) });
 
-                            //_entries.Add(new EntryModel
-                            //{
-                            //    Number = counter,
-                            //    Title = title,
-                            //    Rating = rating,
-                            //    Vote = vote,
-                            //    titleList = titleList,
-                            //    View = view,
-                            //    Status = status,
-                            //    Released = released,
-                            //    Season = season,
-                            //    ageRating = ageRating,
-                            //    Genre = genre,
-                            //    primarySource = primarySourse,
-                            //    Studio = studio,
-                            //    Producer = producer,
-                            //    Type = type,
-                            //    Series = series,
-                            //    Transfer = transfer,
-                            //    voiceActing = voiceActing,
-                            //    Description = description,
-                            //    urlImage = "https://yummyanime.club" + urlImage,
-                            //    License = license
-                            //});
+                            _entries.Add(new EntryModel
+                            {
+                                Number = counter,
+                                Title = title,
+                                Rating = rating,
+                                Vote = vote,
+                                titleList = new List<string>(temptitle),
+                                View = view,
+                                Status = status,
+                                Released = released,
+                                Season = season,
+                                ageRating = ageRating,
+                                genreList = new List<string>(genre),
+                                primarySource = primarySourse,
+                                Studio = studio,
+                                Producer = producer,
+                                Type = type,
+                                Series = series,
+                                transfer = transfer,
+                                voiceActing = voiceActing,
+                                Description = description,
+                                urlImage = "https://yummyanime.club" + urlimage,
+                                License = license
+                            });
                         }
-                        //FormMain fm = new FormMain();
-                        //fm.SetDataViewGrid(_entries);
                     }
                     catch (NullReferenceException exc)
                     {
