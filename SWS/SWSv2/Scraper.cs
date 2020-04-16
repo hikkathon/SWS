@@ -33,8 +33,8 @@ namespace SWSv2
             {
                 int counter = 0;
                 int pointStart = 1;
-                int pointEnd = 161;
-                int sleep = 2000;
+                int pointEnd = 2;
+                int sleep = 900;
 
                 for (int i = pointStart; i < pointEnd; i++)
                 {
