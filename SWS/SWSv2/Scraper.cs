@@ -33,7 +33,7 @@ namespace SWSv2
             {
                 int counter = 0;
                 int pointStart = 1;
-                int pointEnd = 2;
+                int pointEnd = 161;
                 int sleep = 2000;
 
                 for (int i = pointStart; i < pointEnd; i++)
@@ -206,14 +206,14 @@ namespace SWSv2
                                     MessageBoxDefaultButton.Button1,
                                     MessageBoxOptions.DefaultDesktopOnly);
                     }
-                    finally
-                    {
-                        MessageBox.Show($"{_entries.ToList()}", "Success!",
-                                    MessageBoxButtons.OK,
-                                    MessageBoxIcon.Information,
-                                    MessageBoxDefaultButton.Button1,
-                                    MessageBoxOptions.DefaultDesktopOnly);
-                    }
+                    //finally
+                    //{
+                    //    MessageBox.Show($"{_entries.ToList()}", "Success!",
+                    //                MessageBoxButtons.OK,
+                    //                MessageBoxIcon.Information,
+                    //                MessageBoxDefaultButton.Button1,
+                    //                MessageBoxOptions.DefaultDesktopOnly);
+                    //}
                 }
             }
             catch (HttpRequestException exc)

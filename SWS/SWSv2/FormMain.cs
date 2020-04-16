@@ -26,11 +26,34 @@ namespace SWSv2
         //    frm.showAlert(title, message, type);
         //}
 
+        FormMain fm = (FormMain)Application.OpenForms["FormMain"];
+        FormDataGridView fdgv = new FormDataGridView();
         public void SetDataViewGrid(ObservableCollection<EntryModel> entryModel)
         {
-            FormMain fm = (FormMain)Application.OpenForms["FormMain"];
             foreach (var item in entryModel)
             {
+                fm.dataGridView2.Rows.Add(
+                    item.Number,
+                    item.Title,
+                    item.Rating,
+                    item.Vote,
+                    item.titleList,
+                    item.View,
+                    item.Status,
+                    item.Released,
+                    item.Season,
+                    item.ageRating,
+                    item.genreList,
+                    item.primarySource,
+                    item.Studio,
+                    item.Producer,
+                    item.Type,
+                    item.Series,
+                    item.transfer,
+                    item.voiceActing,
+                    item.Description,
+                    item.urlImage,
+                    item.License);
                 foreach (var list in item.titleList)
                 {
                     fm.textBox1.Text += list.ToString() + Environment.NewLine;
@@ -59,6 +82,7 @@ namespace SWSv2
         private void button2_Click(object sender, EventArgs e)
         {
             //Alert("Просмотров", $"{view}!", FormAlert.enmType.Success);
+            fdgv.Show();
         }
     }
 }
