@@ -32,9 +32,9 @@ namespace SWSv2
             try
             {
                 int counter = 0;
-                int pointStart = 31;
-                int pointEnd = 32;
-                int sleep = 900;
+                int pointStart = 1;
+                int pointEnd = 2;
+                int sleep = 800;
 
                 for (int i = pointStart; i < pointEnd; i++)
                 {
@@ -58,14 +58,22 @@ namespace SWSv2
                             var hrefitem = post.SelectSingleNode("./a[@class='image-block']")?.GetAttributes("href"); // вытягиваем ссылки на страницу с аниме
 
                             Thread.Sleep(sleep);
+
                             response = await httpClient.GetAsync("https://yummyanime.club" + hrefitem.ElementAt(0).Value); // получаем ссылку на item анимешки
+                            string responceStatus = response.StatusCode.ToString();
+
+                            if(responceStatus == "NotFound")
+                            {
+                                continue;
+                            }
+
                             response.EnsureSuccessStatusCode(); // Высвобождает ресурсы если соеденение не удалось
                             var htmlinfo = await response.Content.ReadAsStringAsync();
                             var item = new HtmlAgilityPack.HtmlDocument();
                             item.LoadHtml(htmlinfo);
+                            
+                            var alternativeTitle = item.DocumentNode.SelectNodes(".//ul[@class='alt-names-list']/li"); // находим альтернативные названия TODO: в некоторых аниме нет алт. названия и вылетает NullReferenceException
 
-
-                            var titlelists = item.DocumentNode.SelectNodes(".//ul[@class='alt-names-list']/li"); // находим альтернативные названия TODO: в некоторых аниме нет алт. названия и вылетает NullReferenceException
                             var infolists = item.DocumentNode.SelectNodes(".//div/div[@class='content-page anime-page']/ul[@class='content-main-info']/li"); // находим просмотры,статус,сезон,возростной рейтинг,жанр,первоисточник,студия,режиссер,тип,серия,перевод,озвучка
 
                             var title = item.DocumentNode.SelectSingleNode("//h1")?.InnerText.Trim(); // находим название 
@@ -80,7 +88,7 @@ namespace SWSv2
                             string released = "нет данных";
                             string season = "нет данных";
                             string ageRating = "нет данных";
-                            string[] genre = { "нет данных" };
+                            string genre = "нет данных";
                             string primarySourse = "нет данных";
                             string studio = "нет данных";
                             string producer = "нет данных";
@@ -88,17 +96,24 @@ namespace SWSv2
                             string series = "нет данных";
                             string transfer = "нет данных";
                             string voiceActing = "нет данных";
+                            string aTitle = "нет данных";
 
                             List<string> temptitle = new List<string>();
-                            List<string> tempgenre = new List<string>();
-                            List<string> tempstudio = new List<string>();
 
-                            foreach (var titlelist in titlelists)
+                            if(alternativeTitle == null)
                             {
-                                if (titlelist != null)
+
+                            }
+                            else
+                            {
+                                foreach (var titlelist in alternativeTitle)
                                 {
-                                    temptitle.Add(titlelist.InnerText);
-                                    temptitle.Remove("...");
+                                    if (titlelist != null)
+                                    {
+                                        temptitle.Add(titlelist.InnerText);
+                                        temptitle.Remove("...");
+                                        aTitle = String.Join(", ", temptitle.ToArray());
+                                    }
                                 }
                             }
 
@@ -125,11 +140,7 @@ namespace SWSv2
                                          ageRating = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
                                         break;
                                     case "Жанр:":
-                                         genre = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
-                                        for (int j = 0; j < genre.Count(); j++)
-                                        {
-                                            tempgenre.Add(genre[j]);
-                                        }
+                                        genre = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
                                         break;
                                     case "Первоисточник:":
                                          primarySourse = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
@@ -170,13 +181,13 @@ namespace SWSv2
                                 Title = title,
                                 Rating = rating,
                                 Vote = vote,
-                                titleList = new List<string>(temptitle),
+                                alternativeTitle = aTitle,
                                 View = view,
                                 Status = status,
                                 Released = released,
                                 Season = season,
                                 ageRating = ageRating,
-                                genreList = new List<string>(genre),
+                                Genre = genre,
                                 primarySource = primarySourse,
                                 Studio = studio,
                                 Producer = producer,
@@ -215,6 +226,7 @@ namespace SWSv2
                     //                MessageBoxOptions.DefaultDesktopOnly);
                     //}
                 }
+                Thread.Sleep(sleep);
             }
             catch (HttpRequestException exc)
             {

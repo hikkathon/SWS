@@ -37,13 +37,13 @@ namespace SWSv2
                     item.Title,
                     item.Rating,
                     item.Vote,
-                    item.titleList,
+                    item.alternativeTitle,
                     item.View,
                     item.Status,
                     item.Released,
                     item.Season,
                     item.ageRating,
-                    item.genreList,
+                    item.Genre,
                     item.primarySource,
                     item.Studio,
                     item.Producer,
@@ -54,7 +54,7 @@ namespace SWSv2
                     item.Description,
                     item.urlImage,
                     item.License);
-                foreach (var list in item.titleList)
+                foreach (var list in item.alternativeTitle)
                 {
                     fm.textBox1.Text += list.ToString() + Environment.NewLine;
                 }
@@ -67,7 +67,9 @@ namespace SWSv2
             Scraper scraper = new Scraper();
             using (var httpClient = new HttpClient())
             {
-                httpClient.DefaultRequestHeaders.TryAddWithoutValidation("User-Agent", "https://yummyanime.club/users/id13222");
+                //httpClient.DefaultRequestHeaders.TryAddWithoutValidation("User-Agent", "https://yummyanime.club");
+                //httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (compatible; AcmeInc/1.0)");
+                httpClient.DefaultRequestHeaders.Add("User-Agent", "C# App");
 
                 await scraper.GetContent(httpClient);
                 //System.Threading.Thread.Sleep(4000);

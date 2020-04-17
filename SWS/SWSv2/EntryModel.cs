@@ -12,13 +12,13 @@ namespace SWSv2
         public string Title { get; set; } // Название в заголовке 
         public string Rating { get; set; } // Рейтинг
         public string Vote { get; set; } // Сколько пользователей проголосовало
-        public List<string> titleList { get; set; } // Альтернативные название
+        public string alternativeTitle { get; set; } // Альтернативные название
         public string View { get; set; } // Количество просмотров
         public string Status { get; set; } // Статус (Онгоин, вышел и тд.)
         public string Released { get; set; } // Дата выхода
         public string Season { get; set; } // Сезон выхода
         public string ageRating { get; set; } // Возрастной рейтинг
-        public List<string> genreList { get; set; } // Жанр
+        public string Genre { get; set; } // Жанр
         public string primarySource { get; set; } // Первоисточник
         public string Studio { get; set; } // Студия 
         public string Producer { get; set; } // Режиссер

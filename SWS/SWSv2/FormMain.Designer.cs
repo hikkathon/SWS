@@ -32,30 +32,9 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.button2 = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.tabControl1 = new System.Windows.Forms.TabControl();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.license = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.urlImage = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.description = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.voiceActing = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.transfer = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.series = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.producer = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.studio = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.primarySourse = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.genre = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ageRating = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.season = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.released = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.status = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.view = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.titleList = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.vote = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.rating = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.title = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
             this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -81,9 +60,7 @@
             this.dataGridViewTextBoxColumn20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.tabPage2.SuspendLayout();
-            this.tabPage1.SuspendLayout();
             this.tabControl1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -91,7 +68,7 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(713, 11);
+            this.button1.Location = new System.Drawing.Point(713, 9);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 23);
             this.button1.TabIndex = 0;
@@ -104,14 +81,15 @@
             this.panel1.Controls.Add(this.button2);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 404);
+            this.panel1.Location = new System.Drawing.Point(0, 406);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(800, 46);
+            this.panel1.Size = new System.Drawing.Size(800, 44);
             this.panel1.TabIndex = 2;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(632, 11);
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Location = new System.Drawing.Point(632, 9);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 23);
             this.button2.TabIndex = 1;
@@ -125,20 +103,29 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(792, 378);
+            this.tabPage2.Size = new System.Drawing.Size(792, 380);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "textBox1";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // textBox1
+            // 
+            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox1.Location = new System.Drawing.Point(3, 3);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox1.Size = new System.Drawing.Size(786, 374);
+            this.textBox1.TabIndex = 0;
+            // 
             // tabPage1
             // 
-            this.tabPage1.Controls.Add(this.dataGridView1);
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage1.Size = new System.Drawing.Size(792, 378);
             this.tabPage1.TabIndex = 0;
-            this.tabPage1.Text = "dataGridView1";
+            this.tabPage1.Text = "Главная";
             this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // tabControl1
@@ -148,177 +135,11 @@
             this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
+            this.tabControl1.Multiline = true;
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(800, 404);
+            this.tabControl1.Size = new System.Drawing.Size(800, 406);
             this.tabControl1.TabIndex = 3;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(3, 3);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(786, 372);
-            this.textBox1.TabIndex = 0;
-            // 
-            // license
-            // 
-            this.license.HeaderText = "Лиценция";
-            this.license.Name = "license";
-            this.license.ReadOnly = true;
-            // 
-            // urlImage
-            // 
-            this.urlImage.HeaderText = "Постер";
-            this.urlImage.Name = "urlImage";
-            this.urlImage.ReadOnly = true;
-            // 
-            // description
-            // 
-            this.description.HeaderText = "Описание";
-            this.description.Name = "description";
-            this.description.ReadOnly = true;
-            // 
-            // voiceActing
-            // 
-            this.voiceActing.HeaderText = "Озвучка";
-            this.voiceActing.Name = "voiceActing";
-            this.voiceActing.ReadOnly = true;
-            this.voiceActing.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // transfer
-            // 
-            this.transfer.HeaderText = "Перевод";
-            this.transfer.Name = "transfer";
-            this.transfer.ReadOnly = true;
-            this.transfer.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // series
-            // 
-            this.series.HeaderText = "Серии";
-            this.series.Name = "series";
-            this.series.ReadOnly = true;
-            // 
-            // type
-            // 
-            this.type.HeaderText = "Тип";
-            this.type.Name = "type";
-            this.type.ReadOnly = true;
-            // 
-            // producer
-            // 
-            this.producer.HeaderText = "Режиссер";
-            this.producer.Name = "producer";
-            this.producer.ReadOnly = true;
-            // 
-            // studio
-            // 
-            this.studio.HeaderText = "Студия";
-            this.studio.Name = "studio";
-            this.studio.ReadOnly = true;
-            this.studio.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // primarySourse
-            // 
-            this.primarySourse.HeaderText = "Первоисточник";
-            this.primarySourse.Name = "primarySourse";
-            this.primarySourse.ReadOnly = true;
-            // 
-            // genre
-            // 
-            this.genre.HeaderText = "Жанр";
-            this.genre.Name = "genre";
-            this.genre.ReadOnly = true;
-            this.genre.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            // 
-            // ageRating
-            // 
-            this.ageRating.HeaderText = "Возростной рейтинг";
-            this.ageRating.Name = "ageRating";
-            this.ageRating.ReadOnly = true;
-            // 
-            // season
-            // 
-            this.season.HeaderText = "Сезон";
-            this.season.Name = "season";
-            this.season.ReadOnly = true;
-            // 
-            // released
-            // 
-            this.released.HeaderText = "Дата выхода";
-            this.released.Name = "released";
-            this.released.ReadOnly = true;
-            // 
-            // status
-            // 
-            this.status.HeaderText = "Статус";
-            this.status.Name = "status";
-            this.status.ReadOnly = true;
-            // 
-            // view
-            // 
-            this.view.HeaderText = "Просмотры";
-            this.view.Name = "view";
-            this.view.ReadOnly = true;
-            // 
-            // titleList
-            // 
-            this.titleList.HeaderText = "Альтернативные названия";
-            this.titleList.Name = "titleList";
-            this.titleList.ReadOnly = true;
-            this.titleList.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.titleList.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // vote
-            // 
-            this.vote.HeaderText = "Количество голосов";
-            this.vote.Name = "vote";
-            this.vote.ReadOnly = true;
-            // 
-            // rating
-            // 
-            this.rating.HeaderText = "Рейтинг";
-            this.rating.Name = "rating";
-            this.rating.ReadOnly = true;
-            // 
-            // title
-            // 
-            this.title.HeaderText = "Название";
-            this.title.Name = "title";
-            this.title.ReadOnly = true;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.title,
-            this.rating,
-            this.vote,
-            this.titleList,
-            this.view,
-            this.status,
-            this.released,
-            this.season,
-            this.ageRating,
-            this.genre,
-            this.primarySourse,
-            this.studio,
-            this.producer,
-            this.type,
-            this.series,
-            this.transfer,
-            this.voiceActing,
-            this.description,
-            this.urlImage,
-            this.license});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(3, 3);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(786, 372);
-            this.dataGridView1.TabIndex = 1;
             // 
             // tabPage3
             // 
@@ -326,13 +147,14 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(792, 378);
+            this.tabPage3.Size = new System.Drawing.Size(792, 380);
             this.tabPage3.TabIndex = 2;
-            this.tabPage3.Text = "tabPage3";
+            this.tabPage3.Text = "dataGridView2";
             this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // dataGridView2
             // 
+            this.dataGridView2.AllowUserToAddRows = false;
             this.dataGridView2.AllowUserToDeleteRows = false;
             this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -361,7 +183,7 @@
             this.dataGridView2.Location = new System.Drawing.Point(3, 3);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
-            this.dataGridView2.Size = new System.Drawing.Size(786, 372);
+            this.dataGridView2.Size = new System.Drawing.Size(786, 374);
             this.dataGridView2.TabIndex = 2;
             // 
             // number
@@ -509,9 +331,7 @@
             this.panel1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            this.tabPage1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabPage3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
@@ -527,27 +347,6 @@
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.Button button2;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn title;
-        private System.Windows.Forms.DataGridViewTextBoxColumn rating;
-        private System.Windows.Forms.DataGridViewTextBoxColumn vote;
-        private System.Windows.Forms.DataGridViewTextBoxColumn titleList;
-        private System.Windows.Forms.DataGridViewTextBoxColumn view;
-        private System.Windows.Forms.DataGridViewTextBoxColumn status;
-        private System.Windows.Forms.DataGridViewTextBoxColumn released;
-        private System.Windows.Forms.DataGridViewTextBoxColumn season;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ageRating;
-        private System.Windows.Forms.DataGridViewTextBoxColumn genre;
-        private System.Windows.Forms.DataGridViewTextBoxColumn primarySourse;
-        private System.Windows.Forms.DataGridViewTextBoxColumn studio;
-        private System.Windows.Forms.DataGridViewTextBoxColumn producer;
-        private System.Windows.Forms.DataGridViewTextBoxColumn type;
-        private System.Windows.Forms.DataGridViewTextBoxColumn series;
-        private System.Windows.Forms.DataGridViewTextBoxColumn transfer;
-        private System.Windows.Forms.DataGridViewTextBoxColumn voiceActing;
-        private System.Windows.Forms.DataGridViewTextBoxColumn description;
-        private System.Windows.Forms.DataGridViewTextBoxColumn urlImage;
-        private System.Windows.Forms.DataGridViewTextBoxColumn license;
         private System.Windows.Forms.TabPage tabPage3;
         private System.Windows.Forms.DataGridView dataGridView2;
         private System.Windows.Forms.DataGridViewTextBoxColumn number;
