@@ -32,8 +32,8 @@ namespace SWSv2
             try
             {
                 int counter = 0;
-                int pointStart = 1;
-                int pointEnd = 2;
+                int pointStart = 31;
+                int pointEnd = 32;
                 int sleep = 900;
 
                 for (int i = pointStart; i < pointEnd; i++)
@@ -65,7 +65,7 @@ namespace SWSv2
                             item.LoadHtml(htmlinfo);
 
 
-                            var titlelists = item.DocumentNode.SelectNodes(".//ul[@class='alt-names-list']/li"); // находим альтернативные названия
+                            var titlelists = item.DocumentNode.SelectNodes(".//ul[@class='alt-names-list']/li"); // находим альтернативные названия TODO: в некоторых аниме нет алт. названия и вылетает NullReferenceException
                             var infolists = item.DocumentNode.SelectNodes(".//div/div[@class='content-page anime-page']/ul[@class='content-main-info']/li"); // находим просмотры,статус,сезон,возростной рейтинг,жанр,первоисточник,студия,режиссер,тип,серия,перевод,озвучка
 
                             var title = item.DocumentNode.SelectSingleNode("//h1")?.InnerText.Trim(); // находим название 
@@ -226,6 +226,12 @@ namespace SWSv2
             }
             FormMain fm = new FormMain();
             fm.SetDataViewGrid(_entries);
+
+            MessageBox.Show("Готово", "Http Request Exception!",
+           MessageBoxButtons.OK,
+           MessageBoxIcon.Warning,
+           MessageBoxDefaultButton.Button1,
+           MessageBoxOptions.DefaultDesktopOnly);
         }
     }
 }
