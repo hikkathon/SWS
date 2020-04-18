@@ -31,15 +31,18 @@ namespace SWSv2
         {
             RemoveSpaces rs = new RemoveSpaces();
 
+            int countResponce = 0;
+
             try
             {
                 int counter = 0;
                 int pointStart = 1;
-                int pointEnd = 3;
+                int pointEnd = 5;
                 int CounterSleep = 0;
 
                 for (int i = pointStart; i <= pointEnd; i++)
                 {
+                    countResponce++;
                     HttpResponseMessage response = await httpClient.GetAsync("https://yummyanime.club/catalog?page=" + i);
                     response.EnsureSuccessStatusCode(); // Высвобождает ресурсы если соеденение не удалось
                     var html = await response.Content.ReadAsStringAsync();
@@ -54,7 +57,7 @@ namespace SWSv2
                         foreach (var post in posts)
                         {
                             counter++;
-                            CounterSleep++;
+                            countResponce++;
 
                             var hrefitem = post.SelectSingleNode("./a[@class='image-block']")?.GetAttributes("href"); // вытягиваем ссылки на страницу с аниме
 
@@ -235,7 +238,7 @@ namespace SWSv2
             FormMain fm = new FormMain();
             fm.SetDataViewGrid(_entries);
 
-            MessageBox.Show("Готово", "Success!",
+            MessageBox.Show($"\nВсего запросов: {countResponce}", "Success!",
            MessageBoxButtons.OK,
            MessageBoxIcon.Warning,
            MessageBoxDefaultButton.Button1,
