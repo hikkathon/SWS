@@ -29,17 +29,17 @@ namespace SWSv2
 
         public async Task GetContent(HttpClient httpClient)
         {
+            RemoveSpaces rs = new RemoveSpaces();
+
             try
             {
                 int counter = 0;
                 int pointStart = 1;
-                int pointEnd = 2;
-                int sleep = 800;
+                int pointEnd = 3;
+                int CounterSleep = 0;
 
-                for (int i = pointStart; i < pointEnd; i++)
+                for (int i = pointStart; i <= pointEnd; i++)
                 {
-                    Thread.Sleep(sleep);
-
                     HttpResponseMessage response = await httpClient.GetAsync("https://yummyanime.club/catalog?page=" + i);
                     response.EnsureSuccessStatusCode(); // Высвобождает ресурсы если соеденение не удалось
                     var html = await response.Content.ReadAsStringAsync();
@@ -54,10 +54,9 @@ namespace SWSv2
                         foreach (var post in posts)
                         {
                             counter++;
+                            CounterSleep++;
 
                             var hrefitem = post.SelectSingleNode("./a[@class='image-block']")?.GetAttributes("href"); // вытягиваем ссылки на страницу с аниме
-
-                            Thread.Sleep(sleep);
 
                             response = await httpClient.GetAsync("https://yummyanime.club" + hrefitem.ElementAt(0).Value); // получаем ссылку на item анимешки
                             string responceStatus = response.StatusCode.ToString();
@@ -112,7 +111,7 @@ namespace SWSv2
                                     {
                                         temptitle.Add(titlelist.InnerText);
                                         temptitle.Remove("...");
-                                        aTitle = String.Join(", ", temptitle.ToArray());
+                                        aTitle = String.Join(" | ", temptitle.ToArray());
                                     }
                                 }
                             }
@@ -140,7 +139,8 @@ namespace SWSv2
                                          ageRating = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
                                         break;
                                     case "Жанр:":
-                                        genre = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
+                                        //genre = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
+                                        genre = rs.Remove(tempinfolist, " ").Substring(tempinfolist.IndexOf(":") + 1);
                                         break;
                                     case "Первоисточник:":
                                          primarySourse = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
@@ -158,8 +158,9 @@ namespace SWSv2
                                          series = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
                                         break;
                                     case "Перевод:":
-                                        transfer = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
-                                        transfer = string.Join(", ", transfer.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
+                                        //transfer = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
+                                        //transfer = string.Join(", ", transfer.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
+                                        transfer = rs.Remove(tempinfolist, " ").Substring(tempinfolist.IndexOf(":") + 1);
                                         break;
                                     case "Озвучка:":
                                          voiceActing = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim().Replace("amp;", string.Empty);
@@ -217,16 +218,11 @@ namespace SWSv2
                                     MessageBoxDefaultButton.Button1,
                                     MessageBoxOptions.DefaultDesktopOnly);
                     }
-                    //finally
-                    //{
-                    //    MessageBox.Show($"{_entries.ToList()}", "Success!",
-                    //                MessageBoxButtons.OK,
-                    //                MessageBoxIcon.Information,
-                    //                MessageBoxDefaultButton.Button1,
-                    //                MessageBoxOptions.DefaultDesktopOnly);
-                    //}
+                    finally
+                    {
+                        response.EnsureSuccessStatusCode();
+                    }
                 }
-                Thread.Sleep(sleep);
             }
             catch (HttpRequestException exc)
             {
@@ -239,7 +235,7 @@ namespace SWSv2
             FormMain fm = new FormMain();
             fm.SetDataViewGrid(_entries);
 
-            MessageBox.Show("Готово", "Http Request Exception!",
+            MessageBox.Show("Готово", "Success!",
            MessageBoxButtons.OK,
            MessageBoxIcon.Warning,
            MessageBoxDefaultButton.Button1,

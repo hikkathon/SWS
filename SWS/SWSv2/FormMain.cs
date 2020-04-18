@@ -17,7 +17,7 @@ namespace SWSv2
         public FormMain()
         {
             InitializeComponent();
-
+            dataGridView2.Visible = false;
         }
 
         //public void Alert(string title, string message, FormAlert.enmType type)
@@ -54,11 +54,6 @@ namespace SWSv2
                     item.Description,
                     item.urlImage,
                     item.License);
-                foreach (var list in item.alternativeTitle)
-                {
-                    fm.textBox1.Text += list.ToString() + Environment.NewLine;
-                }
-                fm.textBox1.Text += Environment.NewLine;
             }
         }
 
@@ -68,8 +63,8 @@ namespace SWSv2
             using (var httpClient = new HttpClient())
             {
                 //httpClient.DefaultRequestHeaders.TryAddWithoutValidation("User-Agent", "https://yummyanime.club");
-                //httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (compatible; AcmeInc/1.0)");
-                httpClient.DefaultRequestHeaders.Add("User-Agent", "C# App");
+                httpClient.DefaultRequestHeaders.UserAgent.ParseAdd("Mozilla/5.0 (compatible; AcmeInc/1.0)");
+                //httpClient.DefaultRequestHeaders.Add("User-Agent", "C# App");
 
                 await scraper.GetContent(httpClient);
                 //System.Threading.Thread.Sleep(4000);
@@ -79,6 +74,7 @@ namespace SWSv2
         private async void button1_Click(object sender, EventArgs e)
         {
             await Task.Run(() => Start());
+            dataGridView2.Visible = true;
         }
 
         private void button2_Click(object sender, EventArgs e)
