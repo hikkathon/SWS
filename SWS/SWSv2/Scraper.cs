@@ -38,12 +38,16 @@ namespace SWSv2
                 int counter = 0;
                 int pointStart = 1;
                 int pointEnd = 5;
-                int CounterSleep = 0;
+                int sleep = 800;
+
+                HttpResponseMessage response;
 
                 for (int i = pointStart; i <= pointEnd; i++)
                 {
                     countResponce++;
-                    HttpResponseMessage response = await httpClient.GetAsync("https://yummyanime.club/catalog?page=" + i);
+
+                    Thread.Sleep(sleep);
+                    response = await httpClient.GetAsync("https://yummyanime.club/catalog?page=" + i);
                     response.EnsureSuccessStatusCode(); // Высвобождает ресурсы если соеденение не удалось
                     var html = await response.Content.ReadAsStringAsync();
 
@@ -58,9 +62,8 @@ namespace SWSv2
                         {
                             counter++;
                             countResponce++;
-
+                            Thread.Sleep(sleep);
                             var hrefitem = post.SelectSingleNode("./a[@class='image-block']")?.GetAttributes("href"); // вытягиваем ссылки на страницу с аниме
-
                             response = await httpClient.GetAsync("https://yummyanime.club" + hrefitem.ElementAt(0).Value); // получаем ссылку на item анимешки
                             string responceStatus = response.StatusCode.ToString();
 
@@ -204,6 +207,7 @@ namespace SWSv2
                                 License = license
                             });
                         }
+                        Thread.Sleep(sleep);
                     }
                     catch (NullReferenceException exc)
                     {

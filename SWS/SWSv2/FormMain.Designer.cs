@@ -253,7 +253,7 @@
             this.Controls.Add(this.panel1);
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Simple Web Scraper v2 (61запрос)";
+            this.Text = "Simple Web Scraper v2 (61 запрос за 20 сек.)";
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
