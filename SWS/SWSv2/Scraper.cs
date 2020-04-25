@@ -37,7 +37,7 @@ namespace SWSv2
             {
                 int counter = 0;
                 int pointStart = 1;
-                int pointEnd = 5;
+                int pointEnd = 161;
                 int sleep = 800;
 
                 HttpResponseMessage response;
@@ -86,7 +86,9 @@ namespace SWSv2
                             var vote = item.DocumentNode.SelectSingleNode("//span[@class='main-rating-info']")?.InnerText.Trim().Replace("(", string.Empty).Replace(")", string.Empty).Replace("голосов", string.Empty) ?? "Рейтинг недоступен"; // находим количество голосов
                             var urlimage = item.DocumentNode.SelectSingleNode("/html/body/div[3]/div[3]/div/div/div[1]/div[1]/img")?.GetAttributeValue("src", "").Trim(); // находим ссылку на постер
                             var description = item.DocumentNode.SelectSingleNode(".//div[@class='content-desc']/div[@id='content-desc-text']/p")?.InnerText.Trim(); // находим описание
+                            description = rs.Remove("", description, " ", 0, 0).Replace("&quot;", string.Empty);
                             var license = item.DocumentNode.SelectSingleNode(".//div[@id='video']/div[@class='status-bg alert-bg']/text()")?.InnerText.Trim() ?? "Не лицензировано"; // находим инфу о локализаторе в рф
+                            license = rs.Remove("", license, " ", 0, 0);
 
                             string view = "нет данных";
                             string status = "нет данных";
@@ -102,6 +104,7 @@ namespace SWSv2
                             string transfer = "нет данных";
                             string voiceActing = "нет данных";
                             string aTitle = "нет данных";
+                            string lAnime = "https://yummyanime.club" + hrefitem.ElementAt(0).Value ?? "нет данных";
 
                             List<string> temptitle = new List<string>();
 
@@ -117,7 +120,7 @@ namespace SWSv2
                                     {
                                         temptitle.Add(titlelist.InnerText);
                                         temptitle.Remove("...");
-                                        aTitle = String.Join(" | ", temptitle.ToArray());
+                                        aTitle = String.Join(" ,", temptitle.ToArray());
                                     }
                                 }
                             }
@@ -146,7 +149,7 @@ namespace SWSv2
                                         break;
                                     case "Жанр:":
                                         //genre = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
-                                        genre = rs.Remove(tempinfolist, " ").Substring(tempinfolist.IndexOf(":") + 1);
+                                        genre = rs.Remove(",", tempinfolist, " ", 0, 3).Substring(tempinfolist.IndexOf(":") + 1);
                                         break;
                                     case "Первоисточник:":
                                          primarySourse = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
@@ -166,7 +169,7 @@ namespace SWSv2
                                     case "Перевод:":
                                         //transfer = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim();
                                         //transfer = string.Join(", ", transfer.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries));
-                                        transfer = rs.Remove(tempinfolist, " ").Substring(tempinfolist.IndexOf(":") + 1);
+                                        transfer = rs.Remove(",", tempinfolist, " ", 0, 3).Substring(tempinfolist.IndexOf(":") + 1);
                                         break;
                                     case "Озвучка:":
                                          voiceActing = tempinfolist.Substring(tempinfolist.IndexOf(":") + 1).Trim().Replace("amp;", string.Empty);
@@ -204,7 +207,8 @@ namespace SWSv2
                                 voiceActing = voiceActing,
                                 Description = description,
                                 urlImage = "https://yummyanime.club" + urlimage,
-                                License = license
+                                License = license,
+                                linkAnime = lAnime
                             });
                         }
                         Thread.Sleep(sleep);

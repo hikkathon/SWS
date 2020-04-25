@@ -31,6 +31,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.btnSaveXLSX = new System.Windows.Forms.Button();
+            this.btnSaveTXT = new System.Windows.Forms.Button();
             this.number = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,6 +54,7 @@
             this.dataGridViewTextBoxColumn18 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn19 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn20 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.urlAnime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
@@ -70,6 +73,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.SystemColors.Control;
+            this.panel1.Controls.Add(this.btnSaveTXT);
+            this.panel1.Controls.Add(this.btnSaveXLSX);
             this.panel1.Controls.Add(this.button1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 406);
@@ -103,13 +108,36 @@
             this.dataGridViewTextBoxColumn17,
             this.dataGridViewTextBoxColumn18,
             this.dataGridViewTextBoxColumn19,
-            this.dataGridViewTextBoxColumn20});
+            this.dataGridViewTextBoxColumn20,
+            this.urlAnime});
             this.dataGridView2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView2.Location = new System.Drawing.Point(0, 0);
             this.dataGridView2.Name = "dataGridView2";
             this.dataGridView2.ReadOnly = true;
             this.dataGridView2.Size = new System.Drawing.Size(800, 406);
             this.dataGridView2.TabIndex = 2;
+            // 
+            // btnSaveXLSX
+            // 
+            this.btnSaveXLSX.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveXLSX.Location = new System.Drawing.Point(713, 9);
+            this.btnSaveXLSX.Name = "btnSaveXLSX";
+            this.btnSaveXLSX.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveXLSX.TabIndex = 1;
+            this.btnSaveXLSX.Text = "Save .xlsx";
+            this.btnSaveXLSX.UseVisualStyleBackColor = true;
+            this.btnSaveXLSX.Click += new System.EventHandler(this.btnSaveXLSX_Click);
+            // 
+            // btnSaveTXT
+            // 
+            this.btnSaveTXT.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSaveTXT.Location = new System.Drawing.Point(632, 9);
+            this.btnSaveTXT.Name = "btnSaveTXT";
+            this.btnSaveTXT.Size = new System.Drawing.Size(75, 23);
+            this.btnSaveTXT.TabIndex = 2;
+            this.btnSaveTXT.Text = "Save .txt";
+            this.btnSaveTXT.UseVisualStyleBackColor = true;
+            this.btnSaveTXT.Click += new System.EventHandler(this.btnSaveTXT_Click);
             // 
             // number
             // 
@@ -243,6 +271,12 @@
             this.dataGridViewTextBoxColumn20.Name = "dataGridViewTextBoxColumn20";
             this.dataGridViewTextBoxColumn20.ReadOnly = true;
             // 
+            // urlAnime
+            // 
+            this.urlAnime.HeaderText = "Ссылка на аниме";
+            this.urlAnime.Name = "urlAnime";
+            this.urlAnime.ReadOnly = true;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -265,6 +299,8 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Button btnSaveXLSX;
+        private System.Windows.Forms.Button btnSaveTXT;
         private System.Windows.Forms.DataGridViewTextBoxColumn number;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
@@ -286,6 +322,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn18;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn19;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn20;
+        private System.Windows.Forms.DataGridViewTextBoxColumn urlAnime;
     }
 }
 

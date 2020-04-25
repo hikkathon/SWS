@@ -29,5 +29,6 @@ namespace SWSv2
         public string Description { get; set; } // Описание
         public string urlImage { get; set; } // Постер
         public string License { get; set; } // Издатель
+        public string linkAnime { get; set; } // ссылка на аниме
     }
 }
