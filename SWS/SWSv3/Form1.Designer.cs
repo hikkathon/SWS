@@ -29,13 +29,12 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnStart = new System.Windows.Forms.Button();
-            this.label_Loading = new System.Windows.Forms.Label();
             this.groupBox_Loading = new System.Windows.Forms.GroupBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label_Loading = new System.Windows.Forms.Label();
+            this.btnStart = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.panel1.SuspendLayout();
             this.groupBox_Loading.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -49,6 +48,24 @@
             this.panel1.Size = new System.Drawing.Size(800, 49);
             this.panel1.TabIndex = 0;
             // 
+            // groupBox_Loading
+            // 
+            this.groupBox_Loading.Controls.Add(this.label_Loading);
+            this.groupBox_Loading.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.groupBox_Loading.Location = new System.Drawing.Point(0, 39);
+            this.groupBox_Loading.Name = "groupBox_Loading";
+            this.groupBox_Loading.Size = new System.Drawing.Size(800, 10);
+            this.groupBox_Loading.TabIndex = 2;
+            this.groupBox_Loading.TabStop = false;
+            // 
+            // label_Loading
+            // 
+            this.label_Loading.BackColor = System.Drawing.Color.Lime;
+            this.label_Loading.Location = new System.Drawing.Point(0, 5);
+            this.label_Loading.Name = "label_Loading";
+            this.label_Loading.Size = new System.Drawing.Size(1, 23);
+            this.label_Loading.TabIndex = 1;
+            // 
             // btnStart
             // 
             this.btnStart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
@@ -60,35 +77,14 @@
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.btnStart_Click);
             // 
-            // label_Loading
+            // textBox1
             // 
-            this.label_Loading.BackColor = System.Drawing.Color.Lime;
-            this.label_Loading.Location = new System.Drawing.Point(0, 5);
-            this.label_Loading.Name = "label_Loading";
-            this.label_Loading.Size = new System.Drawing.Size(1, 23);
-            this.label_Loading.TabIndex = 1;
-            // 
-            // groupBox_Loading
-            // 
-            this.groupBox_Loading.Controls.Add(this.label_Loading);
-            this.groupBox_Loading.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.groupBox_Loading.Location = new System.Drawing.Point(0, 39);
-            this.groupBox_Loading.Name = "groupBox_Loading";
-            this.groupBox_Loading.Size = new System.Drawing.Size(800, 10);
-            this.groupBox_Loading.TabIndex = 2;
-            this.groupBox_Loading.TabStop = false;
-            // 
-            // dataGridView1
-            // 
-            this.dataGridView1.AllowUserToAddRows = false;
-            this.dataGridView1.AllowUserToDeleteRows = false;
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(800, 401);
-            this.dataGridView1.TabIndex = 1;
+            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBox1.Location = new System.Drawing.Point(0, 0);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(800, 401);
+            this.textBox1.TabIndex = 1;
             // 
             // Form1
             // 
@@ -96,14 +92,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.panel1.ResumeLayout(false);
             this.groupBox_Loading.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -113,7 +109,7 @@
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Label label_Loading;
         private System.Windows.Forms.GroupBox groupBox_Loading;
-        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 
