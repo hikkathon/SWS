@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using System.Threading;
 
 namespace SWSv3
 {
@@ -40,25 +41,20 @@ namespace SWSv3
 
         public void StartParse()
         {
-            int startPoint = 1;
-            int endPoint = 188;
+            int startPoint = Convert.ToInt32(toolStripTextBoxPointStart.Text);
+            int endPoint = Convert.ToInt32(toolStripTextBoxPointEnd.Text);
+
+            int counter = 0;
 
             HtmlWeb web = new HtmlWeb();
 
-            string[] url = { "http://web.archive.org/web/20140207223054/http://animevost.org/",
-                             "http://web.archive.org/web/20151004104342/http://animevost.org:80/",
-                             "http://web.archive.org/web/20160307084952/http://animevost.org/",
-                             "http://web.archive.org/web/20170420165902/http://animevost.org/",
-                             "http://web.archive.org/web/20180430213640/http://animevost.org/",
-                             "http://web.archive.org/web/20190504202340/http://animevost.org/"};
+            Invoke(new AddMessageDelegate(LogAdd), new object[] { "[" + DateTime.Now.ToString() + "]" + " " + "start" + Environment.NewLine });
 
-            Invoke(new AddMessageDelegate(LogAdd), new object[] { "\n>" + DateTime.Now.ToString() + " " + "start" + Environment.NewLine });
-
-                var html = url[4];
+                var html = toolStripTextBoxURL.Text;
 
             for (int j = startPoint; j <= endPoint; j++)
             {
-                Invoke(new AddMessageDelegate(LogAdd), new object[] { "\n>" + DateTime.Now.ToString() + " Scan Page: " + j + Environment.NewLine });
+                Invoke(new AddMessageDelegate(LogAdd), new object[] { "[" + DateTime.Now.ToString() + "]" + " Scan Page: " + j});
                 if (j == 1)
                 {
                     try
@@ -67,6 +63,7 @@ namespace SWSv3
                         var posts = htmlDoc.DocumentNode.SelectNodes(".//div[@class='shortstory']");
                         foreach (var post in posts)
                         {
+                            counter++;
                             var title = post.SelectSingleNode(".//img[@class='imgRadius']")?.GetAttributeValue("alt", "") ?? "{null}";
                             var image = post.SelectSingleNode(".//img[@class='imgRadius']")?.GetAttributeValue("src", "") ?? "{null}";
                             var view = post.SelectSingleNode(".//span[@class='staticInfoRightSmotr']")?.InnerText ?? "0";
@@ -76,21 +73,23 @@ namespace SWSv3
                     }
                     catch (IOException exc)
                     {
-                        Invoke(new AddMessageDelegate(LogAdd), new object[] { "\n>" + DateTime.Now.ToString() + " " + exc + Environment.NewLine });
+                        Invoke(new AddMessageDelegate(LogAdd), new object[] { "[" + DateTime.Now.ToString() + "]" + " " + exc + Environment.NewLine });
                     }
                     catch (NullReferenceException exc)
                     {
-                        Invoke(new AddMessageDelegate(LogAdd), new object[] { "\n>" + DateTime.Now.ToString() + " " + exc + Environment.NewLine });
+                        Invoke(new AddMessageDelegate(LogAdd), new object[] { "[" + DateTime.Now.ToString() + "]" + " " + exc + Environment.NewLine });
                     }
                 }
                 else
                 {
                     try
                     {
+                        Thread.Sleep(5000);
                         var htmlDoc = web.Load(html + $"page/{j}/");
                         var posts = htmlDoc.DocumentNode.SelectNodes(".//div[@class='shortstory']");
                         foreach (var post in posts)
                         {
+                            counter++;
                             var title = post.SelectSingleNode(".//img[@class='imgRadius']")?.GetAttributeValue("alt", "");
                             var image = post.SelectSingleNode(".//img[@class='imgRadius']")?.GetAttributeValue("src", "");
                             var view = post.SelectSingleNode(".//span[@class='staticInfoRightSmotr']")?.InnerText;
@@ -100,18 +99,20 @@ namespace SWSv3
                     }
                     catch (IOException exc)
                     {
-                        Invoke(new AddMessageDelegate(LogAdd), new object[] { "\n>" + DateTime.Now.ToString() + " " + exc + Environment.NewLine });
+                        Invoke(new AddMessageDelegate(LogAdd), new object[] { "[" + DateTime.Now.ToString() + "]" + " " + exc + Environment.NewLine });
                     }
                     catch (NullReferenceException exc)
                     {
-                        Invoke(new AddMessageDelegate(LogAdd), new object[] { "\n>" + DateTime.Now.ToString() + " " + exc + Environment.NewLine });
+                        Invoke(new AddMessageDelegate(LogAdd), new object[] { "[" + DateTime.Now.ToString() + "]" + " " + exc + Environment.NewLine });
                     }
                 }
+                Invoke(new AddMessageDelegate(LogAdd), new object[] { "\tDONE!" + Environment.NewLine });
             }
-            Invoke(new AddMessageDelegate(LogAdd), new object[] { "\n>" + DateTime.Now.ToString() + " " + "end" + Environment.NewLine });
+            Invoke(new AddMessageDelegate(LogAdd), new object[] { "[" + DateTime.Now.ToString() + "]"+ " " + "end" + Environment.NewLine });
+            Invoke(new AddMessageDelegate(LogAdd), new object[] { "["+DateTime.Now.ToString()+"]" + " " + $"Найдено {counter} аниме" + Environment.NewLine });
         }
 
-        private void btnStart_Click(object sender, EventArgs e)
+        private void toolStripButton1_Click(object sender, EventArgs e)
         {
             #region ProgressBar
             //int counter = 0;
@@ -138,6 +139,62 @@ namespace SWSv3
             fl.Show();
             Task task = new Task(() => StartParse());
             task.Start();
+        }
+
+        private void toolStripButton1_Click_1(object sender, EventArgs e)
+        {
+            Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
+            Microsoft.Office.Interop.Excel.Workbook wb = excel.Workbooks.Add(Type.Missing);
+            Microsoft.Office.Interop.Excel.Worksheet ws = null;
+
+            try
+            {
+                ws = wb.ActiveSheet;
+                ws.Name = $"{DateTime.Now.ToShortDateString()}";
+
+                int cellRowIndex = 1;
+                int cellColumnIndex = 1;
+
+                for (int i = 0; i < dataGridView1.Rows.Count + 1; i++)
+                {
+                    for (int j = 0; j < dataGridView1.Columns.Count; j++)
+                    {
+                        if (cellRowIndex == 1)
+                        {
+                            ws.Cells[cellRowIndex, cellColumnIndex] = dataGridView1.Columns[j].HeaderText;
+                        }
+                        else
+                        {
+                            ws.Cells[cellRowIndex, cellColumnIndex] = dataGridView1.Rows[i - 1].Cells[j].Value.ToString();
+                        }
+                        cellColumnIndex++;
+                    }
+                    cellColumnIndex = 1;
+                    cellRowIndex++;
+                }
+
+                SaveFileDialog savefile = new SaveFileDialog();
+                savefile.DefaultExt = ".xlsx";
+                savefile.Filter = "Excel files (*.xlsx)|*.xlsx|All files (*.*)|*.*";
+                savefile.FilterIndex = 2;
+                savefile.FileName = $"{DateTime.Now.ToLocalTime().ToString().Replace(":", "-").Replace(".", "-")}";
+
+                if (savefile.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+                {
+                    wb.SaveAs(savefile.FileName);
+                    Invoke(new AddMessageDelegate(LogAdd), new object[] { "[" + DateTime.Now.ToString() + "]" + " " + "Файл сохранен в формате Excel (.xlsx)" + Environment.NewLine });
+                }
+            }
+            catch (Exception)
+            {
+                Invoke(new AddMessageDelegate(LogAdd), new object[] { "[" + DateTime.Now.ToString() + "]" + " " + "При сохранении файла что то пошло не так." + Environment.NewLine });
+            }
+            finally
+            {
+                excel.Quit();
+                wb = null;
+                excel = null;
+            }
         }
     }
 }
