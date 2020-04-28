@@ -1,6 +1,7 @@
 ﻿using HtmlAgilityPack;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -21,6 +22,7 @@ namespace SWSv3
         }
 
         public delegate void AddMessageDelegate(string message);
+        public delegate void ShowDataViewGridDelegate(string title,string image,string view);
 
         public void LogAdd(string message)
         {
@@ -28,7 +30,11 @@ namespace SWSv3
         }
         public void ShowTextBox(string message)
         {
-            textBox1.AppendText(message);
+            //textBox1.AppendText(message);
+        }
+        public void ShowDataViewGrid(string title, string image,string view)
+        {
+            dataGridView1.Rows.Add(title, image,view);
         }
 
         public void StartParse()
@@ -61,8 +67,11 @@ namespace SWSv3
                         {
                             foreach (var post in posts)
                             {
-                                var temp = post.SelectSingleNode(".//img[@class='imgRadius']").GetAttributeValue("alt", "");
-                                Invoke(new AddMessageDelegate(ShowTextBox), new object[] { temp + Environment.NewLine });
+                                var title = post.SelectSingleNode(".//img[@class='imgRadius']").GetAttributeValue("alt", "");
+                                var image = post.SelectSingleNode(".//img[@class='imgRadius']").GetAttributeValue("src", "");
+                                var view = post.SelectSingleNode(".//span[@class='staticInfoRightSmotr']").InnerText;
+                                Invoke(new AddMessageDelegate(ShowTextBox), new object[] { title + Environment.NewLine });
+                                Invoke(new ShowDataViewGridDelegate(ShowDataViewGrid), new object[] { title, image,view });
                             }
                         }
                         catch (NullReferenceException exc)
@@ -82,8 +91,11 @@ namespace SWSv3
                         {
                             foreach (var post in posts)
                             {
-                                var temp = post.SelectSingleNode(".//img[@class='imgRadius']").GetAttributeValue("alt", "");
-                                Invoke(new AddMessageDelegate(ShowTextBox), new object[] { temp + Environment.NewLine });
+                                var title = post.SelectSingleNode(".//img[@class='imgRadius']").GetAttributeValue("alt", "");
+                                var image = post.SelectSingleNode(".//img[@class='imgRadius']").GetAttributeValue("src", "");
+                                var view = post.SelectSingleNode(".//span[@class='staticInfoRightSmotr']").InnerText;
+                                Invoke(new AddMessageDelegate(ShowTextBox), new object[] { title + Environment.NewLine });
+                                Invoke(new ShowDataViewGridDelegate(ShowDataViewGrid), new object[] { title, image,view });
                             }
                         }
                         catch (NullReferenceException exc)
