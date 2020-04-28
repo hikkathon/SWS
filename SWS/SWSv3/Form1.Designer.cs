@@ -33,8 +33,16 @@
             this.label_Loading = new System.Windows.Forms.Label();
             this.btnStart = new System.Windows.Forms.Button();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.title = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.release = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.пenre = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.type = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.view = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.image = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.groupBox_Loading.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -79,12 +87,66 @@
             // 
             // textBox1
             // 
-            this.textBox1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBox1.Location = new System.Drawing.Point(0, 0);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(800, 401);
+            this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.textBox1.Size = new System.Drawing.Size(394, 395);
             this.textBox1.TabIndex = 1;
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.title,
+            this.release,
+            this.пenre,
+            this.type,
+            this.view,
+            this.image});
+            this.dataGridView1.Location = new System.Drawing.Point(400, 12);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
+            this.dataGridView1.Size = new System.Drawing.Size(388, 383);
+            this.dataGridView1.TabIndex = 2;
+            // 
+            // title
+            // 
+            this.title.HeaderText = "Название";
+            this.title.Name = "title";
+            this.title.ReadOnly = true;
+            // 
+            // release
+            // 
+            this.release.HeaderText = "Дата выхода";
+            this.release.Name = "release";
+            this.release.ReadOnly = true;
+            // 
+            // пenre
+            // 
+            this.пenre.HeaderText = "Жанр";
+            this.пenre.Name = "пenre";
+            this.пenre.ReadOnly = true;
+            // 
+            // type
+            // 
+            this.type.HeaderText = "Тип";
+            this.type.Name = "type";
+            this.type.ReadOnly = true;
+            // 
+            // view
+            // 
+            this.view.HeaderText = "Просмотры";
+            this.view.Name = "view";
+            this.view.ReadOnly = true;
+            // 
+            // image
+            // 
+            this.image.HeaderText = "Постер";
+            this.image.Name = "image";
+            this.image.ReadOnly = true;
             // 
             // Form1
             // 
@@ -92,12 +154,14 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.panel1);
             this.Name = "Form1";
             this.Text = "Form1";
             this.panel1.ResumeLayout(false);
             this.groupBox_Loading.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -110,6 +174,13 @@
         private System.Windows.Forms.Label label_Loading;
         private System.Windows.Forms.GroupBox groupBox_Loading;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn title;
+        private System.Windows.Forms.DataGridViewTextBoxColumn release;
+        private System.Windows.Forms.DataGridViewTextBoxColumn пenre;
+        private System.Windows.Forms.DataGridViewTextBoxColumn type;
+        private System.Windows.Forms.DataGridViewTextBoxColumn view;
+        private System.Windows.Forms.DataGridViewTextBoxColumn image;
     }
 }
 
