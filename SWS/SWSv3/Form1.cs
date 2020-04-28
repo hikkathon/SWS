@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
 
 namespace SWSv3
 {
@@ -40,72 +41,70 @@ namespace SWSv3
         public void StartParse()
         {
             int startPoint = 1;
-            int endPoint = 68;
+            int endPoint = 188;
 
             HtmlWeb web = new HtmlWeb();
 
-            string[] url = { "http://web.archive.org/web/20140207223054/http://animevost.org/", 
-                             "http://web.archive.org/web/20150217014224/http://animevost.org:80/",
+            string[] url = { "http://web.archive.org/web/20140207223054/http://animevost.org/",
+                             "http://web.archive.org/web/20151004104342/http://animevost.org:80/",
                              "http://web.archive.org/web/20160307084952/http://animevost.org/",
                              "http://web.archive.org/web/20170420165902/http://animevost.org/",
                              "http://web.archive.org/web/20180430213640/http://animevost.org/",
                              "http://web.archive.org/web/20190504202340/http://animevost.org/"};
 
             Invoke(new AddMessageDelegate(LogAdd), new object[] { "\n>" + DateTime.Now.ToString() + " " + "start" + Environment.NewLine });
-            for (int i = 0; i < 1; i++)
-            {
-                var html = url[0];
 
-                for (int j = startPoint; j <= endPoint; j++)
+                var html = url[4];
+
+            for (int j = startPoint; j <= endPoint; j++)
+            {
+                Invoke(new AddMessageDelegate(LogAdd), new object[] { "\n>" + DateTime.Now.ToString() + " Scan Page: " + j + Environment.NewLine });
+                if (j == 1)
                 {
-                    Invoke(new AddMessageDelegate(LogAdd), new object[] { "\n>" + DateTime.Now.ToString() + " Scan Page: " + j + Environment.NewLine });
-                    if (j==1)
+                    try
                     {
                         var htmlDoc = web.Load(html);
                         var posts = htmlDoc.DocumentNode.SelectNodes(".//div[@class='shortstory']");
-                        try
+                        foreach (var post in posts)
                         {
-                            foreach (var post in posts)
-                            {
-                                var title = post.SelectSingleNode(".//img[@class='imgRadius']").GetAttributeValue("alt", "");
-                                var image = post.SelectSingleNode(".//img[@class='imgRadius']").GetAttributeValue("src", "");
-                                var view = post.SelectSingleNode(".//span[@class='staticInfoRightSmotr']").InnerText;
-                                Invoke(new AddMessageDelegate(ShowTextBox), new object[] { title + Environment.NewLine });
-                                Invoke(new ShowDataViewGridDelegate(ShowDataViewGrid), new object[] { title, image,view });
-                            }
-                        }
-                        catch (NullReferenceException exc)
-                        {
-                            Invoke(new AddMessageDelegate(LogAdd), new object[] { "\n>" + DateTime.Now.ToString() + " " + exc + Environment.NewLine });
-                        }
-                        catch (System.IO.IOException exc)
-                        {
-                            Invoke(new AddMessageDelegate(LogAdd), new object[] { "\n>" + DateTime.Now.ToString() + " " + exc + Environment.NewLine });
+                            var title = post.SelectSingleNode(".//img[@class='imgRadius']")?.GetAttributeValue("alt", "") ?? "{null}";
+                            var image = post.SelectSingleNode(".//img[@class='imgRadius']")?.GetAttributeValue("src", "") ?? "{null}";
+                            var view = post.SelectSingleNode(".//span[@class='staticInfoRightSmotr']")?.InnerText ?? "0";
+                            Invoke(new AddMessageDelegate(ShowTextBox), new object[] { title + Environment.NewLine });
+                            Invoke(new ShowDataViewGridDelegate(ShowDataViewGrid), new object[] { title, image, view });
                         }
                     }
-                    else
+                    catch (IOException exc)
+                    {
+                        Invoke(new AddMessageDelegate(LogAdd), new object[] { "\n>" + DateTime.Now.ToString() + " " + exc + Environment.NewLine });
+                    }
+                    catch (NullReferenceException exc)
+                    {
+                        Invoke(new AddMessageDelegate(LogAdd), new object[] { "\n>" + DateTime.Now.ToString() + " " + exc + Environment.NewLine });
+                    }
+                }
+                else
+                {
+                    try
                     {
                         var htmlDoc = web.Load(html + $"page/{j}/");
                         var posts = htmlDoc.DocumentNode.SelectNodes(".//div[@class='shortstory']");
-                        try
+                        foreach (var post in posts)
                         {
-                            foreach (var post in posts)
-                            {
-                                var title = post.SelectSingleNode(".//img[@class='imgRadius']").GetAttributeValue("alt", "");
-                                var image = post.SelectSingleNode(".//img[@class='imgRadius']").GetAttributeValue("src", "");
-                                var view = post.SelectSingleNode(".//span[@class='staticInfoRightSmotr']").InnerText;
-                                Invoke(new AddMessageDelegate(ShowTextBox), new object[] { title + Environment.NewLine });
-                                Invoke(new ShowDataViewGridDelegate(ShowDataViewGrid), new object[] { title, image,view });
-                            }
+                            var title = post.SelectSingleNode(".//img[@class='imgRadius']")?.GetAttributeValue("alt", "");
+                            var image = post.SelectSingleNode(".//img[@class='imgRadius']")?.GetAttributeValue("src", "");
+                            var view = post.SelectSingleNode(".//span[@class='staticInfoRightSmotr']")?.InnerText;
+                            Invoke(new AddMessageDelegate(ShowTextBox), new object[] { title + Environment.NewLine });
+                            Invoke(new ShowDataViewGridDelegate(ShowDataViewGrid), new object[] { title, image, view });
                         }
-                        catch (NullReferenceException exc)
-                        {
-                            Invoke(new AddMessageDelegate(LogAdd), new object[] { "\n>" + DateTime.Now.ToString() + " " + exc + Environment.NewLine });
-                        }
-                        catch(System.IO.IOException exc)
-                        {
-                            Invoke(new AddMessageDelegate(LogAdd), new object[] { "\n>" + DateTime.Now.ToString() + " " + exc + Environment.NewLine });
-                        }
+                    }
+                    catch (IOException exc)
+                    {
+                        Invoke(new AddMessageDelegate(LogAdd), new object[] { "\n>" + DateTime.Now.ToString() + " " + exc + Environment.NewLine });
+                    }
+                    catch (NullReferenceException exc)
+                    {
+                        Invoke(new AddMessageDelegate(LogAdd), new object[] { "\n>" + DateTime.Now.ToString() + " " + exc + Environment.NewLine });
                     }
                 }
             }

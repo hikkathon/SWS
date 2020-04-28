@@ -33,12 +33,15 @@
             // 
             // textBoxLog
             // 
-            this.textBoxLog.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxLog.BackColor = System.Drawing.Color.Black;
+            this.textBoxLog.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.textBoxLog.Font = new System.Drawing.Font("Ubuntu Mono", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxLog.ForeColor = System.Drawing.Color.Lime;
             this.textBoxLog.Location = new System.Drawing.Point(0, 0);
             this.textBoxLog.Multiline = true;
             this.textBoxLog.Name = "textBoxLog";
             this.textBoxLog.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBoxLog.Size = new System.Drawing.Size(800, 450);
+            this.textBoxLog.Size = new System.Drawing.Size(818, 450);
             this.textBoxLog.TabIndex = 0;
             // 
             // FormLog
@@ -47,8 +50,12 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.textBoxLog);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.SizableToolWindow;
+            this.MaximumSize = new System.Drawing.Size(816, 489);
+            this.MinimumSize = new System.Drawing.Size(816, 489);
             this.Name = "FormLog";
-            this.Text = "FormLog";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
+            this.Text = "Log";
             this.ResumeLayout(false);
             this.PerformLayout();
 
