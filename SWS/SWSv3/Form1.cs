@@ -73,11 +73,11 @@ namespace SWSv3
                     }
                     catch (IOException exc)
                     {
-                        Invoke(new AddMessageDelegate(LogAdd), new object[] { "[" + DateTime.Now.ToString() + "]" + " " + exc + Environment.NewLine });
+                        Invoke(new AddMessageDelegate(LogAdd), new object[] { Environment.NewLine+"[" + DateTime.Now.ToString() + "]" + " " + exc + Environment.NewLine });
                     }
                     catch (NullReferenceException exc)
                     {
-                        Invoke(new AddMessageDelegate(LogAdd), new object[] { "[" + DateTime.Now.ToString() + "]" + " " + exc + Environment.NewLine });
+                        Invoke(new AddMessageDelegate(LogAdd), new object[] { Environment.NewLine+"[" + DateTime.Now.ToString() + "]" + " " + exc + Environment.NewLine });
                     }
                 }
                 else
@@ -99,11 +99,11 @@ namespace SWSv3
                     }
                     catch (IOException exc)
                     {
-                        Invoke(new AddMessageDelegate(LogAdd), new object[] { "[" + DateTime.Now.ToString() + "]" + " " + exc + Environment.NewLine });
+                        Invoke(new AddMessageDelegate(LogAdd), new object[] { Environment.NewLine+"[" + DateTime.Now.ToString() + "]" + " " + exc + Environment.NewLine });
                     }
                     catch (NullReferenceException exc)
                     {
-                        Invoke(new AddMessageDelegate(LogAdd), new object[] { "[" + DateTime.Now.ToString() + "]" + " " + exc + Environment.NewLine });
+                        Invoke(new AddMessageDelegate(LogAdd), new object[] { Environment.NewLine+"[" + DateTime.Now.ToString() + "]" + " " + exc + Environment.NewLine });
                     }
                 }
                 Invoke(new AddMessageDelegate(LogAdd), new object[] { "\tDONE!" + Environment.NewLine });
