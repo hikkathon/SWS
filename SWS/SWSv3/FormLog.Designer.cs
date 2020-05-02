@@ -46,7 +46,7 @@
             this.textBoxLog.BackColor = System.Drawing.Color.WhiteSmoke;
             this.textBoxLog.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.textBoxLog.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxLog.Font = new System.Drawing.Font("Ubuntu Mono", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.textBoxLog.Font = new System.Drawing.Font("Ubuntu Mono", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.textBoxLog.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.textBoxLog.Location = new System.Drawing.Point(0, 0);
             this.textBoxLog.Multiline = true;
