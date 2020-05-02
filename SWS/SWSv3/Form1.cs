@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using System.Threading;
+using System.Diagnostics;
 
 namespace SWSv3
 {
@@ -30,9 +31,9 @@ namespace SWSv3
         {
             fl.textBoxLog.AppendText(message);
         }
-        public void ShowTextBox(string message)
+        public void ShowtoolStripStatusLabel2(string message)
         {
-            //textBox1.AppendText(message);
+            toolStripStatusLabel2.Text = message;
         }
         public void ShowDataViewGrid(string title, string image,string view)
         {
@@ -50,11 +51,14 @@ namespace SWSv3
 
             Invoke(new AddMessageDelegate(LogAdd), new object[] { "[" + DateTime.Now.ToString() + "]" + " " + "start" + Environment.NewLine });
 
-                var html = toolStripTextBoxURL.Text;
+            var html = toolStripTextBoxURL.Text;
+
+            var sw = new Stopwatch();
 
             for (int j = startPoint; j <= endPoint; j++)
             {
-                Invoke(new AddMessageDelegate(LogAdd), new object[] { "[" + DateTime.Now.ToString() + "]" + " Scan Page: " + j});
+                sw.Start();
+                Invoke(new AddMessageDelegate(LogAdd), new object[] { "[" + DateTime.Now.ToString() + "]" + " Scan page: " + j + $"/{endPoint}" });
                 if (j == 1)
                 {
                     try
@@ -67,24 +71,25 @@ namespace SWSv3
                             var title = post.SelectSingleNode(".//img[@class='imgRadius']")?.GetAttributeValue("alt", "") ?? "{null}";
                             var image = post.SelectSingleNode(".//img[@class='imgRadius']")?.GetAttributeValue("src", "") ?? "{null}";
                             var view = post.SelectSingleNode(".//span[@class='staticInfoRightSmotr']")?.InnerText ?? "0";
-                            Invoke(new AddMessageDelegate(ShowTextBox), new object[] { title + Environment.NewLine });
                             Invoke(new ShowDataViewGridDelegate(ShowDataViewGrid), new object[] { title, image, view });
+                            Thread.Sleep(50);
+                            Invoke(new AddMessageDelegate(ShowtoolStripStatusLabel2), new object[] { $"{counter}" });
                         }
                     }
                     catch (IOException exc)
                     {
-                        Invoke(new AddMessageDelegate(LogAdd), new object[] { Environment.NewLine+"[" + DateTime.Now.ToString() + "]" + " " + exc + Environment.NewLine });
+                        Invoke(new AddMessageDelegate(LogAdd), new object[] { Environment.NewLine + "[" + DateTime.Now.ToString() + "]" + " " + exc + Environment.NewLine });
                     }
                     catch (NullReferenceException exc)
                     {
-                        Invoke(new AddMessageDelegate(LogAdd), new object[] { Environment.NewLine+"[" + DateTime.Now.ToString() + "]" + " " + exc + Environment.NewLine });
+                        Invoke(new AddMessageDelegate(LogAdd), new object[] { Environment.NewLine + "[" + DateTime.Now.ToString() + "]" + " " + exc + Environment.NewLine });
                     }
                 }
                 else
                 {
                     try
                     {
-                        Thread.Sleep(5000);
+                        //Thread.Sleep(5000);
                         var htmlDoc = web.Load(html + $"page/{j}/");
                         var posts = htmlDoc.DocumentNode.SelectNodes(".//div[@class='shortstory']");
                         foreach (var post in posts)
@@ -93,23 +98,24 @@ namespace SWSv3
                             var title = post.SelectSingleNode(".//img[@class='imgRadius']")?.GetAttributeValue("alt", "");
                             var image = post.SelectSingleNode(".//img[@class='imgRadius']")?.GetAttributeValue("src", "");
                             var view = post.SelectSingleNode(".//span[@class='staticInfoRightSmotr']")?.InnerText;
-                            Invoke(new AddMessageDelegate(ShowTextBox), new object[] { title + Environment.NewLine });
                             Invoke(new ShowDataViewGridDelegate(ShowDataViewGrid), new object[] { title, image, view });
+                            Thread.Sleep(50);
+                            Invoke(new AddMessageDelegate(ShowtoolStripStatusLabel2), new object[] { $"{counter}" });
                         }
                     }
                     catch (IOException exc)
                     {
-                        Invoke(new AddMessageDelegate(LogAdd), new object[] { Environment.NewLine+"[" + DateTime.Now.ToString() + "]" + " " + exc + Environment.NewLine });
+                        Invoke(new AddMessageDelegate(LogAdd), new object[] { Environment.NewLine + "[" + DateTime.Now.ToString() + "]" + " " + exc + Environment.NewLine });
                     }
                     catch (NullReferenceException exc)
                     {
-                        Invoke(new AddMessageDelegate(LogAdd), new object[] { Environment.NewLine+"[" + DateTime.Now.ToString() + "]" + " " + exc + Environment.NewLine });
+                        Invoke(new AddMessageDelegate(LogAdd), new object[] { Environment.NewLine + "[" + DateTime.Now.ToString() + "]" + " " + exc + Environment.NewLine });
                     }
                 }
-                Invoke(new AddMessageDelegate(LogAdd), new object[] { "\tDONE!" + Environment.NewLine });
+                Invoke(new AddMessageDelegate(LogAdd), new object[] { $" DONE. Time Spent: { sw.ElapsedMilliseconds }ms." + Environment.NewLine });
+                sw.Restart();
             }
             Invoke(new AddMessageDelegate(LogAdd), new object[] { "[" + DateTime.Now.ToString() + "]"+ " " + "end" + Environment.NewLine });
-            Invoke(new AddMessageDelegate(LogAdd), new object[] { "["+DateTime.Now.ToString()+"]" + " " + $"Найдено {counter} аниме" + Environment.NewLine });
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)
@@ -194,6 +200,27 @@ namespace SWSv3
                 excel.Quit();
                 wb = null;
                 excel = null;
+            }
+        }
+
+        private void dataGridView1_MouseUp(object sender, MouseEventArgs e)
+        {
+            Int32 selectedColumnCount = dataGridView1.Columns
+    .GetColumnCount(DataGridViewElementStates.Selected);
+            if (selectedColumnCount > 0)
+            {
+                System.Text.StringBuilder sb = new System.Text.StringBuilder();
+
+                for (int i = 0; i < selectedColumnCount; i++)
+                {
+                    sb.Append("Column: ");
+                    sb.Append(dataGridView1.SelectedColumns[i].Index
+                        .ToString());
+                    sb.Append(Environment.NewLine);
+                }
+
+                sb.Append("Total: " + selectedColumnCount.ToString());
+                MessageBox.Show(sb.ToString(), "Selected Columns");
             }
         }
     }
