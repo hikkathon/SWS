@@ -76,10 +76,9 @@
             this.view});
             this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
-            this.dataGridView1.MultiSelect = false;
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
-            this.dataGridView1.Size = new System.Drawing.Size(875, 479);
+            this.dataGridView1.Size = new System.Drawing.Size(702, 479);
             this.dataGridView1.TabIndex = 2;
             this.dataGridView1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.dataGridView1_MouseUp);
             // 
@@ -87,19 +86,16 @@
             // 
             this.title.HeaderText = "Название";
             this.title.Name = "title";
-            this.title.ReadOnly = true;
             // 
             // image
             // 
             this.image.HeaderText = "Постер";
             this.image.Name = "image";
-            this.image.ReadOnly = true;
             // 
             // view
             // 
             this.view.HeaderText = "Просмотры";
             this.view.Name = "view";
-            this.view.ReadOnly = true;
             // 
             // toolStrip1
             // 
@@ -114,7 +110,7 @@
             this.toolStripButton1});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
-            this.toolStrip1.Size = new System.Drawing.Size(875, 25);
+            this.toolStrip1.Size = new System.Drawing.Size(702, 25);
             this.toolStrip1.TabIndex = 3;
             this.toolStrip1.Text = "toolStrip1";
             // 
@@ -178,7 +174,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 25);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(875, 479);
+            this.panel2.Size = new System.Drawing.Size(702, 479);
             this.panel2.TabIndex = 7;
             // 
             // panel1
@@ -187,7 +183,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 504);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(875, 21);
+            this.panel1.Size = new System.Drawing.Size(702, 21);
             this.panel1.TabIndex = 6;
             // 
             // statusStrip1
@@ -201,7 +197,7 @@
             this.toolStripStatusLabel5});
             this.statusStrip1.Location = new System.Drawing.Point(0, -1);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(875, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(702, 22);
             this.statusStrip1.TabIndex = 0;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -240,7 +236,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(875, 525);
+            this.ClientSize = new System.Drawing.Size(702, 525);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
