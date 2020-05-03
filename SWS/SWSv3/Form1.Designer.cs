@@ -1,6 +1,6 @@
 ﻿namespace SWSv3
 {
-    partial class Form1
+    partial class FormMain
     {
         /// <summary>
         /// Обязательная переменная конструктора.
@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
             this.btnStart = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.title = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,8 +41,6 @@
             this.toolStripTextBoxPointStart = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripTextBoxPointEnd = new System.Windows.Forms.ToolStripTextBox();
-            this.toolStripButtonStart = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -51,6 +49,8 @@
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
+            this.toolStripButtonStart = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -86,16 +86,19 @@
             // 
             this.title.HeaderText = "Название";
             this.title.Name = "title";
+            this.title.ReadOnly = true;
             // 
             // image
             // 
             this.image.HeaderText = "Постер";
             this.image.Name = "image";
+            this.image.ReadOnly = true;
             // 
             // view
             // 
             this.view.HeaderText = "Просмотры";
             this.view.Name = "view";
+            this.view.ReadOnly = true;
             // 
             // toolStrip1
             // 
@@ -149,24 +152,6 @@
             this.toolStripTextBoxPointEnd.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStripTextBoxPointEnd.Name = "toolStripTextBoxPointEnd";
             this.toolStripTextBoxPointEnd.Size = new System.Drawing.Size(50, 25);
-            // 
-            // toolStripButtonStart
-            // 
-            this.toolStripButtonStart.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonStart.Image")));
-            this.toolStripButtonStart.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonStart.Name = "toolStripButtonStart";
-            this.toolStripButtonStart.Size = new System.Drawing.Size(51, 22);
-            this.toolStripButtonStart.Text = "Start";
-            this.toolStripButtonStart.Click += new System.EventHandler(this.toolStripButton1_Click);
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(51, 22);
-            this.toolStripButton1.Text = "Save";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click_1);
             // 
             // panel2
             // 
@@ -231,7 +216,25 @@
             this.toolStripStatusLabel5.Size = new System.Drawing.Size(66, 17);
             this.toolStripStatusLabel5.Text = "элементов";
             // 
-            // Form1
+            // toolStripButtonStart
+            // 
+            this.toolStripButtonStart.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonStart.Image")));
+            this.toolStripButtonStart.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonStart.Name = "toolStripButtonStart";
+            this.toolStripButtonStart.Size = new System.Drawing.Size(51, 22);
+            this.toolStripButtonStart.Text = "Start";
+            this.toolStripButtonStart.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(51, 22);
+            this.toolStripButton1.Text = "Save";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click_1);
+            // 
+            // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -241,9 +244,9 @@
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.btnStart);
-            this.Name = "Form1";
+            this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Form1";
+            this.Text = "FormMain";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
