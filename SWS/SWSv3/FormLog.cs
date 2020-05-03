@@ -16,14 +16,5 @@ namespace SWSv3
         {
             InitializeComponent();
         }
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            if(textBox1.Text == "clear")
-            {
-                textBoxLog.Text = string.Empty;
-                textBox1.Text = string.Empty;
-            }
-        }
     }
 }
