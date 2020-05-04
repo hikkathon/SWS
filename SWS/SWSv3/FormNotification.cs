@@ -15,6 +15,12 @@ namespace SWSv3
 {
     public partial class FormNotification : Form
     {
+        DateTime objDateTime = DateTime.Now;
+        private void FormNotification_Load(object sender, EventArgs e)
+        {
+            lblTime.Text = "just now";
+        }
+
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]
         private static extern IntPtr CreateRoundRectRgn
         (
@@ -96,7 +102,12 @@ namespace SWSv3
             }
         }
 
-        public void showAlert(string title, string message, string time, string song, enmType type)
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            lblTime.Text = TimeAgo.GetTimeSince(objDateTime).ToString();
+        }
+
+        public void showAlert(string title, string message, string song, enmType type)
         {
             SoundPlayer sp;
             this.Opacity = 0.0;
@@ -153,7 +164,6 @@ namespace SWSv3
 
             this.lblMessage.Text = message;
             this.lblTitle.Text = title;
-            this.lblTime.Text = time;
 
             this.Show();
             this.action = enmAction.start;

@@ -27,12 +27,12 @@ namespace SWSv3
         public delegate void AddMessageDelegate(string message);
         public delegate void ShowDataViewGridDelegate(string title,string image,string view);
         public delegate void ProgressBarDelegate(int min, int max, int value);
-        public delegate void NotificationDelegate(string title, string message, string time, string song, FormNotification.enmType type);
+        public delegate void NotificationDelegate(string title, string message, string song, FormNotification.enmType type);
 
-        public void Notification(string title, string message, string time, string song, FormNotification.enmType type)
+        public void Notification(string title, string message, string song, FormNotification.enmType type)
         {
             FormNotification frm = new FormNotification();
-            frm.showAlert(title, message, time, song, type);
+            frm.showAlert(title, message, song, type);
         }
 
         public void ProgressBar(int min, int max, int value)
@@ -134,7 +134,7 @@ namespace SWSv3
             }
             sw.Start();
             Invoke(new AddMessageDelegate(LogAdd), new object[] { "[" + DateTime.Now.ToString() + "]"+ " " + "end" + Environment.NewLine });
-            Invoke(new NotificationDelegate(Notification), new object[] { "Parsia Chun", "Success.", $"{TimeAgo.DateTimeAgo(DateTime.Now)}", "Notify.wav", FormNotification.enmType.Success });
+            Invoke(new NotificationDelegate(Notification), new object[] { "Parsia Chun", "Success.", "Notify.wav", FormNotification.enmType.Success });
         }
 
         private void toolStripButton1_Click(object sender, EventArgs e)

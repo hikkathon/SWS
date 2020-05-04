@@ -8,47 +8,41 @@ namespace SWSv3
 {
     public static class TimeAgo
     {
-        public static string DateTimeAgo(this DateTime dateTime)
+        public static string GetTimeSince(DateTime objDateTime)
         {
-            string result = string.Empty;
-            var timeSpan = DateTime.Now.Subtract(dateTime);
+            // here we are going to subtract the passed in DateTime from the current time converted to UTC
+            TimeSpan ts = DateTime.Now.Subtract(objDateTime);
+            int intDays = ts.Days;
+            int intHours = ts.Hours;
+            int intMinutes = ts.Minutes;
+            int intSeconds = ts.Seconds;
 
-            if (timeSpan <= TimeSpan.FromSeconds(60))
-            {
-                result = string.Format("{0} seconds ago", timeSpan.Seconds);
-            }
-            else if (timeSpan <= TimeSpan.FromMinutes(60))
-            {
-                result = timeSpan.Minutes > 1 ?
-                    String.Format("about {0} minutes ago", timeSpan.Minutes) :
-                    "about a minute ago";
-            }
-            else if (timeSpan <= TimeSpan.FromHours(24))
-            {
-                result = timeSpan.Hours > 1 ?
-                    String.Format("about {0} hours ago", timeSpan.Hours) :
-                    "about an hour ago";
-            }
-            else if (timeSpan <= TimeSpan.FromDays(30))
-            {
-                result = timeSpan.Days > 1 ?
-                    String.Format("about {0} days ago", timeSpan.Days) :
-                    "yesterday";
-            }
-            else if (timeSpan <= TimeSpan.FromDays(365))
-            {
-                result = timeSpan.Days > 30 ?
-                    String.Format("about {0} months ago", timeSpan.Days / 30) :
-                    "about a month ago";
-            }
-            else
-            {
-                result = timeSpan.Days > 365 ?
-                    String.Format("about {0} years ago", timeSpan.Days / 365) :
-                    "about a year ago";
-            }
+            if (intDays > 0)
+                return string.Format("{0} days ago", intDays);
 
-            return result;
+            if (intHours > 0)
+                return string.Format("{0} hours ago", intHours);
+
+            if (intMinutes > 0)
+                return string.Format("{0} minutes ago", intMinutes);
+
+            if (intSeconds > 0)
+                return string.Format("{0} seconds ago", intSeconds);
+
+            // let's handle future times..just in case
+            if (intDays < 0)
+                return string.Format("in {0} days ago", Math.Abs(intDays));
+
+            if (intHours < 0)
+                return string.Format("in {0} hours ago", Math.Abs(intHours));
+
+            if (intMinutes < 0)
+                return string.Format("in {0} minutes ago", Math.Abs(intMinutes));
+
+            if (intSeconds < 0)
+                return string.Format("in {0} seconds ago", Math.Abs(intSeconds));
+
+            return "a bit";
         }
     }
 }

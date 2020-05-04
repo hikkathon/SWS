@@ -33,10 +33,11 @@
             this.lblMessage = new System.Windows.Forms.Label();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblTime = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.lblTime = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.timer2 = new System.Windows.Forms.Timer(this.components);
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
@@ -80,6 +81,18 @@
             this.panel1.Size = new System.Drawing.Size(348, 36);
             this.panel1.TabIndex = 5;
             // 
+            // lblTime
+            // 
+            this.lblTime.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.lblTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(126)))), ((int)(((byte)(134)))));
+            this.lblTime.ImageAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.lblTime.Location = new System.Drawing.Point(220, 10);
+            this.lblTime.Name = "lblTime";
+            this.lblTime.Size = new System.Drawing.Size(100, 13);
+            this.lblTime.TabIndex = 6;
+            this.lblTime.Text = "just now";
+            this.lblTime.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // panel2
             // 
             this.panel2.Location = new System.Drawing.Point(14, 10);
@@ -99,16 +112,6 @@
             this.pictureBox2.TabStop = false;
             this.pictureBox2.Click += new System.EventHandler(this.pictureBox2_Click);
             // 
-            // lblTime
-            // 
-            this.lblTime.AutoSize = true;
-            this.lblTime.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(114)))), ((int)(((byte)(126)))), ((int)(((byte)(134)))));
-            this.lblTime.Location = new System.Drawing.Point(237, 10);
-            this.lblTime.Name = "lblTime";
-            this.lblTime.Size = new System.Drawing.Size(83, 13);
-            this.lblTime.TabIndex = 6;
-            this.lblTime.Text = "11 seconds ago";
-            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(216)))), ((int)(((byte)(216)))), ((int)(((byte)(216)))));
@@ -117,6 +120,12 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(348, 1);
             this.panel3.TabIndex = 6;
+            // 
+            // timer2
+            // 
+            this.timer2.Enabled = true;
+            this.timer2.Interval = 30000;
+            this.timer2.Tick += new System.EventHandler(this.timer2_Tick);
             // 
             // FormNotification
             // 
@@ -130,6 +139,7 @@
             this.Name = "FormNotification";
             this.ShowInTaskbar = false;
             this.Text = "FormNotification";
+            this.Load += new System.EventHandler(this.FormNotification_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -148,5 +158,6 @@
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label lblTime;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Timer timer2;
     }
 }
