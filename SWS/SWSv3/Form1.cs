@@ -18,6 +18,7 @@ namespace SWSv3
     public partial class FormMain : Form
     {
         FormLog fl = new FormLog();
+        FormProgressBar fpb = new FormProgressBar();
 
         public FormMain()
         {
@@ -37,9 +38,13 @@ namespace SWSv3
 
         public void ProgressBar(int min, int max, int value)
         {
-            fl.progressBar1.Minimum = min;
-            fl.progressBar1.Maximum = max;
-            fl.progressBar1.Value = value;
+            fpb.progressBar1.Minimum = min;
+            fpb.progressBar1.Maximum = max;
+            fpb.progressBar1.Value = value;
+
+            fpb.customProgressBar1.ValueMinimum = min;
+            fpb.customProgressBar1.ValueMaximum = max;
+            fpb.customProgressBar1.Value = value;
         }
 
         public void LogAdd(string message)
@@ -162,6 +167,7 @@ namespace SWSv3
             //btnStart.Enabled = true;
             #endregion
             fl.Show();
+            fpb.Show();
             Task task = new Task(() => StartParse());
             task.Start();
         }

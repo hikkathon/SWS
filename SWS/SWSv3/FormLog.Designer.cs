@@ -30,8 +30,8 @@
         {
             this.textBoxLog = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.SuspendLayout();
@@ -60,6 +60,14 @@
             this.panel1.Size = new System.Drawing.Size(784, 19);
             this.panel1.TabIndex = 2;
             // 
+            // progressBar1
+            // 
+            this.progressBar1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.progressBar1.Location = new System.Drawing.Point(0, 0);
+            this.progressBar1.Name = "progressBar1";
+            this.progressBar1.Size = new System.Drawing.Size(784, 19);
+            this.progressBar1.TabIndex = 0;
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.textBoxLog);
@@ -68,14 +76,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(784, 542);
             this.panel2.TabIndex = 3;
-            // 
-            // progressBar1
-            // 
-            this.progressBar1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.progressBar1.Location = new System.Drawing.Point(0, 0);
-            this.progressBar1.Name = "progressBar1";
-            this.progressBar1.Size = new System.Drawing.Size(784, 19);
-            this.progressBar1.TabIndex = 0;
             // 
             // FormLog
             // 
@@ -88,6 +88,7 @@
             this.Name = "FormLog";
             this.StartPosition = System.Windows.Forms.FormStartPosition.Manual;
             this.Text = "Log";
+            this.Load += new System.EventHandler(this.FormLog_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();

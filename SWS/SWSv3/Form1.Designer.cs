@@ -74,7 +74,6 @@
             this.title,
             this.image,
             this.view});
-            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -125,7 +124,6 @@
             // 
             // toolStripTextBoxURL
             // 
-            this.toolStripTextBoxURL.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStripTextBoxURL.Name = "toolStripTextBoxURL";
             this.toolStripTextBoxURL.Size = new System.Drawing.Size(250, 25);
             // 
@@ -137,7 +135,6 @@
             // 
             // toolStripTextBoxPointStart
             // 
-            this.toolStripTextBoxPointStart.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStripTextBoxPointStart.Name = "toolStripTextBoxPointStart";
             this.toolStripTextBoxPointStart.Size = new System.Drawing.Size(50, 25);
             // 
@@ -149,7 +146,6 @@
             // 
             // toolStripTextBoxPointEnd
             // 
-            this.toolStripTextBoxPointEnd.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStripTextBoxPointEnd.Name = "toolStripTextBoxPointEnd";
             this.toolStripTextBoxPointEnd.Size = new System.Drawing.Size(50, 25);
             // 

@@ -10,16 +10,11 @@ using System.Windows.Forms;
 
 namespace SWSv3
 {
-    public partial class FormLog : Form
+    public partial class FormProgressBar : Form
     {
-        public FormLog()
+        public FormProgressBar()
         {
             InitializeComponent();
-        }
-
-        private void FormLog_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }
