@@ -32,7 +32,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.progressBar1 = new System.Windows.Forms.ProgressBar();
-            this.customProgressBar1 = new SWSv3.Controls.CustomProgressBar();
             this.SuspendLayout();
             // 
             // label1
@@ -75,28 +74,12 @@
             this.progressBar1.Size = new System.Drawing.Size(350, 20);
             this.progressBar1.TabIndex = 3;
             // 
-            // customProgressBar1
-            // 
-            this.customProgressBar1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(203)))), ((int)(((byte)(74)))), ((int)(((byte)(0)))));
-            this.customProgressBar1.BackColorProgress = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(133)))), ((int)(((byte)(0)))));
-            this.customProgressBar1.BorderColor = System.Drawing.Color.FromArgb(((int)(((byte)(127)))), ((int)(((byte)(140)))), ((int)(((byte)(141)))));
-            this.customProgressBar1.Location = new System.Drawing.Point(0, 18);
-            this.customProgressBar1.Name = "customProgressBar1";
-            this.customProgressBar1.Size = new System.Drawing.Size(350, 20);
-            this.customProgressBar1.Step = 10;
-            this.customProgressBar1.TabIndex = 4;
-            this.customProgressBar1.Text = "customProgressBar1";
-            this.customProgressBar1.Value = 0;
-            this.customProgressBar1.ValueMaximum = 100;
-            this.customProgressBar1.ValueMinimum = 0;
-            // 
             // FormProgressBar
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(39)))), ((int)(((byte)(40)))), ((int)(((byte)(36)))));
             this.ClientSize = new System.Drawing.Size(350, 200);
-            this.Controls.Add(this.customProgressBar1);
             this.Controls.Add(this.progressBar1);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -116,6 +99,5 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         public System.Windows.Forms.ProgressBar progressBar1;
-        public Controls.CustomProgressBar customProgressBar1;
     }
 }

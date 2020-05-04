@@ -41,10 +41,6 @@ namespace SWSv3
             fpb.progressBar1.Minimum = min;
             fpb.progressBar1.Maximum = max;
             fpb.progressBar1.Value = value;
-
-            fpb.customProgressBar1.ValueMinimum = min;
-            fpb.customProgressBar1.ValueMaximum = max;
-            fpb.customProgressBar1.Value = value;
         }
 
         public void LogAdd(string message)
@@ -99,11 +95,11 @@ namespace SWSv3
                     }
                     catch (IOException exc)
                     {
-                        Invoke(new AddMessageDelegate(LogAdd), new object[] { Environment.NewLine + "[" + DateTime.Now.ToString() + "]" + " " + exc.Message + Environment.NewLine });
+                        Invoke(new AddMessageDelegate(LogAdd), new object[] { Environment.NewLine + "[" + DateTime.Now.ToString() + "]" + " " + exc.Message });
                     }
                     catch (NullReferenceException exc)
                     {
-                        Invoke(new AddMessageDelegate(LogAdd), new object[] { Environment.NewLine + "[" + DateTime.Now.ToString() + "]" + " " + exc.Message + Environment.NewLine });
+                        Invoke(new AddMessageDelegate(LogAdd), new object[] { Environment.NewLine + "[" + DateTime.Now.ToString() + "]" + " " + exc.Message  });
                     }
                 }
                 else
@@ -127,11 +123,11 @@ namespace SWSv3
                     }
                     catch (IOException exc)
                     {
-                        Invoke(new AddMessageDelegate(LogAdd), new object[] { Environment.NewLine + "[" + DateTime.Now.ToString() + "]" + " " + exc.Message + Environment.NewLine });
+                        Invoke(new AddMessageDelegate(LogAdd), new object[] { Environment.NewLine + "[" + DateTime.Now.ToString() + "]" + " " + exc.Message  });
                     }
                     catch (NullReferenceException exc)
                     {
-                        Invoke(new AddMessageDelegate(LogAdd), new object[] { Environment.NewLine + "[" + DateTime.Now.ToString() + "]" + " " + exc.Message + Environment.NewLine });
+                        Invoke(new AddMessageDelegate(LogAdd), new object[] { Environment.NewLine + "[" + DateTime.Now.ToString() + "]" + " " + exc.Message  });
                     }
                 }
                 Invoke(new AddMessageDelegate(LogAdd), new object[] { $" DONE. Time Spent: { sw.ElapsedMilliseconds }ms." + Environment.NewLine });
@@ -167,7 +163,6 @@ namespace SWSv3
             //btnStart.Enabled = true;
             #endregion
             fl.Show();
-            fpb.Show();
             Task task = new Task(() => StartParse());
             task.Start();
         }
