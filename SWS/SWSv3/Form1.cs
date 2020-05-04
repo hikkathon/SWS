@@ -94,11 +94,11 @@ namespace SWSv3
                     }
                     catch (IOException exc)
                     {
-                        Invoke(new AddMessageDelegate(LogAdd), new object[] { Environment.NewLine + "[" + DateTime.Now.ToString() + "]" + " " + exc + Environment.NewLine });
+                        Invoke(new AddMessageDelegate(LogAdd), new object[] { Environment.NewLine + "[" + DateTime.Now.ToString() + "]" + " " + exc.Message + Environment.NewLine });
                     }
                     catch (NullReferenceException exc)
                     {
-                        Invoke(new AddMessageDelegate(LogAdd), new object[] { Environment.NewLine + "[" + DateTime.Now.ToString() + "]" + " " + exc + Environment.NewLine });
+                        Invoke(new AddMessageDelegate(LogAdd), new object[] { Environment.NewLine + "[" + DateTime.Now.ToString() + "]" + " " + exc.Message + Environment.NewLine });
                     }
                 }
                 else
@@ -122,11 +122,11 @@ namespace SWSv3
                     }
                     catch (IOException exc)
                     {
-                        Invoke(new AddMessageDelegate(LogAdd), new object[] { Environment.NewLine + "[" + DateTime.Now.ToString() + "]" + " " + exc + Environment.NewLine });
+                        Invoke(new AddMessageDelegate(LogAdd), new object[] { Environment.NewLine + "[" + DateTime.Now.ToString() + "]" + " " + exc.Message + Environment.NewLine });
                     }
                     catch (NullReferenceException exc)
                     {
-                        Invoke(new AddMessageDelegate(LogAdd), new object[] { Environment.NewLine + "[" + DateTime.Now.ToString() + "]" + " " + exc + Environment.NewLine });
+                        Invoke(new AddMessageDelegate(LogAdd), new object[] { Environment.NewLine + "[" + DateTime.Now.ToString() + "]" + " " + exc.Message + Environment.NewLine });
                     }
                 }
                 Invoke(new AddMessageDelegate(LogAdd), new object[] { $" DONE. Time Spent: { sw.ElapsedMilliseconds }ms." + Environment.NewLine });
