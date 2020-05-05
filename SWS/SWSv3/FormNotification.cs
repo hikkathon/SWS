@@ -65,6 +65,11 @@ namespace SWSv3
             action = enmAction.close;
         }
 
+        private void timer2_Tick(object sender, EventArgs e)
+        {
+            lblTime.Text = TimeAgo.GetTimeSince(objDateTime).ToString();
+        }
+
         private void timer1_Tick(object sender, EventArgs e)
         {
             switch (this.action)
@@ -100,11 +105,6 @@ namespace SWSv3
                     }
                     break;
             }
-        }
-
-        private void timer2_Tick(object sender, EventArgs e)
-        {
-            lblTime.Text = TimeAgo.GetTimeSince(objDateTime).ToString();
         }
 
         public void showAlert(string title, string message, string song, enmType type)

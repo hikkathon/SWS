@@ -37,7 +37,7 @@ namespace SWSv2
             {
                 int counter = 0;
                 int pointStart = 1;
-                int pointEnd = 162;
+                int pointEnd = 163;
                 int sleep = 800;
 
                 HttpResponseMessage response;

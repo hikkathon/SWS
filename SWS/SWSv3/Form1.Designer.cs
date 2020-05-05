@@ -41,6 +41,8 @@
             this.toolStripTextBoxPointStart = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripTextBoxPointEnd = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripButtonStart = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel1 = new System.Windows.Forms.Panel();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -49,8 +51,6 @@
             this.toolStripStatusLabel3 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel4 = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolStripStatusLabel5 = new System.Windows.Forms.ToolStripStatusLabel();
-            this.toolStripButtonStart = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.toolStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -74,6 +74,7 @@
             this.title,
             this.image,
             this.view});
+            this.dataGridView1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridView1.Location = new System.Drawing.Point(0, 0);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.ReadOnly = true;
@@ -124,6 +125,7 @@
             // 
             // toolStripTextBoxURL
             // 
+            this.toolStripTextBoxURL.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStripTextBoxURL.Name = "toolStripTextBoxURL";
             this.toolStripTextBoxURL.Size = new System.Drawing.Size(250, 25);
             // 
@@ -135,6 +137,7 @@
             // 
             // toolStripTextBoxPointStart
             // 
+            this.toolStripTextBoxPointStart.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStripTextBoxPointStart.Name = "toolStripTextBoxPointStart";
             this.toolStripTextBoxPointStart.Size = new System.Drawing.Size(50, 25);
             // 
@@ -146,8 +149,27 @@
             // 
             // toolStripTextBoxPointEnd
             // 
+            this.toolStripTextBoxPointEnd.Font = new System.Drawing.Font("Segoe UI", 9F);
             this.toolStripTextBoxPointEnd.Name = "toolStripTextBoxPointEnd";
             this.toolStripTextBoxPointEnd.Size = new System.Drawing.Size(50, 25);
+            // 
+            // toolStripButtonStart
+            // 
+            this.toolStripButtonStart.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonStart.Image")));
+            this.toolStripButtonStart.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonStart.Name = "toolStripButtonStart";
+            this.toolStripButtonStart.Size = new System.Drawing.Size(51, 22);
+            this.toolStripButtonStart.Text = "Start";
+            this.toolStripButtonStart.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(51, 22);
+            this.toolStripButton1.Text = "Save";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click_1);
             // 
             // panel2
             // 
@@ -211,24 +233,6 @@
             this.toolStripStatusLabel5.Name = "toolStripStatusLabel5";
             this.toolStripStatusLabel5.Size = new System.Drawing.Size(66, 17);
             this.toolStripStatusLabel5.Text = "элементов";
-            // 
-            // toolStripButtonStart
-            // 
-            this.toolStripButtonStart.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonStart.Image")));
-            this.toolStripButtonStart.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonStart.Name = "toolStripButtonStart";
-            this.toolStripButtonStart.Size = new System.Drawing.Size(51, 22);
-            this.toolStripButtonStart.Text = "Start";
-            this.toolStripButtonStart.Click += new System.EventHandler(this.toolStripButton1_Click);
-            // 
-            // toolStripButton1
-            // 
-            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
-            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton1.Name = "toolStripButton1";
-            this.toolStripButton1.Size = new System.Drawing.Size(51, 22);
-            this.toolStripButton1.Text = "Save";
-            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click_1);
             // 
             // FormMain
             // 

@@ -225,8 +225,7 @@ namespace SWSv3
 
         private void dataGridView1_MouseUp(object sender, MouseEventArgs e)
         {
-            Int32 selectedColumnCount = dataGridView1.Columns
-    .GetColumnCount(DataGridViewElementStates.Selected);
+            Int32 selectedColumnCount = dataGridView1.Columns.GetColumnCount(DataGridViewElementStates.Selected);
             if (selectedColumnCount > 0)
             {
                 System.Text.StringBuilder sb = new System.Text.StringBuilder();
