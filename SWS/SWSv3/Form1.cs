@@ -242,5 +242,10 @@ namespace SWSv3
                 MessageBox.Show(sb.ToString(), "Selected Columns");
             }
         }
+
+        private void dataGridView1_DoubleClick(object sender, EventArgs e)
+        {
+
+        }
     }
 }

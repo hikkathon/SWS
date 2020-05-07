@@ -90,7 +90,7 @@
             this.byToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(1524, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(1300, 24);
             this.menuStrip1.TabIndex = 4;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -199,7 +199,7 @@
             this.TitulBar.Dock = System.Windows.Forms.DockStyle.Top;
             this.TitulBar.Location = new System.Drawing.Point(0, 24);
             this.TitulBar.Name = "TitulBar";
-            this.TitulBar.Size = new System.Drawing.Size(1524, 100);
+            this.TitulBar.Size = new System.Drawing.Size(1300, 100);
             this.TitulBar.TabIndex = 6;
             // 
             // panel7
@@ -209,7 +209,7 @@
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel7.Location = new System.Drawing.Point(354, 0);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(1170, 93);
+            this.panel7.Size = new System.Drawing.Size(946, 93);
             this.panel7.TabIndex = 4;
             // 
             // panelBorderTop
@@ -220,7 +220,7 @@
             this.panelBorderTop.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelBorderTop.Location = new System.Drawing.Point(0, 14);
             this.panelBorderTop.Name = "panelBorderTop";
-            this.panelBorderTop.Size = new System.Drawing.Size(1170, 69);
+            this.panelBorderTop.Size = new System.Drawing.Size(946, 69);
             this.panelBorderTop.TabIndex = 2;
             // 
             // panel4
@@ -240,7 +240,7 @@
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel4.Location = new System.Drawing.Point(0, 3);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(1170, 63);
+            this.panel4.Size = new System.Drawing.Size(946, 63);
             this.panel4.TabIndex = 2;
             // 
             // btnslideClose
@@ -261,7 +261,7 @@
             this.iconsCloseWindow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.iconsCloseWindow.Cursor = System.Windows.Forms.Cursors.Hand;
             this.iconsCloseWindow.Image = ((System.Drawing.Image)(resources.GetObject("iconsCloseWindow.Image")));
-            this.iconsCloseWindow.Location = new System.Drawing.Point(1123, 13);
+            this.iconsCloseWindow.Location = new System.Drawing.Point(899, 13);
             this.iconsCloseWindow.Name = "iconsCloseWindow";
             this.iconsCloseWindow.Size = new System.Drawing.Size(35, 35);
             this.iconsCloseWindow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -274,7 +274,7 @@
             this.iconsMinimizeWindow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.iconsMinimizeWindow.Cursor = System.Windows.Forms.Cursors.Hand;
             this.iconsMinimizeWindow.Image = ((System.Drawing.Image)(resources.GetObject("iconsMinimizeWindow.Image")));
-            this.iconsMinimizeWindow.Location = new System.Drawing.Point(1041, 13);
+            this.iconsMinimizeWindow.Location = new System.Drawing.Point(817, 13);
             this.iconsMinimizeWindow.Name = "iconsMinimizeWindow";
             this.iconsMinimizeWindow.Size = new System.Drawing.Size(35, 35);
             this.iconsMinimizeWindow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -301,7 +301,7 @@
             this.iconsMaximizeWindow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.iconsMaximizeWindow.Cursor = System.Windows.Forms.Cursors.Hand;
             this.iconsMaximizeWindow.Image = ((System.Drawing.Image)(resources.GetObject("iconsMaximizeWindow.Image")));
-            this.iconsMaximizeWindow.Location = new System.Drawing.Point(1082, 13);
+            this.iconsMaximizeWindow.Location = new System.Drawing.Point(858, 13);
             this.iconsMaximizeWindow.Name = "iconsMaximizeWindow";
             this.iconsMaximizeWindow.Size = new System.Drawing.Size(35, 35);
             this.iconsMaximizeWindow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -332,7 +332,7 @@
             this.iconsRestoreWindow.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.iconsRestoreWindow.Cursor = System.Windows.Forms.Cursors.Hand;
             this.iconsRestoreWindow.Image = ((System.Drawing.Image)(resources.GetObject("iconsRestoreWindow.Image")));
-            this.iconsRestoreWindow.Location = new System.Drawing.Point(1082, 13);
+            this.iconsRestoreWindow.Location = new System.Drawing.Point(858, 13);
             this.iconsRestoreWindow.Name = "iconsRestoreWindow";
             this.iconsRestoreWindow.Size = new System.Drawing.Size(35, 35);
             this.iconsRestoreWindow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -401,7 +401,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Location = new System.Drawing.Point(0, 66);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1170, 3);
+            this.panel3.Size = new System.Drawing.Size(946, 3);
             this.panel3.TabIndex = 1;
             // 
             // panel2
@@ -410,7 +410,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1170, 3);
+            this.panel2.Size = new System.Drawing.Size(946, 3);
             this.panel2.TabIndex = 0;
             // 
             // panel1
@@ -418,7 +418,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1170, 14);
+            this.panel1.Size = new System.Drawing.Size(946, 14);
             this.panel1.TabIndex = 0;
             // 
             // panel6
@@ -446,7 +446,7 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel5.Location = new System.Drawing.Point(0, 93);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1524, 7);
+            this.panel5.Size = new System.Drawing.Size(1300, 7);
             this.panel5.TabIndex = 1;
             // 
             // PanelContented
@@ -456,7 +456,7 @@
             this.PanelContented.Dock = System.Windows.Forms.DockStyle.Fill;
             this.PanelContented.Location = new System.Drawing.Point(0, 124);
             this.PanelContented.Name = "PanelContented";
-            this.PanelContented.Size = new System.Drawing.Size(1524, 591);
+            this.PanelContented.Size = new System.Drawing.Size(1300, 591);
             this.PanelContented.TabIndex = 7;
             // 
             // buttonParse
@@ -470,7 +470,7 @@
             this.buttonParse.Font = new System.Drawing.Font("Century Gothic", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.buttonParse.ForeColor = System.Drawing.Color.White;
             this.buttonParse.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.buttonParse.Location = new System.Drawing.Point(1386, 516);
+            this.buttonParse.Location = new System.Drawing.Point(1162, 516);
             this.buttonParse.Name = "buttonParse";
             this.buttonParse.Size = new System.Drawing.Size(126, 63);
             this.buttonParse.TabIndex = 5;
@@ -483,12 +483,12 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(1524, 715);
+            this.ClientSize = new System.Drawing.Size(1300, 715);
             this.Controls.Add(this.PanelContented);
             this.Controls.Add(this.TitulBar);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.MinimumSize = new System.Drawing.Size(1300, 650);
+            this.MinimumSize = new System.Drawing.Size(1278, 650);
             this.Name = "FormMain";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Simple Web Scraper";
