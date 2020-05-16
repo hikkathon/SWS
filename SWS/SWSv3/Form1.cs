@@ -87,7 +87,7 @@ namespace SWSv3
                             var title = post.SelectSingleNode(".//img[@class='imgRadius']")?.GetAttributeValue("alt", "") ?? "{null}";
                             var image = post.SelectSingleNode(".//img[@class='imgRadius']")?.GetAttributeValue("src", "") ?? "{null}";
                             var view = post.SelectSingleNode(".//span[@class='staticInfoRightSmotr']")?.InnerText ?? "0";
-                            Invoke(new ShowDataViewGridDelegate(ShowDataViewGrid), new object[] { title, image, view });
+                            Invoke(new ShowDataViewGridDelegate(ShowDataViewGrid), new object[] { title, toolStripTextBoxURL+image, view });
                             Invoke(new ProgressBarDelegate(ProgressBar), new object[] { startPoint,endPoint,j});
                             Thread.Sleep(50);
                             Invoke(new AddMessageDelegate(ShowtoolStripStatusLabel2), new object[] { $"{counter}" });
@@ -115,7 +115,7 @@ namespace SWSv3
                             var title = post.SelectSingleNode(".//img[@class='imgRadius']")?.GetAttributeValue("alt", "");
                             var image = post.SelectSingleNode(".//img[@class='imgRadius']")?.GetAttributeValue("src", "");
                             var view = post.SelectSingleNode(".//span[@class='staticInfoRightSmotr']")?.InnerText;
-                            Invoke(new ShowDataViewGridDelegate(ShowDataViewGrid), new object[] { title, image, view });
+                            Invoke(new ShowDataViewGridDelegate(ShowDataViewGrid), new object[] { title, toolStripTextBoxURL + image, view });
                             Invoke(new ProgressBarDelegate(ProgressBar), new object[] { startPoint, endPoint, j });
                             Thread.Sleep(50);
                             Invoke(new AddMessageDelegate(ShowtoolStripStatusLabel2), new object[] { $"{counter}" });
